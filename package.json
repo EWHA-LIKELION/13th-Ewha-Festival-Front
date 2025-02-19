@@ -16,7 +16,8 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "svgr": "npx @svgr/cli -d src/assets/icons --ignore-existing --no-dimensions public/svgs"
   },
   "eslintConfig": {
     "extends": [
@@ -38,6 +39,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.20.0",
+    "@svgr/webpack": "^8.1.0",
     "eslint": "^8.57.1",
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-react": "^7.37.4",

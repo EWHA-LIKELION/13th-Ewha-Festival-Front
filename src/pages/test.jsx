@@ -1,7 +1,13 @@
 import styled from 'styled-components';
+import { ArrowLeft } from '@/assets/icons';
 
 const Test = () => {
-  return <P>테스트 페이지</P>;
+  return (
+    <>
+      <ArrowLeft />
+      <P>테스트 페이지</P>
+    </>
+  );
 };
 
 export default Test;
