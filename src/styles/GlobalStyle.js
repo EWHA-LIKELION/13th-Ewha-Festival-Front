@@ -21,7 +21,14 @@ const GlobalStyle = createGlobalStyle`
   --red-100: #FF635E;
 }
 
+// 최종 개발 이후 bg 설정 삭제 예정
+html {
+  background-color: var(--gray1);
+}
+
 body {
+  font-family: 'Pretendard', sans-serif;
+  background-color: white;
   height: 100dvh; 
   max-width: 440px; 
   margin: 0 auto; 
@@ -48,6 +55,34 @@ button {
   background: transparent;
   cursor: pointer;
 }
+
+@font-face {
+    font-family: 'Pretendard';
+    font-weight: 300;
+    font-display: swap;
+    src: url('/fonts/Pretendard-Light.woff2') format('woff2');
+  }
+
+  @font-face {
+    font-family: 'Pretendard';
+    font-weight: 400;
+    font-display: swap;
+    src: url('/fonts/Pretendard-Regular.woff2') format('woff2');
+  }
+
+  @font-face {
+    font-family: 'Pretendard';
+    font-weight: 500;
+    font-display: swap;
+    src: url('/fonts/Pretendard-Medium.woff2') format('woff2');
+  }
+
+  @font-face {
+    font-family: 'Pretendard';
+    font-weight: 600;
+    font-display: swap;
+    src: url('/fonts/Pretendard-SemiBold.woff2') format('woff2');
+  }
 
 `;
 
