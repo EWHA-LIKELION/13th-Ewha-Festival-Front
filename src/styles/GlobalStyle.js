@@ -2,10 +2,16 @@ import { createGlobalStyle } from 'styled-components';
 import 'normalize.css';
 
 const GlobalStyle = createGlobalStyle`
+
 * {
   box-sizing: border-box;
+}
+
+div, span, h1, h2, h3, h4, h5, h6, p, a, dl, dt, dd, ol, ul, li, form, label, table{
   margin: 0;
   padding: 0;
+  border: 0;
+  vertical-align: baseline;
 }
 
 :root {
@@ -29,6 +35,7 @@ html {
 body {
   font-family: 'Pretendard', sans-serif;
   background-color: white;
+  position: relative;
   height: 100dvh; 
   max-width: 440px; 
   margin: 0 auto; 
