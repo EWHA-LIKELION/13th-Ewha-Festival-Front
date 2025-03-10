@@ -1,0 +1,47 @@
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { handleLogin } from '@/api/auth';
+import http from '@/api/http';
+
+const KakaoRedirect = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const processKakaoLogin = async () => {
+      const code = new URL(window.location.href).searchParams.get('code');
+
+      if (!code) {
+        console.error('인증 코드 찾을 수 없음');
+        navigate('/login');
+        return;
+      }
+
+      try {
+        const response = await http.post('/accounts/kakao/', { code });
+        const { data } = response.data;
+
+        handleLogin(data.access_token, {
+          id: data.id,
+          username: data.username,
+          nickname: data.nickname
+        });
+
+        navigate('/', { replace: true });
+      } catch (err) {
+        console.error('로그인 처리 중 오류:', err);
+        navigate('/login');
+      }
+    };
+
+    processKakaoLogin();
+  }, [navigate]);
+
+  return (
+    <div>
+      <h2>로그인 처리 중...</h2>
+      <p>추후 로딩 스피너 삽입 예정</p>
+    </div>
+  );
+};
+
+export default KakaoRedirect;
