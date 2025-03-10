@@ -3,6 +3,10 @@ import { ArrowLeft } from '@/assets/icons';
 import { KakaoChat } from '@/assets/icons';
 import loginBg from '@/assets/images/loginBg.png';
 
+const handleKakaoLogin = () => {
+  window.location.href = KAKAO.AUTH.URL;
+};
+
 const LoginPage = () => {
   return (
     <>
@@ -14,7 +18,7 @@ const LoginPage = () => {
           즐길 준비 되셨나요?
         </Title>
         <SubTitle>로그인하고 사이트를 더 편하게 즐겨보세요!</SubTitle>
-        <LoginBtn>
+        <LoginBtn onClick={handleKakaoLogin}>
           <KakaoChat />
           카카오톡 간편 로그인
         </LoginBtn>
@@ -53,7 +57,7 @@ const LoginBtn = styled.div`
   justify-content: center;
   align-items: center;
   gap: 1.25rem;
-  width: 70%;
+  width: 16rem;
   border-radius: 0.5rem;
   padding: 0.75rem 0;
   background-color: #ffea2b;
