@@ -2,9 +2,10 @@ import styled from 'styled-components';
 import { ArrowLeft } from '@/assets/icons';
 import { KakaoChat } from '@/assets/icons';
 import loginBg from '@/assets/images/loginBg.png';
+import { getKakaoAuthUrl } from '@/api/auth';
 
 const handleKakaoLogin = () => {
-  window.location.href = KAKAO.AUTH.URL;
+  window.location.href = getKakaoAuthUrl();
 };
 
 const LoginPage = () => {
