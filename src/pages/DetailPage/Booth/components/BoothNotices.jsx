@@ -118,14 +118,15 @@ const NoticeTime = styled.span`
 `;
 
 const NoNotices = styled.div`
-  padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
+  height: 100%;
 
   img {
     width: 100%;
-    max-width: 200px;
+    height: 100%;
+    object-fit: cover;
   }
 `;

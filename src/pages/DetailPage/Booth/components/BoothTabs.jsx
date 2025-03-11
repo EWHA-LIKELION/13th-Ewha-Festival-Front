@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import BoothNotices from '@/pages/DetailPage/Booth/components/BoothNotices.jsx';
 import BoothMenu from '@/pages/DetailPage/Booth/components/BoothMenu.jsx';
-import BoothGuestbook from '@/pages/DetailPage/Booth/components/BoothGuestbook.jsx';
+import BoothGuestbook from '@/pages/DetailPage/Booth/components/Guestbook/BoothGuestbook.jsx';
 
 const BoothTabs = () => {
   const [activeTab, setActiveTab] = useState('공지');
