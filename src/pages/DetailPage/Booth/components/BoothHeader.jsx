@@ -6,7 +6,7 @@ import backBlackIcon from '@/pages/DetailPage/Booth/images/backBlack.svg';
 
 const BoothHeader = () => {
   const navigate = useNavigate();
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [$isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,9 +24,9 @@ const BoothHeader = () => {
   }, []);
 
   return (
-    <Header isScrolled={isScrolled}>
+    <Header $isScrolled={$isScrolled}>
       <BackButton onClick={() => navigate('/')}>
-        <img src={isScrolled ? backBlackIcon : backIcon} alt='Back' />
+        <img src={$isScrolled ? backBlackIcon : backIcon} alt='Back' />
       </BackButton>
     </Header>
   );
@@ -49,8 +49,8 @@ const Header = styled.div`
     background 0.3s ease-in-out,
     box-shadow 0.3s ease-in-out;
 
-  ${({ isScrolled }) =>
-    isScrolled &&
+  ${({ $isScrolled }) =>
+    $isScrolled &&
     `
     background: #FFF;
     box-shadow: 0px 2px 13.1px 0px rgba(0, 0, 0, 0.08);

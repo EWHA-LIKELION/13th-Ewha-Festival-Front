@@ -6,7 +6,7 @@ import noNoticesImg from '@/pages/DetailPage/Booth/images/noNotices.svg';
 import axios from 'axios';
 
 const BoothNotices = () => {
-  const booth_id = 1;
+  const booth_id = 2;
   const [notices, setNotices] = useState([]);
   const [expandedIndex, setExpandedIndex] = useState(null);
 
@@ -30,12 +30,12 @@ const BoothNotices = () => {
   };
 
   return (
-    <NoticesContainer hasNotices={notices.length > 0}>
+    <NoticesContainer $hasNotices={notices.length > 0}>
       {notices.length > 0 ? (
         notices.map((notice, index) => (
           <NoticeCard key={index}>
             <NoticeHeader onClick={() => toggleNotice(index)}>
-              <NoticeTitle expanded={expandedIndex === index}>
+              <NoticeTitle $expanded={expandedIndex === index}>
                 {notice.title}
               </NoticeTitle>
               {expandedIndex === index ? <UpArrow /> : <DownArrow />}
@@ -61,8 +61,8 @@ const NoticesContainer = styled.div`
   display: flex;
   flex-direction: column;
 
-  ${({ hasNotices }) =>
-    hasNotices
+  ${({ $hasNotices }) =>
+    $hasNotices
       ? `
     padding-left: 1.25rem;
     padding-right: 1.25rem;
@@ -100,7 +100,7 @@ const NoticeTitle = styled.h3`
   display: -webkit-box;
   width: 17.125rem;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: ${({ expanded }) => (expanded ? 'unset' : '1')};
+  -webkit-line-clamp: ${({ $expanded }) => ($expanded ? 'unset' : '1')};
   overflow: hidden;
   color: var(--black, #000);
   text-overflow: ellipsis;

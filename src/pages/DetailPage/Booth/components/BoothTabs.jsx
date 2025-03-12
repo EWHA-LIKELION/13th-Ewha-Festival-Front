@@ -6,35 +6,35 @@ import BoothMenu from '@/pages/DetailPage/Booth/components/BoothMenu.jsx';
 import BoothGuestbook from '@/pages/DetailPage/Booth/components/Guestbook/BoothGuestbook.jsx';
 
 const BoothTabs = () => {
-  const [activeTab, setActiveTab] = useState('공지');
+  const [$activeTab, setActiveTab] = useState('공지');
 
   return (
     <>
       <TabsContainer>
         <TabButton
-          className={activeTab === '공지' ? 'active' : ''}
+          className={$activeTab === '공지' ? 'active' : ''}
           onClick={() => setActiveTab('공지')}
         >
           공지
         </TabButton>
         <TabButton
-          className={activeTab === '메뉴' ? 'active' : ''}
+          className={$activeTab === '메뉴' ? 'active' : ''}
           onClick={() => setActiveTab('메뉴')}
         >
           메뉴
         </TabButton>
         <TabButton
-          className={activeTab === '방명록' ? 'active' : ''}
+          className={$activeTab === '방명록' ? 'active' : ''}
           onClick={() => setActiveTab('방명록')}
         >
           방명록
         </TabButton>
-        <TabIndicator activeTab={activeTab} />
+        <TabIndicator $activeTab={$activeTab} />
       </TabsContainer>
 
-      {activeTab === '공지' && <BoothNotices />}
-      {activeTab === '메뉴' && <BoothMenu />}
-      {activeTab === '방명록' && <BoothGuestbook />}
+      {$activeTab === '공지' && <BoothNotices />}
+      {$activeTab === '메뉴' && <BoothMenu />}
+      {$activeTab === '방명록' && <BoothGuestbook />}
     </>
   );
 };
@@ -67,10 +67,10 @@ const TabButton = styled.button`
 const TabIndicator = styled.div`
   position: absolute;
   bottom: -3px;
-  left: ${({ activeTab }) =>
-    activeTab === '공지'
+  left: ${({ $activeTab }) =>
+    $activeTab === '공지'
       ? '0rem'
-      : activeTab === '메뉴'
+      : $activeTab === '메뉴'
         ? '4.25rem'
         : '8.5rem'};
   width: 4.25rem;

@@ -1,10 +1,43 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 
 import kakaoIcon from '@/pages/DetailPage/Booth/images/kakao.svg';
 import beforescrapIcon from '@/pages/DetailPage/Booth/images/beforescrap.svg';
+import afterscrapIcon from '@/pages/DetailPage/Booth/images/afterscrap.svg';
 
-const BoothButton = ({ contact, scrapCount }) => {
+const BoothButton = ({
+  contact,
+  scrapCount,
+  scrapState,
+  setScrapState,
+  boothId
+}) => {
+  const handleScrapToggle = async () => {
+    try {
+      const token = localStorage.getItem('access_token');
+      if (!token) {
+        alert('로그인이 필요합니다.');
+        return;
+      }
+
+      const url = `${process.env.REACT_APP_SERVER_PORT}/scrap/${boothId}/`;
+      const config = {
+        headers: { Authorization: `Bearer ${token}` }
+      };
+
+      if (scrapState) {
+        await axios.delete(url, config);
+        setScrapState(false);
+      } else {
+        await axios.post(url, {}, config);
+        setScrapState(true);
+      }
+    } catch (error) {
+      console.error('스크랩 요청 중 오류 발생:', error);
+    }
+  };
+
   return (
     <ButtonWrapper>
       <ButtonContainer>
@@ -16,8 +49,13 @@ const BoothButton = ({ contact, scrapCount }) => {
         </ButtonItem>
         <ColumnDivider />
         <ButtonItem>
-          <img src={beforescrapIcon} alt='scrap' />
-          <ScrapButton>{scrapCount}명이 스크랩했어요</ScrapButton>
+          <ScrapButton onClick={handleScrapToggle}>
+            <img
+              src={scrapState ? afterscrapIcon : beforescrapIcon}
+              alt='scrap'
+            />
+          </ScrapButton>
+          <ContactText>{scrapCount}명이 스크랩했어요</ContactText>
         </ButtonItem>
       </ButtonContainer>
     </ButtonWrapper>
@@ -27,8 +65,6 @@ const BoothButton = ({ contact, scrapCount }) => {
 export default BoothButton;
 
 const ButtonWrapper = styled.div`
-  margin: 0;
-  padding: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -64,13 +100,16 @@ const ColumnDivider = styled.div`
 const ContactText = styled.div`
   color: var(--gray3, #787878);
   text-align: center;
-
   ${({ theme }) => theme.fontStyles.regular_12pt}
 `;
 
 const ScrapButton = styled.button`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: none;
+  background: none;
+  cursor: pointer;
   color: var(--gray3, #787878);
-  text-align: center;
-
   ${({ theme }) => theme.fontStyles.regular_12pt}
 `;

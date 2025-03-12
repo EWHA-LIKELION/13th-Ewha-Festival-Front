@@ -10,10 +10,11 @@ import BoothTabs from '@/pages/DetailPage/Booth/components/BoothTabs.jsx';
 import basicThumbnail from '@/pages/DetailPage/Booth/images/basicThumbnail.svg';
 
 const BoothDetail = () => {
-  const booth_id = 1; // 👈 테스트용으로 booth_id를 1로 고정해놨음. 나중에 유선언니 목록 페이지 작업 끝나면 수정해 주기
+  const booth_id = 1; // ✅ 부스 목록 개발 끝나면 변경해주기
   const [boothData, setBoothData] = useState(null);
   const [operatingHours, setOperatingHours] = useState([]);
   const [thumbnailSrc, setThumbnailSrc] = useState(null);
+  const [scrapState, setScrapState] = useState(false);
 
   useEffect(() => {
     const fetchBoothData = async () => {
@@ -25,6 +26,7 @@ const BoothDetail = () => {
         setBoothData(response.data.booth);
         setOperatingHours(response.data.operating_hours || []);
         setThumbnailSrc(response.data.booth.thumbnail || basicThumbnail);
+        setScrapState(response.data.is_scrap);
       } catch (error) {
         console.error('Error loading data:', error);
       }
@@ -54,6 +56,9 @@ const BoothDetail = () => {
         <BoothButton
           contact={boothData.contact}
           scrapCount={boothData.scrap_count}
+          scrapState={scrapState}
+          setScrapState={setScrapState}
+          boothId={booth_id}
         />
         <BoothMeta
           location={boothData.formatted_location}
@@ -77,7 +82,6 @@ const BoothThumbnail = styled.img`
   width: 100%;
   height: 15rem;
   object-fit: cover;
-  background: url(<path-to-image>) lightgray 50% / cover no-repeat;
   background: linear-gradient(
     180deg,
     rgba(0, 0, 0, 0.8) 35.78%,
