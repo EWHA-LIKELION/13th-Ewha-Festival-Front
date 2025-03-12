@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
+import http from '@/api/http';
 
 import kakaoIcon from '@/pages/DetailPage/Booth/images/kakao.svg';
 import beforescrapIcon from '@/pages/DetailPage/Booth/images/beforescrap.svg';
@@ -15,26 +15,19 @@ const BoothButton = ({
 }) => {
   const handleScrapToggle = async () => {
     try {
-      const token = localStorage.getItem('access_token');
-      if (!token) {
-        alert('로그인이 필요합니다.');
-        return;
-      }
-
-      const url = `${process.env.REACT_APP_SERVER_PORT}/scrap/${boothId}/`;
-      const config = {
-        headers: { Authorization: `Bearer ${token}` }
-      };
+      const url = `/scrap/${boothId}/`;
 
       if (scrapState) {
-        await axios.delete(url, config);
+        await http.delete(url);
         setScrapState(false);
       } else {
-        await axios.post(url, {}, config);
+        await http.post(url);
         setScrapState(true);
       }
     } catch (error) {
-      console.error('스크랩 요청 중 오류 발생:', error);
+      if (error.response?.status === 400) {
+        alert('로그인 후 이용 가능합니다.');
+      }
     }
   };
 

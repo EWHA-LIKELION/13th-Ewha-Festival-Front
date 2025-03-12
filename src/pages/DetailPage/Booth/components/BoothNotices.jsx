@@ -3,19 +3,17 @@ import styled from 'styled-components';
 import { ReactComponent as DownArrow } from '@/pages/DetailPage/Booth/images/down_arrow.svg';
 import { ReactComponent as UpArrow } from '@/pages/DetailPage/Booth/images/up_arrow.svg';
 import noNoticesImg from '@/pages/DetailPage/Booth/images/noNotices.svg';
-import axios from 'axios';
+import http from '@/api/http';
 
 const BoothNotices = () => {
-  const booth_id = 2;
+  const booth_id = 1;
   const [notices, setNotices] = useState([]);
   const [expandedIndex, setExpandedIndex] = useState(null);
 
   useEffect(() => {
     const fetchNotices = async () => {
       try {
-        const response = await axios.get(
-          `${process.env.REACT_APP_SERVER_PORT}booths/notices/${booth_id}/`
-        );
+        const response = await http.get(`/booths/notices/${booth_id}/`);
         setNotices(response.data.notices || []);
       } catch (error) {
         console.error('Error loading data:', error);

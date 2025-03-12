@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import axios from 'axios';
+import http from '@/api/http';
 
 const useGuestbookStore = create(set => ({
   guestbooks: [],
@@ -7,15 +7,9 @@ const useGuestbookStore = create(set => ({
 
   addGuestbook: async (boothId, content) => {
     try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_SERVER_PORT}guestbooks/create/${boothId}/`,
-        { content },
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('accessToken')}`
-          }
-        }
-      );
+      const response = await http.post(`/guestbooks/create/${boothId}/`, {
+        content
+      });
 
       const newGuestbook = {
         id: response.data.data.guestbook_id,
@@ -39,9 +33,7 @@ const useGuestbookStore = create(set => ({
 
 export const fetchGuestbooks = async boothId => {
   try {
-    const response = await axios.get(
-      `${process.env.REACT_APP_SERVER_PORT}booths/guestbooks/${boothId}/`
-    );
+    const response = await http.get(`/booths/guestbooks/${boothId}/`);
     const fetchedGuestbooks = response.data.guest_books.map(gb => ({
       id: gb.id,
       username: gb.username,

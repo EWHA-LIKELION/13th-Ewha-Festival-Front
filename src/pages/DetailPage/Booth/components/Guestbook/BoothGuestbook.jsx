@@ -5,16 +5,15 @@ import GuestbookItem from '@/pages/DetailPage/Booth/components/Guestbook/Guestbo
 import GuestbookInputBox from '@/pages/DetailPage/Booth/components/Guestbook/GuestbookInputBox';
 import GuestbookDeleteModal from '@/pages/DetailPage/Booth/modals/GuestbookDeleteModal';
 import noGuestBookImg from '@/pages/DetailPage/Booth/images/noGuestBook.svg';
-import axios from 'axios';
+import http from '@/api/http';
 
 const BoothGuestbook = () => {
   const { guestbooks, addGuestbook, deleteGuestbook } = useGuestbookStore();
   const [input, setInput] = useState('');
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedGuestbook, setSelectedGuestbook] = useState(null);
-  const boothId = 1; // ✅ 실제 사용 시 boothId를 동적으로 받도록 변경 가능
+  const boothId = 1; // ✅ 부스 목록 페이지 개발작업 끝나면 수정해주기
 
-  // 백엔드에서 방명록 데이터 불러오기
   useEffect(() => {
     fetchGuestbooks(boothId);
   }, []);
@@ -23,15 +22,9 @@ const BoothGuestbook = () => {
     if (!input.trim()) return;
 
     try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_SERVER_PORT}guestbooks/create/${boothId}/`,
-        { content: input },
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('accessToken')}`
-          }
-        }
-      );
+      const response = await http.post(`/guestbooks/create/${boothId}/`, {
+        content: input
+      });
 
       const newGuestbook = {
         id: response.data.data.guestbook_id,
@@ -49,7 +42,10 @@ const BoothGuestbook = () => {
         textarea.style.height = 'auto';
       }
     } catch (error) {
-      console.error('Error posting guestbook:', error);
+      if (error.response?.status === 401) {
+        alert('로그인 후 이용 가능합니다.');
+      } else {
+      }
     }
   };
 
@@ -62,7 +58,7 @@ const BoothGuestbook = () => {
   };
 
   return (
-    <GuestbookContainer hasGuestbooks={guestbooks.length > 0}>
+    <GuestbookContainer $hasGuestbooks={guestbooks.length > 0}>
       {guestbooks.length > 0 ? (
         guestbooks.map(gb => (
           <GuestbookItem
@@ -99,8 +95,8 @@ export default BoothGuestbook;
 const GuestbookContainer = styled.div`
   display: flex;
   flex-direction: column;
-  ${({ hasGuestbooks }) =>
-    hasGuestbooks ? `padding: 1rem 1.25rem 4.5rem 1.25rem;` : `padding: 0;`}
+  ${({ $hasGuestbooks }) =>
+    $hasGuestbooks ? `padding: 1rem 1.25rem 4.5rem 1.25rem;` : `padding: 0;`}
   gap: 0.75rem;
   margin-bottom: 2rem;
 `;

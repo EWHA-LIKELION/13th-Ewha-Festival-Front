@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
+import http from '@/api/http';
 
 import BoothHeader from '@/pages/DetailPage/Booth/components/BoothHeader';
 import BoothInfo from '@/pages/DetailPage/Booth/components/BoothInfo.jsx';
@@ -19,9 +19,7 @@ const BoothDetail = () => {
   useEffect(() => {
     const fetchBoothData = async () => {
       try {
-        const response = await axios.get(
-          `${process.env.REACT_APP_SERVER_PORT}booths/notices/${booth_id}/`
-        );
+        const response = await http.get(`/booths/notices/${booth_id}/`);
 
         setBoothData(response.data.booth);
         setOperatingHours(response.data.operating_hours || []);

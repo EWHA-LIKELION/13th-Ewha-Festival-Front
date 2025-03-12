@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
+import http from '@/api/http';
 import basicMenuImg from '@/pages/DetailPage/Booth/images/basicmenu.svg';
 
 const BoothMenu = () => {
@@ -11,9 +11,7 @@ const BoothMenu = () => {
   useEffect(() => {
     const fetchMenus = async () => {
       try {
-        const response = await axios.get(
-          `${process.env.REACT_APP_SERVER_PORT}booths/menus/${booth_id}/`
-        );
+        const response = await http.get(`/booths/menus/${booth_id}/`);
 
         const fetchedMenus = response.data.menus || [];
         setMenus(fetchedMenus);
