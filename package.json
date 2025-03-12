@@ -3,17 +3,23 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^1.8.2",
     "cra-template": "1.2.0",
+    "js-cookie": "^3.0.5",
+    "normalize.css": "^8.0.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-router-dom": "^7.2.0",
     "react-scripts": "5.0.1",
+    "styled-components": "^6.1.15",
     "web-vitals": "^4.2.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+    "eject": "react-scripts eject",
+    "svgr": "npx @svgr/cli -d src/assets/icons --ignore-existing --no-dimensions --ext jsx public/svgs"
   },
   "eslintConfig": {
     "extends": [
@@ -35,10 +41,12 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.20.0",
+    "@svgr/webpack": "^8.1.0",
     "eslint": "^8.57.1",
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-react": "^7.37.4",
     "globals": "^15.15.0",
-    "prettier": "^3.5.1"
+    "prettier": "^3.5.1",
+    "react-app-rewired": "^2.2.1"
   }
 }
