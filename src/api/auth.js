@@ -12,8 +12,9 @@ export const getKakaoAuthUrl = () => {
 };
 
 // <로그인> 함수
-export const handleLogin = (token, userData) => {
-  Cookies.set('accessToken', token, { expires: 3 });
+export const handleLogin = (accessToken, refreshToken, userData) => {
+  Cookies.set('accessToken', accessToken, { expires: 3 });
+  Cookies.set('refreshToken', refreshToken, { expires: 7 });
   localStorage.setItem('user', JSON.stringify(userData));
 };
 

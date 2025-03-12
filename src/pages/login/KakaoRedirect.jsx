@@ -17,10 +17,12 @@ const KakaoRedirect = () => {
       }
 
       try {
-        const response = await http.post('/accounts/kakao/', { code });
+        const response = await http.get('/accounts/kakao/', {
+          params: { code }
+        });
         const { data } = response.data;
 
-        handleLogin(data.access_token, {
+        handleLogin(data.access_token, data.refresh_token, {
           id: data.id,
           username: data.username,
           nickname: data.nickname
