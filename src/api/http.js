@@ -33,10 +33,31 @@ api.interceptors.response.use(
   },
   async error => {
     // 401 (인증 만료)
-    if (error.response?.status === 401) {
-      Cookies.remove('accessToken');
-      window.location.href = '/login';
-      return Promise.reject(error);
+    if (error.response?.status === 401 && !error.config._retry) {
+      error.config._retry = true;
+
+      try {
+        const refreshToken = Cookies.get('refreshToken');
+
+        if (refreshToken) {
+          const response = await axios.post(
+            `${process.env.REACT_APP_BASE_URL}/accounts/refresh/`,
+            { refresh_token: refreshToken }
+          );
+
+          const { access_token } = response.data;
+          Cookies.set('accessToken', access_token);
+
+          error.config.headers.Authorization = `Bearer ${access_token}`;
+
+          return api(error.config);
+        }
+      } catch (refreshError) {
+        // 토큰 갱신 실패 시 로그아웃
+        Cookies.remove('accessToken');
+        Cookies.remove('refreshToken');
+        window.location.href = '/login';
+      }
     }
 
     // 404 (Not Found)
