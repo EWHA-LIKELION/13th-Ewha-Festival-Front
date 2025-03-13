@@ -1,7 +1,9 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import mainBg from '@/assets/images/mainBg.png';
 import Footer from '@/common/Footer';
 import { Search, Menu } from '@/assets/icons';
+import Signpost from './Signpost';
 
 const MainPage = () => {
   return (
@@ -15,10 +17,11 @@ const MainPage = () => {
           </Icons>
         </Header>
         <Title>
-          로그인하고 사이트를
+          <LoginLink to='/login'>로그인</LoginLink>하고 사이트를
           <br />
           편하게 즐겨보세요.
         </Title>
+        <Signpost />
       </MainContent>
       <Footer />
     </MainWrapper>
@@ -37,13 +40,19 @@ const MainContent = styled.div`
   background-size: cover;
   background-position: bottom;
   height: 100dvh;
-  padding: 1.25rem;
 `;
 
 const Header = styled.div`
   width: 100%;
+  position: fixed;
+  top: 0;
   display: flex;
+  align-items: start;
   justify-content: space-between;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+  height: 7rem;
+  padding: 1.25rem;
+  z-index: 10;
 `;
 
 const Logo = styled.div`
@@ -62,5 +71,11 @@ const Icons = styled.div`
 const Title = styled.h1`
   ${({ theme }) => theme.fontStyles.regular_24pt}
   color: white;
-  margin-top: 2rem;
+  margin-top: 6rem;
+  padding-left: 1.25rem;
+`;
+
+const LoginLink = styled(Link)`
+  text-decoration: underline;
+  cursor: pointer;
 `;
