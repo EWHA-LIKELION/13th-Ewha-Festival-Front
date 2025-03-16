@@ -4,7 +4,7 @@ import http from '@/api/http';
 import basicMenuImg from '@/pages/DetailPage/Booth/images/basicmenu.svg';
 
 const BoothMenu = () => {
-  const booth_id = 1;
+  const booth_id = 2;
   const [menus, setMenus] = useState([]);
   const [isBasicImage, setIsBasicImage] = useState({});
 
@@ -72,7 +72,6 @@ const MenuContainer = styled.div`
   grid-template-columns: repeat(2, 1fr);
   gap: 0.75rem;
   padding: 1.19rem 1.25rem;
-  background-color: white;
 `;
 
 const MenuItem = styled.div`

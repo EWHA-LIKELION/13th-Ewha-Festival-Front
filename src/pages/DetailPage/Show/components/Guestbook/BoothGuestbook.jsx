@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import useGuestbookStore, { fetchGuestbooks } from '@/store/guestbookStore';
-import GuestbookItem from '@/pages/DetailPage/Booth/components/Guestbook/GuestbookItem';
-import GuestbookInputBox from '@/pages/DetailPage/Booth/components/Guestbook/GuestbookInputBox';
-import GuestbookDeleteModal from '@/pages/DetailPage/Booth/modals/GuestbookDeleteModal';
+import ShowGuestbookStore, {
+  fetchGuestbooks
+} from '@/store/ShowGuestbookStore';
+import GuestbookItem from '@/pages/DetailPage/Show/components/Guestbook/GuestbookItem';
+import GuestbookInputBox from '@/pages/DetailPage/Show/components/Guestbook/GuestbookInputBox';
+import GuestbookDeleteModal from '@/pages/DetailPage/Show/modals/GuestbookDeleteModal';
 import noGuestBookImg from '@/pages/DetailPage/Booth/images/noGuestBook.svg';
 import http from '@/api/http';
 
 const BoothGuestbook = () => {
-  const { guestbooks, addGuestbook, deleteGuestbook } = useGuestbookStore();
+  const { guestbooks, addGuestbook, deleteGuestbook } = ShowGuestbookStore();
   const [input, setInput] = useState('');
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedGuestbook, setSelectedGuestbook] = useState(null);
-  const boothId = 1; // ✅ 부스 목록 페이지 개발작업 끝나면 수정해주기
+  const boothId = 2; // ✅ 부스 목록 페이지 개발작업 끝나면 수정해주기
 
   useEffect(() => {
     fetchGuestbooks(boothId);
