@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import http from '@/api/http';
 
@@ -13,16 +13,21 @@ const BoothButton = ({
   setScrapState,
   boothId
 }) => {
+  const [localScrapCount, setLocalScrapCount] = useState(scrapCount);
+
   const handleScrapToggle = async () => {
     try {
       const url = `/scrap/${boothId}/`;
 
       if (scrapState) {
+        // ✅ API 요청 전에 UI 업데이트하지 않고, 성공 후 업데이트
         await http.delete(url);
         setScrapState(false);
+        setLocalScrapCount(prev => prev - 1);
       } else {
         await http.post(url);
         setScrapState(true);
+        setLocalScrapCount(prev => prev + 1);
       }
     } catch (error) {
       if (error.response?.status === 400) {
@@ -48,7 +53,7 @@ const BoothButton = ({
               alt='scrap'
             />
           </ScrapButton>
-          <ContactText>{scrapCount}명이 스크랩했어요</ContactText>
+          <ContactText>{localScrapCount}명이 스크랩했어요</ContactText>
         </ButtonItem>
       </ButtonContainer>
     </ButtonWrapper>

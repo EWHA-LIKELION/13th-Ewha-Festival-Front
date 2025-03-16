@@ -2,37 +2,38 @@ import { create } from 'zustand';
 import http from '@/api/http';
 
 const useGuestbookStore = create(set => ({
+  boothId: null,
   guestbooks: [],
   setGuestbooks: guestbooks => set({ guestbooks }),
 
-  addGuestbook: async (boothId, content) => {
-    try {
-      const response = await http.post(`/guestbooks/create/${boothId}/`, {
-        content
-      });
+  setBoothId: boothId => set({ boothId }),
 
-      const newGuestbook = {
-        id: response.data.data.guestbook_id,
-        username: response.data.data.anonymous_nickname,
-        content: response.data.data.content,
-        createdAt: response.data.data.created_ago,
-        isAuthor: true
-      };
-
-      set(state => ({ guestbooks: [newGuestbook, ...state.guestbooks] }));
-    } catch (error) {
-      console.error('Error adding guestbook:', error);
-    }
+  addGuestbook: newGuestbook => {
+    set(state => ({
+      guestbooks: [newGuestbook, ...state.guestbooks]
+    }));
   },
 
-  deleteGuestbook: id =>
-    set(state => ({
-      guestbooks: state.guestbooks.filter(gb => gb.id !== id)
-    }))
+  deleteGuestbook: async guestbookId => {
+    try {
+      const { boothId } = useGuestbookStore.getState();
+      if (!boothId || !guestbookId) return;
+
+      await http.delete(`/guestbooks/delete/${boothId}/${guestbookId}/`);
+
+      set(state => ({
+        guestbooks: state.guestbooks.filter(gb => gb.id !== guestbookId)
+      }));
+    } catch (error) {
+      console.error('Error deleting guestbook:', error);
+    }
+  }
 }));
 
 export const fetchGuestbooks = async boothId => {
   try {
+    useGuestbookStore.getState().setBoothId(boothId);
+
     const response = await http.get(`/booths/guestbooks/${boothId}/`);
     const fetchedGuestbooks = response.data.guest_books.map(gb => ({
       id: gb.id,

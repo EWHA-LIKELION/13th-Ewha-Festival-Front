@@ -16,7 +16,7 @@ const BoothGuestbook = () => {
 
   useEffect(() => {
     fetchGuestbooks(boothId);
-  }, []);
+  }, [boothId]);
 
   const handleSend = async () => {
     if (!input.trim()) return;
@@ -37,6 +37,8 @@ const BoothGuestbook = () => {
       addGuestbook(newGuestbook);
       setInput('');
 
+      fetchGuestbooks(boothId);
+
       const textarea = document.getElementById('guestbook-input');
       if (textarea) {
         textarea.style.height = 'auto';
@@ -44,7 +46,6 @@ const BoothGuestbook = () => {
     } catch (error) {
       if (error.response?.status === 401) {
         alert('로그인 후 이용 가능합니다.');
-      } else {
       }
     }
   };
