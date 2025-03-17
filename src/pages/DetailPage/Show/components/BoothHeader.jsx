@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+
 import backIcon from '@/pages/DetailPage/Booth/images/back.svg';
 import backBlackIcon from '@/pages/DetailPage/Booth/images/backBlack.svg';
+import editIcon from '@/pages/DetailPage/Booth/images/edit.svg';
+import editBlackIcon from '@/pages/DetailPage/Booth/images/editBlack.svg';
 
-const BoothHeader = () => {
+const BoothHeader = ({ role }) => {
   const navigate = useNavigate();
   const [$isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 150) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 150);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -28,6 +27,11 @@ const BoothHeader = () => {
       <BackButton onClick={() => navigate('/')}>
         <img src={$isScrolled ? backBlackIcon : backIcon} alt='Back' />
       </BackButton>
+      {role === 'admin' && (
+        <EditButton onClick={() => navigate('/booth/edit')}>
+          <img src={$isScrolled ? editBlackIcon : editIcon} alt='edit' />
+        </EditButton>
+      )}
     </Header>
   );
 };
@@ -41,7 +45,8 @@ const Header = styled.div`
   position: fixed;
   display: flex;
   align-items: center;
-  padding-left: 1.25rem;
+  padding: 0 1.25rem;
+  justify-content: space-between;
   top: 0;
   z-index: 100;
 
@@ -58,6 +63,14 @@ const Header = styled.div`
 `;
 
 const BackButton = styled.div`
+  img {
+    width: 1.5rem;
+    height: 1.5rem;
+    cursor: pointer;
+  }
+`;
+
+const EditButton = styled.div`
   img {
     width: 1.5rem;
     height: 1.5rem;

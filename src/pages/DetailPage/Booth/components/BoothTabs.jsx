@@ -47,6 +47,7 @@ const TabsContainer = styled.div`
   border-bottom: 3px solid #f2f2f2;
   width: 100%;
   height: 2.1875rem;
+  background-color: white;
 `;
 
 const TabButton = styled.button`

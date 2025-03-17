@@ -38,6 +38,7 @@ const BoothMetaWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  background-color: white;
 `;
 
 const MetaRow = styled.div`

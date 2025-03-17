@@ -63,6 +63,7 @@ const BoothButton = ({
 export default BoothButton;
 
 const ButtonWrapper = styled.div`
+  background-color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;

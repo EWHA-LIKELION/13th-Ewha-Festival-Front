@@ -15,6 +15,7 @@ const ShowDetail = () => {
   const [operatingHours, setOperatingHours] = useState([]);
   const [thumbnailSrc, setThumbnailSrc] = useState(null);
   const [scrapState, setScrapState] = useState(false);
+  const [role, setRole] = useState('guest');
 
   useEffect(() => {
     const fetchBoothData = async () => {
@@ -25,6 +26,7 @@ const ShowDetail = () => {
         setOperatingHours(response.data.operating_hours || []);
         setThumbnailSrc(response.data.booth.thumbnail || basicThumbnail);
         setScrapState(response.data.is_scrap);
+        setRole(response.data.booth.role || 'guest');
       } catch (error) {
         console.error('Error loading data:', error);
       }
@@ -37,7 +39,7 @@ const ShowDetail = () => {
 
   return (
     <>
-      <BoothHeader />
+      <BoothHeader role={role} />
       <ThumbnailWrapper>
         <BoothThumbnail
           src={thumbnailSrc}
@@ -93,4 +95,5 @@ const InfoWrapper = styled.div`
   padding-top: 1rem;
   padding-bottom: 2rem;
   justify-content: flex-start;
+  background-color: white;
 `;

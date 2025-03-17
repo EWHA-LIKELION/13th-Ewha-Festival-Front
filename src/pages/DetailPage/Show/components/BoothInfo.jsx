@@ -17,6 +17,7 @@ export default BoothInfo;
 
 const InfoContainer = styled.div`
   margin-bottom: 1rem;
+  background-color: white;
 `;
 
 const Top = styled.div`
