@@ -44,6 +44,7 @@ const MainContent = styled.div`
 
 const Header = styled.div`
   width: 100%;
+  max-width: 440px;
   position: fixed;
   top: 0;
   display: flex;
