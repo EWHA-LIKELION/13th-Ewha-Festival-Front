@@ -23,6 +23,7 @@ div, span, h1, h2, h3, h4, h5, h6, p, a, dl, dt, dd, ol, ul, li, form, label, ta
   --green1-100: #18BB7A;
   --green2-60: rgba(0, 124, 74, 0.60);
   --green2-100: #007C4A;
+  --green3: #00462A;
   --red-20: #FFE0DF;
   --red-100: #FF635E;
 }

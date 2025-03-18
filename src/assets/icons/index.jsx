@@ -6,3 +6,4 @@ export { default as LionsLogo } from './LionsLogo';
 export { default as Menu } from './Menu';
 export { default as Pole } from './Pole';
 export { default as Search } from './Search';
+export { default as SignBoard } from './SignBoard';
