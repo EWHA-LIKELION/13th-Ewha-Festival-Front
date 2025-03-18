@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 import { Pole } from '@/assets/icons';
 import Sign from './Sign';
+import { getUserInfo } from '@/api/auth';
 
-const signs = [
+const allSigns = [
   { korean: '부스 목록', english: 'Booth\nList' },
   { korean: '공연 목록', english: 'Stage\nList' },
   { korean: '축제 일정', english: 'Liberté\nPlan' },
@@ -11,6 +12,10 @@ const signs = [
 ];
 
 const Signpost = () => {
+  const userInfo = getUserInfo();
+  const isBooth = userInfo?.is_booth || false;
+  const signs = isBooth ? allSigns : allSigns.slice(0, 4);
+
   return (
     <SignpostWrapper>
       <Pole />
