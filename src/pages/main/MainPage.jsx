@@ -4,11 +4,17 @@ import mainBg from '@/assets/images/mainBg.png';
 import Footer from '@/common/Footer';
 import { Search, Menu } from '@/assets/icons';
 import Signpost from './Signpost';
+import { isLoggedIn, getUserInfo } from '@/api/auth';
 
 const MainPage = () => {
+  const loggedIn = isLoggedIn();
+  const userInfo = loggedIn ? getUserInfo() : null;
+  const nickname = userInfo?.nickname || '';
+
   return (
     <MainWrapper>
       <MainContent>
+        {/* 헤더 */}
         <Header>
           <Logo>로고</Logo>
           <Icons>
@@ -16,11 +22,23 @@ const MainPage = () => {
             <Menu />
           </Icons>
         </Header>
-        <Title>
-          <LoginLink to='/login'>로그인</LoginLink>하고 사이트를
-          <br />
-          편하게 즐겨보세요.
-        </Title>
+
+        {/* 타이틀 */}
+        {loggedIn ? (
+          <Title>
+            <strong>{nickname}</strong> 님,
+            <br />
+            어디로 가볼까요?
+          </Title>
+        ) : (
+          <Title>
+            <LoginLink to='/login'>로그인</LoginLink>하고 사이트를
+            <br />
+            편하게 즐겨보세요.
+          </Title>
+        )}
+
+        {/* 표지판 */}
         <Signpost />
       </MainContent>
       <Footer />
