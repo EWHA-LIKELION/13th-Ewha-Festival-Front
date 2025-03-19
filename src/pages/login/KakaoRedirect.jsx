@@ -25,7 +25,8 @@ const KakaoRedirect = () => {
         handleLogin(data.access_token, data.refresh_token, {
           id: data.id,
           username: data.username,
-          nickname: data.nickname
+          nickname: data.nickname,
+          is_booth: data.is_booth
         });
 
         navigate('/', { replace: true });

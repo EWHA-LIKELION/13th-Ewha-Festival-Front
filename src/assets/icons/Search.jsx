@@ -5,6 +5,7 @@ const SvgSearch = props => (
     fill='none'
     viewBox='0 0 24 24'
     width='1.5rem'
+    cursor='pointer'
     {...props}
   >
     <g
