@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import DefaultBoothImage from '../images/defaultBoothImage';
+import DefaultBoothImage from '../Booth/images/defaultBoothImage';
 
 const ImageEdit = () => {
   const [image, setImage] = useState(null);

@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const BoothName = () => {
+const BoothName = ({ title = '부스명' }) => {
   return (
     <BoothNameContainer>
-      <Title>부스명</Title>
+      <Title>{title}</Title>
       <input></input>
     </BoothNameContainer>
   );
