@@ -25,7 +25,7 @@ const RunningTime = () => {
 
   return (
     <TimeContainer>
-      <Title>부스 운영시간</Title>
+      <Title>운영시간</Title>
       {Object.entries(schedule).map(([day, data], index) => (
         <ScheduleItem key={day}>
           <CheckboxWrapper onClick={() => toggleTimeInputs(day)}>

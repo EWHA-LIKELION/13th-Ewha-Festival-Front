@@ -1,16 +1,31 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Test from './pages/test';
-import BoothEdit from './pages/EditPage/boothEdit';
-import MenuEdit from './pages/EditPage/menuEdit';
+import BoothEdit from './pages/EditPage/Booth/boothEdit';
+import MenuEdit from './pages/EditPage/Booth/menuEdit';
+import MenuEditList from './pages/EditPage/Booth/menuEditList';
+import NoticeEdit from './pages/EditPage/Booth/noticeEdit';
+import ShowEdit from './pages/EditPage/Show/showEdit';
+
+import BoothDetail from './pages/DetailPage/Booth/BoothDetail';
+import ShowDetail from './pages/DetailPage/Show/ShowDetail';
+import MainPage from './pages/main/MainPage';
+import LoginPage from './pages/login/LoginPage';
+import KakaoRedirect from './pages/login/KakaoRedirect';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Test />} />
         <Route path='/boothEdit' element={<BoothEdit />} />
         <Route path='/menuEdit' element={<MenuEdit />} />
+        <Route path='/menuEditlist' element={<MenuEditList />} />
+        <Route path='/noticeEdit' element={<NoticeEdit />} />
+        <Route path='/showEdit' element={<ShowEdit />} />
+        <Route path='/showdetail' element={<ShowDetail />} />
+        <Route path='/boothdetail' element={<BoothDetail />} />
+        <Route path='/' element={<MainPage />} />
+        <Route path='/login' element={<LoginPage />} />
+        <Route path='/oauth/callback/kakao' element={<KakaoRedirect />} />
       </Routes>
     </BrowserRouter>
   );

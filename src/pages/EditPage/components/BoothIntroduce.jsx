@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const Introduce = () => {
   return (
     <Container>
-      <Title>부스 소개글</Title>
+      <Title>소개글</Title>
       <input></input>
     </Container>
   );

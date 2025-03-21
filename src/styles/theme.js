@@ -8,6 +8,14 @@ const theme = {
     line-height: 150%; 
     letter-spacing: -0.00625rem;
   `,
+    regular_24pt: `
+    font-family: Pretendard;
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    letter-spacing: -0.00625rem;
+  `,
     semibold_20pt: `
     font-family: Pretendard;
     font-size: 1.25rem;
@@ -89,10 +97,10 @@ const theme = {
     letter-spacing: -0.00625rem;
   `,
     semibold_14pt: `
-    font-family: Pretendard;
+    font-family: Pretendard; 
     font-size: 0.875rem;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 600; 
     line-height: 150%; 
     letter-spacing: -0.00625rem;
   `,
@@ -101,7 +109,7 @@ const theme = {
     font-size: 0.625rem;
     font-style: normal;
     font-weight: 500;
-    line-height: 150%; 
+    line-height: 150%;
     letter-spacing: -0.00063rem;
   `,
     light_10pt: `
