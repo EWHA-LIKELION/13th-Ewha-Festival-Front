@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import mainBg from '@/assets/images/mainBg.png';
 import Footer from '@/common/Footer';
 import { Search, Menu } from '@/assets/icons';
-import Signpost from './Signpost';
+import Signpost from './components/Signpost';
 import { isLoggedIn, getUserInfo } from '@/api/auth';
 
 const MainPage = () => {
