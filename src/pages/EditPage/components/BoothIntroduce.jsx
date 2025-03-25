@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Introduce = () => {
+const Introduce = ({ value, onChange }) => {
   return (
     <Container>
       <Title>소개글</Title>
-      <input></input>
+      <input value={value} onChange={onChange} />
     </Container>
   );
 };
