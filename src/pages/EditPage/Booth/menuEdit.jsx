@@ -24,6 +24,7 @@ const MenuEdit = () => {
 export default MenuEdit;
 
 const EditWrapper = styled.div`
+  position: relative;
   height: 100vh;
   overflow-y: auto;
   -ms-overflow-style: none;

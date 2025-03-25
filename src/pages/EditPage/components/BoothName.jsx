@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const BoothName = ({ title = '부스명' }) => {
+const BoothName = ({ value, onChange }) => {
   return (
     <BoothNameContainer>
-      <Title>{title}</Title>
-      <input></input>
+      <Title>부스명</Title>
+      <input value={value} onChange={onChange} />
     </BoothNameContainer>
   );
 };

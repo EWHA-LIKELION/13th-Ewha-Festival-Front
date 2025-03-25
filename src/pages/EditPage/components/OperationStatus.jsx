@@ -1,20 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
-const Status = () => {
-  const [isOperating, setIsOperating] = useState(true);
-
+const Status = ({ isOpened, setIsOpened }) => {
   return (
     <Container>
       <Title>운영 여부</Title>
       <ButtonContainer>
-        <StatusButton active={isOperating} onClick={() => setIsOperating(true)}>
+        <StatusButton active={isOpened} onClick={() => setIsOpened(true)}>
           운영 중
         </StatusButton>
-        <StatusButton
-          active={!isOperating}
-          onClick={() => setIsOperating(false)}
-        >
+        <StatusButton active={!isOpened} onClick={() => setIsOpened(false)}>
           운영 종료
         </StatusButton>
       </ButtonContainer>

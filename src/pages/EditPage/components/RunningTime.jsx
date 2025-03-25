@@ -1,14 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { CheckBox } from '@/assets/icons';
 
-const RunningTime = () => {
-  const [schedule, setSchedule] = useState({
-    day1: { enabled: false, start: '', end: '' },
-    day2: { enabled: false, start: '', end: '' },
-    day3: { enabled: false, start: '', end: '' }
-  });
-
+const RunningTime = ({ schedule, setSchedule }) => {
   const toggleTimeInputs = day => {
     setSchedule(prev => ({
       ...prev,
@@ -34,7 +28,6 @@ const RunningTime = () => {
           <label>{` ${['수', '목', '금'][index]}요일`}</label>
           <TimeInput
             type='text'
-            pattern='[0-9]{2}:[0-9]{2}'
             placeholder='HH:MM'
             value={data.start}
             onChange={e => handleTimeChange(day, 'start', e.target.value)}
@@ -43,7 +36,6 @@ const RunningTime = () => {
           ~
           <TimeInput
             type='text'
-            pattern='[0-9]{2}:[0-9]{2}'
             placeholder='HH:MM'
             value={data.end}
             onChange={e => handleTimeChange(day, 'end', e.target.value)}

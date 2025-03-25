@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Contact = () => {
+const Contact = ({ value, onChange }) => {
   return (
     <Container>
       <Title>운영진 연락처</Title>
-      <input></input>
+      <input value={value} onChange={onChange} />
     </Container>
   );
 };
