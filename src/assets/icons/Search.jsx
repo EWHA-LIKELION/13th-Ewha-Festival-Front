@@ -8,12 +8,7 @@ const SvgSearch = props => (
     cursor='pointer'
     {...props}
   >
-    <g
-      stroke='#fff'
-      strokeLinecap='round'
-      strokeLinejoin='round'
-      strokeWidth={1.5}
-    >
+    <g strokeLinecap='round' strokeLinejoin='round' strokeWidth={1.5}>
       <path d='M11 20a9 9 0 1 0 0-18 9 9 0 0 0 0 18M22 22l-3-3' />
     </g>
   </svg>
