@@ -21,7 +21,6 @@ const HeaderWrapper = styled.div`
   display: flex;
   align-items: start;
   justify-content: space-between;
-  height: 7rem;
   padding: 1.25rem;
   z-index: 10;
 
@@ -30,6 +29,7 @@ const HeaderWrapper = styled.div`
     `
     position: fixed;
     top: 0;
+    height: 7rem;
     background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
   `}
 `;
