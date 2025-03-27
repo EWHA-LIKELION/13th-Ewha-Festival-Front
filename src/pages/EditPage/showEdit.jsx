@@ -3,16 +3,16 @@ import http from '@/api/http';
 import styled from 'styled-components';
 import { getUserInfo } from '@/api/auth';
 
-import ImageEdit from '../components/ImageEdit';
-import BoothName from '../components/BoothName';
-import RunningTime from '../components/RunningTime';
-import Introduce from '../components/BoothIntroduce';
-import Contact from '../components/Contact';
-import Status from '../components/OperationStatus';
-import EditList from '../components/NoticeMenuEditButton';
-import Header1 from '../components/Header1';
+import ImageEdit from './components/ImageEdit';
+import BoothName from './components/BoothName';
+import RunningTime from './components/RunningTime';
+import Introduce from './components/BoothIntroduce';
+import Contact from './components/Contact';
+import Status from './components/OperationStatus';
+import EditList from './components/NoticeMenuEditButton';
+import Header1 from './components/Header1';
 
-const BoothEdit = () => {
+const ShowEdit = () => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [contact, setContact] = useState('');
@@ -50,7 +50,7 @@ const BoothEdit = () => {
   useEffect(() => {
     const fetchBoothData = async () => {
       try {
-        const res = await http.get(`/booths/${boothId}`);
+        const res = await http.get(`/shows/${boothId}`);
         const booth = res.data.booth;
         const hours = res.data.operating_hours;
 
@@ -115,13 +115,12 @@ const BoothEdit = () => {
       formData.append('thumbnail_image', thumbnailImage);
     }
 
-    // 확인용 로그
     for (let pair of formData.entries()) {
       console.log(`${pair[0]}:`, pair[1]);
     }
 
     try {
-      const response = await http.patch(`/booths/${boothId}/`, formData, {
+      const response = await http.patch(`/shows/${boothId}/`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -132,7 +131,6 @@ const BoothEdit = () => {
       alert('수정 실패');
     }
   };
-
   return (
     <EditWrapper>
       <Header1 buttonText='저장' onClick={onSave} />
@@ -143,7 +141,11 @@ const BoothEdit = () => {
           if (file) setThumbnailImage(file);
         }}
       />
-      <BoothName value={name} onChange={e => setName(e.target.value)} />
+      <BoothName
+        title='공연명'
+        value={name}
+        onChange={e => setName(e.target.value)}
+      />
       <Introduce
         value={description}
         onChange={e => setDescription(e.target.value)}
@@ -156,10 +158,9 @@ const BoothEdit = () => {
   );
 };
 
-export default BoothEdit;
+export default ShowEdit;
 
 const EditWrapper = styled.div`
-  position: relative;
   height: 100vh;
   overflow-y: auto;
   -ms-overflow-style: none;

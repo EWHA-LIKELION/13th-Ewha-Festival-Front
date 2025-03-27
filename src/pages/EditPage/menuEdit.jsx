@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import http from '@/api/http';
-import ImageEdit from '../components/ImageEdit';
-import MenuStatus from '../components/MenuStatus';
-import Header1 from '../components/Header1';
+import ImageEdit from './components/ImageEdit';
+import MenuStatus from './components/MenuStatus';
+import Header1 from './components/Header1';
 
 const MenuEdit = () => {
   const { id: menuId } = useParams();
