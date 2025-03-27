@@ -8,7 +8,7 @@ const SvgMenu = props => (
     cursor='pointer'
     {...props}
   >
-    <g stroke='#fff' strokeLinecap='round' strokeWidth={1.5}>
+    <g strokeLinecap='round' strokeWidth={1.5}>
       <path d='M3 5h18M3 12h18M3 19h18' />
     </g>
   </svg>

@@ -1,3 +1,5 @@
+import { css } from 'styled-components';
+
 const theme = {
   fontStyles: {
     semibold_24pt: `
@@ -136,6 +138,16 @@ const theme = {
     line-height: 150%; 
     letter-spacing: -0.00625rem;
   `
+  },
+  mixins: {
+    noScrollbar: css`
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    `
   }
 };
 
