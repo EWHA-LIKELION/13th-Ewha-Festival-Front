@@ -2,20 +2,20 @@ import React from 'react';
 import styled from 'styled-components';
 import { SmallArrow } from '@/assets/icons';
 
-const EditList = () => {
+const EditList = ({ noticeCount, menuCount }) => {
   return (
     <NoticeContainer>
       <List>
         <Title>공지 수정하기</Title>
         <DetailButton>
-          5개
+          {noticeCount}
           <SmallArrow />
         </DetailButton>
       </List>
       <List>
         <Title>메뉴 수정하기</Title>
         <DetailButton>
-          5개
+          {menuCount}
           <SmallArrow />
         </DetailButton>
       </List>

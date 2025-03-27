@@ -18,6 +18,7 @@ function App() {
       <Routes>
         <Route path='/boothEdit' element={<BoothEdit />} />
         <Route path='/menuEdit' element={<MenuEdit />} />
+        <Route path='/menuEdit/:id' element={<MenuEdit />} />
         <Route path='/menuEditlist' element={<MenuEditList />} />
         <Route path='/noticeEdit' element={<NoticeEdit />} />
         <Route path='/showEdit' element={<ShowEdit />} />
