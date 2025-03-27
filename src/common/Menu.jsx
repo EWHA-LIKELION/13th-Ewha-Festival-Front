@@ -2,17 +2,31 @@ import React from 'react';
 import styled from 'styled-components';
 import { Trash } from '@/assets/icons';
 
-const MenuCard = () => {
+const MenuCard = ({
+  id,
+  name,
+  price,
+  thumbnail,
+  isSale,
+  onClick,
+  onDelete
+}) => {
   return (
-    <MenuItem>
-      <MenuImage />
+    <MenuItem onClick={onClick}>
+      <MenuImage src={thumbnail} alt={name} />
       <MenuGradient />
-      <TrashIconWrapper>
+      <Overlay />
+      <TrashIconWrapper
+        onClick={e => {
+          e.stopPropagation(); // 카드 클릭 방지
+          onDelete?.(id); // 삭제 요청
+        }}
+      >
         <Trash />
       </TrashIconWrapper>
       <MenuTextWrapper>
-        <MenuText>dd</MenuText>
-        <MenuPrice>1</MenuPrice>
+        <MenuText>{name}</MenuText>
+        <MenuPrice>{price.toLocaleString()}원</MenuPrice>
       </MenuTextWrapper>
     </MenuItem>
   );
@@ -33,7 +47,15 @@ const MenuImage = styled.img`
   object-fit: cover;
   display: block;
 `;
-
+const Overlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  background: var(--green2-60, rgba(0, 124, 74, 0.6));
+`;
 const MenuGradient = styled.div`
   position: absolute;
   width: 100%;
@@ -57,6 +79,7 @@ const TrashIconWrapper = styled.div`
   top: 1rem;
   right: 0.75rem;
   z-index: 5;
+  cursor: pointer;
 `;
 const MenuTextWrapper = styled.div`
   position: absolute;

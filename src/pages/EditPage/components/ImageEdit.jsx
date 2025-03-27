@@ -1,41 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import DefaultBoothImage from '../Booth/images/defaultBoothImage';
 
-const ImageEdit = ({ thumbnailImage, onImageChange }) => {
-  const [previewUrl, setPreviewUrl] = useState(null);
-
-  useEffect(() => {
-    if (thumbnailImage) {
-      const url = URL.createObjectURL(thumbnailImage);
-      setPreviewUrl(url);
-
-      return () => URL.revokeObjectURL(url);
-    }
-  }, [thumbnailImage]);
-
-  const handleImageChange = event => {
-    const file = event.target.files[0];
-    if (file) {
-      onImageChange(file);
-    }
-  };
-
+const ImageEdit = ({ imageSrc, onImageChange }) => {
   return (
     <ImageContainer>
       <ImageWrapper>
-        {previewUrl ? (
-          <Image src={previewUrl} alt='대표 사진' />
+        {imageSrc ? (
+          <Image src={imageSrc} alt='대표 사진' />
         ) : (
           <DefaultBoothImage />
         )}
         <Overlay>
           사진 수정하기
-          <HiddenInput
-            type='file'
-            accept='image/*'
-            onChange={handleImageChange}
-          />
+          <HiddenInput type='file' accept='image/*' onChange={onImageChange} />
         </Overlay>
       </ImageWrapper>
     </ImageContainer>

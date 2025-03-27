@@ -1,12 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const AddNotice = () => {
+const AddNotice = ({ title, content, setTitle, setContent, onSubmit }) => {
   return (
     <NoticeContainer>
-      <TitleInput placeholder='공지 제목을 입력해주세요.' />
+      <TitleInput
+        placeholder='공지 제목을 입력해주세요.'
+        value={title}
+        onChange={e => setTitle(e.target.value)}
+      />
       <Divider />
-      <ContentInput placeholder='공지 내용을 입력해주세요.' />
+      <ContentInput
+        placeholder='공지 내용을 입력해주세요.'
+        value={content}
+        onChange={e => setContent(e.target.value)}
+      />
     </NoticeContainer>
   );
 };

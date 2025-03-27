@@ -2,17 +2,20 @@ import React from 'react';
 import styled from 'styled-components';
 import { Trash } from '@/assets/icons';
 
-const Notice = () => {
+const Notice = ({ id, title, content, onDelete }) => {
   return (
     <NoticeContainer>
       <Top>
-        <Title>떡볶이 품절..</Title>
-        <Trash stroke='var(--green1-100)' />
+        <Title>{title}</Title>
+        <Trash
+          stroke='var(--green1-100)'
+          onClick={e => {
+            e.stopPropagation(); // 카드 클릭 방지
+            onDelete?.(id); // 삭제 요청
+          }}
+        />
       </Top>
-      <Content>
-        떡볶이 너무 맛있어서 품절임 근데 재입고 예정은 없음 맛있어서 품절임 근데
-        재입고 예정은 없음
-      </Content>
+      <Content>{content}</Content>
     </NoticeContainer>
   );
 };
