@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import MenuCard from '@/common/Menu';
 import { Plus } from '@/assets/icons';
-import Header2 from '../components/Header2';
+import Header2 from './components/Header2';
 import http from '@/api/http';
 import { useNavigate } from 'react-router-dom';
 

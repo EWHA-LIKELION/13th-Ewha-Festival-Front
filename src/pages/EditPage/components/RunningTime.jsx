@@ -28,7 +28,7 @@ const RunningTime = ({ schedule, setSchedule }) => {
           <label>{` ${['수', '목', '금'][index]}요일`}</label>
           <TimeInput
             type='text'
-            placeholder='HH:MM'
+            placeholder='00:00'
             value={data.start}
             onChange={e => handleTimeChange(day, 'start', e.target.value)}
             disabled={!data.enabled}
@@ -36,7 +36,7 @@ const RunningTime = ({ schedule, setSchedule }) => {
           ~
           <TimeInput
             type='text'
-            placeholder='HH:MM'
+            placeholder='00:00'
             value={data.end}
             onChange={e => handleTimeChange(day, 'end', e.target.value)}
             disabled={!data.enabled}
@@ -62,7 +62,7 @@ const Title = styled.h2`
 `;
 
 const TimeInput = styled.input`
-  margin-left: 10px;
+  margin-inline: 0.75rem;
   width: 4.25rem;
   padding: 0.75rem 1rem;
   border-radius: 0.6875rem;
@@ -86,6 +86,7 @@ const CheckboxWrapper = styled.div`
   width: 1.5rem;
   height: 1.5rem;
   border-radius: 0.3125rem;
+  margin-right: 0.75rem;
   background: var(--gray1, #f2f2f2);
   display: flex;
   align-items: center;

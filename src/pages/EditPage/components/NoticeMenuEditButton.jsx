@@ -1,24 +1,36 @@
 import React from 'react';
 import styled from 'styled-components';
 import { SmallArrow } from '@/assets/icons';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const EditList = ({ noticeCount, menuCount }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleClickNotice = () => {
+    navigate('/noticeEdit');
+  };
+  const handleClickMenu = () => {
+    navigate('/menuEditList');
+  };
   return (
     <NoticeContainer>
       <List>
         <Title>공지 수정하기</Title>
-        <DetailButton>
-          {noticeCount}
+        <DetailButton onClick={() => handleClickNotice()}>
+          {noticeCount}개
           <SmallArrow />
         </DetailButton>
       </List>
-      <List>
-        <Title>메뉴 수정하기</Title>
-        <DetailButton>
-          {menuCount}
-          <SmallArrow />
-        </DetailButton>
-      </List>
+      {location.pathname !== '/showEdit' && (
+        <List>
+          <Title>메뉴 수정하기</Title>
+          <DetailButton onClick={() => handleClickMenu()}>
+            {menuCount}개
+            <SmallArrow />
+          </DetailButton>
+        </List>
+      )}
     </NoticeContainer>
   );
 };
@@ -35,13 +47,14 @@ const Title = styled.h2`
   ${({ theme }) => theme.fontStyles.semibold_16pt}
 `;
 const DetailButton = styled.button`
+  padding-left: 0.5rem;
   border-radius: 1.25rem;
   background: var(--gray1);
   min-width: 4.8rem;
   min-height: 2.3rem;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   ${({ theme }) => theme.fontStyles.regular_14pt}
 `;
 const List = styled.div`
