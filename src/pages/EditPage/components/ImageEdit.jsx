@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import DefaultBoothImage from '../Booth/images/defaultBoothImage';
+import DefaultBoothImage from '../images/defaultBoothImage';
 
 const ImageEdit = ({ imageSrc, onImageChange }) => {
   return (

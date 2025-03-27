@@ -8,7 +8,7 @@ const allSigns = [
   { korean: '공연 목록', english: 'Stage\nList', to: '/perflist' },
   { korean: '축제 일정', english: 'Liberté\nPlan', to: '/schedule' },
   { korean: '스크랩북', english: 'Scrap\nBook', to: '/scrap' },
-  { korean: '부스 관리', english: 'Booth\nAdmin', to: '/admin' }
+  { korean: '부스 관리', english: 'Booth\nAdmin', to: '/boothEdit' }
 ];
 
 const Signpost = () => {
