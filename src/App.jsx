@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import BoothEdit from './pages/EditPage/Booth/boothEdit';
-import MenuEdit from './pages/EditPage/Booth/menuEdit';
-import MenuEditList from './pages/EditPage/Booth/menuEditList';
-import NoticeEdit from './pages/EditPage/Booth/noticeEdit';
-import ShowEdit from './pages/EditPage/Show/showEdit';
+import BoothEdit from './pages/EditPage/boothEdit';
+import MenuEdit from './pages/EditPage/menuEdit';
+import MenuEditList from './pages/EditPage/menuEditList';
+import NoticeEdit from './pages/EditPage/noticeEdit';
+import ShowEdit from './pages/EditPage/showEdit';
 
 import BoothDetail from './pages/DetailPage/Booth/BoothDetail';
 import ShowDetail from './pages/DetailPage/Show/ShowDetail';

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Plus } from '@/assets/icons';
-import Notice from '../components/Notice';
-import AddNotice from '../components/AddNotice';
-import Header2 from '../components/Header2';
+import Notice from './components/Notice';
+import AddNotice from './components/AddNotice';
+import Header2 from './components/Header2';
 import http from '@/api/http';
 
 const NoticeEdit = () => {
@@ -15,13 +15,14 @@ const NoticeEdit = () => {
 
   const fetchNotices = async () => {
     try {
-      const res = await http.get(`/booths/notices/${boothId}/`);
-      const noticesWithId = res.data.notices.map((notice, index) => ({
-        ...notice,
-        id: index + 1
-      }));
-      setNotices(noticesWithId);
-      console.log(notices);
+      const res = await http.get(`/notices/${boothId}/`);
+      console.log('📦 서버 응답 데이터:', res.data);
+
+      res.data.forEach((notice, idx) => {
+        console.log(`🧾 notice[${idx}] id =`, notice.id);
+      });
+
+      setNotices(res.data);
     } catch (err) {
       console.error('공지 불러오기 실패:', err);
     }
@@ -77,13 +78,16 @@ const NoticeEdit = () => {
         />
       )}
       {Array.isArray(notices) &&
-        notices.map((notice, index) => (
+        notices.map(notice => (
           <Notice
-            key={index}
+            key={notice.id} // ✅ 안정적인 고유값
             title={notice.title}
             content={notice.content}
-            createdAt={notice.formatted_created_at}
-            onDelete={() => handleDelete(notice.id)}
+            createdAt={notice.time_since_created}
+            onDelete={() => {
+              console.log('삭제 요청 ID:', notice.id);
+              handleDelete(notice.id);
+            }}
           />
         ))}
     </EditWrapper>
