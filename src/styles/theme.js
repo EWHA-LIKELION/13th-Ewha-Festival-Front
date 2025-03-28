@@ -1,5 +1,3 @@
-import { css } from 'styled-components';
-
 const theme = {
   fontStyles: {
     semibold_24pt: `
@@ -8,14 +6,6 @@ const theme = {
     font-style: normal;
     font-weight: 600;
     line-height: 150%; 
-    letter-spacing: -0.00625rem;
-  `,
-    regular_24pt: `
-    font-family: Pretendard;
-    font-size: 1.5rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 150%;
     letter-spacing: -0.00625rem;
   `,
     semibold_20pt: `
@@ -58,14 +48,6 @@ const theme = {
     line-height: 150%;
     letter-spacing: -0.00625rem;
   `,
-    bold_15pt: `
-    font-family: Pretendard;
-    font-size: 0.9375rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 1.25rem; 
-    letter-spacing: -0.03125rem;
-  `,
     regular_14pt: `
     font-family: Pretendard;
     font-size: 0.875rem;
@@ -99,10 +81,10 @@ const theme = {
     letter-spacing: -0.00625rem;
   `,
     semibold_14pt: `
-    font-family: Pretendard; 
+    font-family: Pretendard;
     font-size: 0.875rem;
     font-style: normal;
-    font-weight: 600; 
+    font-weight: 600;
     line-height: 150%; 
     letter-spacing: -0.00625rem;
   `,
@@ -111,7 +93,7 @@ const theme = {
     font-size: 0.625rem;
     font-style: normal;
     font-weight: 500;
-    line-height: 150%;
+    line-height: 150%; 
     letter-spacing: -0.00063rem;
   `,
     light_10pt: `
@@ -138,16 +120,6 @@ const theme = {
     line-height: 150%; 
     letter-spacing: -0.00625rem;
   `
-  },
-  mixins: {
-    noScrollbar: css`
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-
-      &::-webkit-scrollbar {
-        display: none;
-      }
-    `
   }
 };
 

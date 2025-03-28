@@ -2,16 +2,10 @@ import { createGlobalStyle } from 'styled-components';
 import 'normalize.css';
 
 const GlobalStyle = createGlobalStyle`
-
 * {
   box-sizing: border-box;
-}
-
-div, span, h1, h2, h3, h4, h5, h6, p, a, dl, dt, dd, ol, ul, li, form, label, table{
   margin: 0;
   padding: 0;
-  border: 0;
-  vertical-align: baseline;
 }
 
 :root {
@@ -23,7 +17,6 @@ div, span, h1, h2, h3, h4, h5, h6, p, a, dl, dt, dd, ol, ul, li, form, label, ta
   --green1-100: #18BB7A;
   --green2-60: rgba(0, 124, 74, 0.60);
   --green2-100: #007C4A;
-  --green3: #00462A;
   --red-20: #FFE0DF;
   --red-100: #FF635E;
 }
@@ -36,21 +29,16 @@ html {
 body {
   font-family: 'Pretendard', sans-serif;
   background-color: white;
-  position: relative;
   height: 100dvh; 
   max-width: 440px; 
   margin: 0 auto; 
-}
 
-
-html, body {
-  scrollbar-width: none;
+  scrollbar-width: none;  
   -ms-overflow-style: none;
 }
 
-html::-webkit-scrollbar,
 body::-webkit-scrollbar {
-  display: none;
+  display: none; 
 }
 
 a {
