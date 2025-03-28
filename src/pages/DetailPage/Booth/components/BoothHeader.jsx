@@ -49,6 +49,11 @@ const Header = styled.div`
   justify-content: space-between;
   top: 0;
   z-index: 100;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.7) 10%,
+    rgba(0, 0, 0, 0) 100%
+  );
 
   transition:
     background 0.3s ease-in-out,
