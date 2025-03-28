@@ -1,9 +1,16 @@
 export { default as ArrowLeft } from './ArrowLeft';
+export { default as Filter } from './Filter';
 export { default as GitLogo } from './GitLogo';
 export { default as InstaLogo } from './InstaLogo';
 export { default as KakaoChat } from './KakaoChat';
 export { default as LionsLogo } from './LionsLogo';
 export { default as Menu } from './Menu';
 export { default as Pole } from './Pole';
+export { default as Reset } from './Reset';
+export { default as Scrap } from './Scrap';
 export { default as Search } from './Search';
 export { default as SignBoard } from './SignBoard';
+export { default as CheckBox } from './CheckBox';
+export { default as SmallArrow } from './SmallArrow';
+export { default as Trash } from './Trash';
+export { default as Plus } from './Plus';
