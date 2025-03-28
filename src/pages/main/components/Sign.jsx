@@ -1,9 +1,15 @@
 import styled from 'styled-components';
 import { SignBoard } from '@/assets/icons';
+import { useNavigate } from 'react-router-dom';
 
-const Sign = ({ korean, english, left = false }) => {
+const Sign = ({ korean, english, left = false, to }) => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate(to);
+  };
+
   return (
-    <SignWrapper>
+    <SignWrapper onClick={handleClick}>
       <SignBoard left={left} />
       <Destination>
         <Korean>{korean}</Korean>

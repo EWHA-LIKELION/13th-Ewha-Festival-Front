@@ -40,13 +40,17 @@ body {
   height: 100dvh; 
   max-width: 440px; 
   margin: 0 auto; 
+}
 
-  scrollbar-width: none;  
+
+html, body {
+  scrollbar-width: none;
   -ms-overflow-style: none;
 }
 
+html::-webkit-scrollbar,
 body::-webkit-scrollbar {
-  display: none; 
+  display: none;
 }
 
 a {
