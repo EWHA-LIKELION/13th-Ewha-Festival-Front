@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import useScrapStore from '@/store/useScrapStore';
 import ScrapItem from './ScrapItem';
@@ -6,17 +6,22 @@ import noScrapBg from '@/assets/images/noScrap.svg';
 import { useNavigate } from 'react-router-dom';
 
 const ScrapBook = () => {
-  const { scraps } = useScrapStore();
+  const { scraps, fetchScraps } = useScrapStore();
   const booths = scraps?.booths || [];
+  const totalScraps = scraps?.total_scrap_count || 0;
   const hasScraps = booths.length > 0;
   const navigate = useNavigate();
+
+  useEffect(() => {
+    fetchScraps();
+  }, []);
 
   return (
     <Container>
       {!hasScraps && <BackgroundImage src={noScrapBg} alt='배경' />}
 
       <Header>
-        <Title>스크랩북({booths.length})</Title>
+        <Title>스크랩북({totalScraps})</Title>
         <More onClick={() => navigate('/')}>더보기</More>
       </Header>
       {hasScraps ? (
