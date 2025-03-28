@@ -35,7 +35,7 @@ const BoothDetail = () => {
     fetchBoothData();
   }, []);
 
-  if (!boothData) return <p>Loading...</p>;
+  if (!boothData) return;
 
   return (
     <>
