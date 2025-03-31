@@ -13,6 +13,7 @@ import MainPage from './pages/MainPage/MainPage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import KakaoRedirect from './pages/LoginPage/KakaoRedirect';
 import BoothListPage from './pages/ListPage/BoothListPage';
+import ShowListPage from './pages/ListPage/ShowListPage';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Route path='/login' element={<LoginPage />} />
         <Route path='/oauth/callback/kakao' element={<KakaoRedirect />} />
         <Route path='/boothlist' element={<BoothListPage />} />
+        <Route path='/showlist' element={<ShowListPage />} />
       </Routes>
     </BrowserRouter>
   );

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Filter as FilterSvg } from '@/assets/icons';
 import FilterBottomSheet from './FilterBottomSheet';
 
-const Filter = ({ onFilterChange }) => {
+const Filter = ({ onFilterChange, filterOptions, type }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeFilters, setActiveFilters] = useState({
     category: [],
@@ -75,6 +75,8 @@ const Filter = ({ onFilterChange }) => {
         onClose={() => setIsOpen(false)}
         onApply={handleFilterApply}
         initialFilters={activeFilters}
+        filterOptions={filterOptions}
+        type={type}
       />
     </>
   );
