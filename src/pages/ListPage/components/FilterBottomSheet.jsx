@@ -6,15 +6,21 @@ import { ArrowDown } from '@/assets/icons';
 import { slideUp, slideDown, fadeIn, fadeOut } from '@/styles/animations';
 
 const FilterBottomSheet = ({ isOpen, onClose, onApply, initialFilters }) => {
-  const [filters, setFilters] = useState(
-    initialFilters || {
-      category: [],
-      location: [],
-      day_of_week: []
-    }
-  );
+  const [filters, setFilters] = useState({
+    category: [],
+    location: [],
+    day_of_week: []
+  });
+
   const [count, setCount] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
+
+  // 바텀시트 초기화
+  useEffect(() => {
+    if (isOpen && initialFilters) {
+      setFilters({ ...initialFilters });
+    }
+  }, [isOpen, initialFilters]);
 
   // 필터 부스 개수 가져오기
   useEffect(() => {
