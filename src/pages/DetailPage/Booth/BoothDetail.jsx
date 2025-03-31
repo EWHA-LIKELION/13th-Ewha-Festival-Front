@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import http from '@/api/http';
+import { useParams } from 'react-router-dom';
 import DetailTemplate from '@/pages/DetailPage/shared/components/DetailTemplate.jsx';
 
 import BoothTabs from '@/pages/DetailPage/Booth/components/BoothTabs.jsx';
 
 const BoothDetail = () => {
-  const booth_id = 1;
+  const { id } = useParams();
+  const booth_id = parseInt(id);
   const [boothData, setBoothData] = useState(null);
   const [operatingHours, setOperatingHours] = useState([]);
   const [thumbnailSrc, setThumbnailSrc] = useState(null);
@@ -25,7 +27,7 @@ const BoothDetail = () => {
     };
 
     fetchBoothData();
-  }, []);
+  }, [booth_id]);
 
   return (
     <DetailTemplate
