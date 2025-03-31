@@ -47,7 +47,7 @@ const DetailTemplate = ({
 
   return (
     <>
-      <BoothHeader role={role} />
+      <BoothHeader role={role} isShow={boothData.is_show} />
       <ThumbnailWrapper>
         <BoothThumbnail
           src={thumbnailSrc}

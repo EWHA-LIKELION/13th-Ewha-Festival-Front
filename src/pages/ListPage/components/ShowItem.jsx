@@ -44,7 +44,7 @@ const ShowItem = memo(({ show }) => {
   // 상세페이지로 이동
   const navigate = useNavigate();
   const handleItemClick = () => {
-    navigate(`/showdetail?${id}`);
+    navigate(`/showdetail/${id}`);
   };
 
   // 구분자(·) 넣어서 요일 포맷팅
