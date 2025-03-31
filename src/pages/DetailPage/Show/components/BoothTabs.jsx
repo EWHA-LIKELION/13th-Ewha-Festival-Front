@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import BoothNotices from '@/pages/DetailPage/Show/components/BoothNotices.jsx';
 import BoothGuestbook from '@/pages/DetailPage/Show/components/Guestbook/BoothGuestbook.jsx';
 
-const BoothTabs = () => {
+const BoothTabs = ({ boothId }) => {
   const [$activeTab, setActiveTab] = useState('공지');
 
   return (
@@ -25,9 +25,9 @@ const BoothTabs = () => {
         <TabIndicator $activeTab={$activeTab} />
       </TabsContainer>
 
-      {$activeTab === '공지' && <BoothNotices />}
+      {$activeTab === '공지' && <BoothNotices boothId={boothId} />}
 
-      {$activeTab === '방명록' && <BoothGuestbook />}
+      {$activeTab === '방명록' && <BoothGuestbook boothId={boothId} />}
     </>
   );
 };
