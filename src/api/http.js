@@ -7,6 +7,9 @@ const api = axios.create({
   timeout: 10000, //기본 10초로 설정하긴 했는데.. 추후 수정하거나 없애도 됨. 더 긴 건 각 요청에서 개별 설정하기
   headers: {
     'Content-Type': 'application/json'
+  },
+  paramsSerializer: {
+    indexes: null
   }
 });
 
