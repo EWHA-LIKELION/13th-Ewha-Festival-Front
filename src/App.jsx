@@ -9,10 +9,10 @@ import ShowEdit from './pages/EditPage/showEdit';
 import BoothDetail from './pages/DetailPage/Booth/BoothDetail';
 import ShowDetail from './pages/DetailPage/Show/ShowDetail';
 import MyPage from './pages/MyPage/MyPage';
-import MainPage from './pages/main/MainPage';
-import LoginPage from './pages/login/LoginPage';
-import KakaoRedirect from './pages/login/KakaoRedirect';
-import BoothListPage from './pages/list/BoothListPage';
+import MainPage from './pages/MainPage/MainPage';
+import LoginPage from './pages/LoginPage/LoginPage';
+import KakaoRedirect from './pages/LoginPage/KakaoRedirect';
+import BoothListPage from './pages/ListPage/BoothListPage';
 
 function App() {
   return (
