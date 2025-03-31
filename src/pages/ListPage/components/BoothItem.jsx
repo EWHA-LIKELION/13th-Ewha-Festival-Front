@@ -3,6 +3,7 @@ import { Scrap } from '@/assets/icons';
 import { memo, useState } from 'react';
 import { isLoggedIn } from '@/api/auth';
 import http from '@/api/http';
+import LoginBottomSheet from '@/common/LoginBottomSheet';
 
 const BoothItem = memo(({ booth }) => {
   const {
@@ -18,14 +19,14 @@ const BoothItem = memo(({ booth }) => {
     images = []
   } = booth;
 
-  // 스크랩 상태 관리
+  // 스크랩 기능
   const [isScrap, setIsScrap] = useState(is_scrap);
   const [scrapCount, setScrapCount] = useState(scrap_count);
+  const [showLoginSheet, setShowLoginSheet] = useState(false);
 
-  // 스크랩 토글 처리
   const handleScrap = async () => {
     if (!isLoggedIn()) {
-      alert('로그인이 필요합니다.');
+      setShowLoginSheet(true);
       return;
     }
 
@@ -43,47 +44,57 @@ const BoothItem = memo(({ booth }) => {
   const formattedDays = day_of_week.join(' · ');
 
   return (
-    <BoothWrapper>
-      <Content>
-        <TextBox>
-          {/* 제목 */}
-          <TitleContainer>
-            <Title>{name}</Title>
-            {is_opened === false && <ClosedTag>운영 종료</ClosedTag>}
-          </TitleContainer>
+    <>
+      <BoothWrapper>
+        <Content>
+          <TextBox>
+            {/* 제목 */}
+            <TitleContainer>
+              <Title>{name}</Title>
+              {is_opened === false && <ClosedTag>운영 종료</ClosedTag>}
+            </TitleContainer>
 
-          {/* 운영 정보 */}
-          <Info>
-            {category}
-            {formattedDays && ` | ${formattedDays}`}
-            {formatted_location && ` | ${formatted_location}`}
-          </Info>
+            {/* 운영 정보 */}
+            <Info>
+              {category}
+              {formattedDays && ` | ${formattedDays}`}
+              {formatted_location && ` | ${formatted_location}`}
+            </Info>
 
-          {/* 부스 설명 */}
-          <Description>"{description}"</Description>
-        </TextBox>
+            {/* 부스 설명 */}
+            <Description>"{description}"</Description>
+          </TextBox>
 
-        {/* 스크랩 */}
-        <ScrapBox>
-          <ScrapIcon onClick={handleScrap} $isScraped={isScrap} />
-          <ScrapCount>{scrapCount}</ScrapCount>
-        </ScrapBox>
-      </Content>
+          {/* 스크랩 */}
+          <ScrapBox>
+            <ScrapIcon onClick={handleScrap} $isScraped={isScrap} />
+            <ScrapCount>{scrapCount}</ScrapCount>
+          </ScrapBox>
+        </Content>
 
-      {/* 부스 사진 (5장) */}
-      <Photos>
-        {Array.from({ length: 5 }, (_, index) => (
-          <Photo
-            key={index}
-            $isLast={index === 4}
-            style={
-              images[index] ? { backgroundImage: `url(${images[index]})` } : {}
-            }
-          />
-        ))}
-        <Spacer />
-      </Photos>
-    </BoothWrapper>
+        {/* 부스 사진 (5장) */}
+        <Photos>
+          {Array.from({ length: 5 }, (_, index) => (
+            <Photo
+              key={index}
+              $isLast={index === 4}
+              style={
+                images[index]
+                  ? { backgroundImage: `url(${images[index]})` }
+                  : {}
+              }
+            />
+          ))}
+          <Spacer />
+        </Photos>
+      </BoothWrapper>
+
+      {/* 로그인 바텀시트 */}
+      <LoginBottomSheet
+        isOpen={showLoginSheet}
+        onClose={() => setShowLoginSheet(false)}
+      />
+    </>
   );
 });
 

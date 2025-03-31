@@ -59,7 +59,6 @@ const BoothListContent = () => {
           </div>
         ))}
       </BoothList>
-
       <Footer />
     </>
   );
