@@ -14,8 +14,8 @@ const BoothItem = memo(({ booth }) => {
     images = []
   } = booth;
 
-  // 요일 포맷팅 (수 · 목 · 금)
-  const formattedDays = day_of_week.map(day => day.charAt(0)).join(' · ');
+  // 구분자(·) 넣어서 요일 포맷팅
+  const formattedDays = day_of_week.join(' · ');
 
   return (
     <BoothWrapper>
