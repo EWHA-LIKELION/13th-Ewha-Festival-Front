@@ -1,9 +1,12 @@
 import styled from 'styled-components';
 import { Scrap } from '@/assets/icons';
-import { memo } from 'react';
+import { memo, useState } from 'react';
+import { isLoggedIn } from '@/api/auth';
+import http from '@/api/http';
 
 const BoothItem = memo(({ booth }) => {
   const {
+    id,
     name,
     is_opened,
     category,
@@ -11,8 +14,30 @@ const BoothItem = memo(({ booth }) => {
     formatted_location,
     description,
     scrap_count,
+    is_scrap,
     images = []
   } = booth;
+
+  // 스크랩 상태 관리
+  const [isScrap, setIsScrap] = useState(is_scrap);
+  const [scrapCount, setScrapCount] = useState(scrap_count);
+
+  // 스크랩 토글 처리
+  const handleScrap = async () => {
+    if (!isLoggedIn()) {
+      alert('로그인이 필요합니다.');
+      return;
+    }
+
+    try {
+      const response = await http[isScrap ? 'delete' : 'post'](`/scrap/${id}/`);
+
+      setIsScrap(!isScrap);
+      setScrapCount(response.data.scrap_count);
+    } catch (err) {
+      console.error('스크랩 처리 중 오류:', err);
+    }
+  };
 
   // 구분자(·) 넣어서 요일 포맷팅
   const formattedDays = day_of_week.join(' · ');
@@ -40,8 +65,8 @@ const BoothItem = memo(({ booth }) => {
 
         {/* 스크랩 */}
         <ScrapBox>
-          <Scrap />
-          <ScrapCount>{scrap_count}</ScrapCount>
+          <ScrapIcon onClick={handleScrap} $isScraped={isScrap} />
+          <ScrapCount>{scrapCount}</ScrapCount>
         </ScrapBox>
       </Content>
 
@@ -127,6 +152,13 @@ const ScrapBox = styled.div`
   gap: 0.3rem;
   width: fit-content;
   margin-right: 1.25rem;
+`;
+
+const ScrapIcon = styled(Scrap)`
+  path {
+    ${({ $isScraped }) =>
+      $isScraped ? 'fill: var(--green1-50);' : 'fill: none;'}
+  }
 `;
 
 const Description = styled.p`
