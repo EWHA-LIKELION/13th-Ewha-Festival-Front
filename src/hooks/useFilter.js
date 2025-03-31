@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 import useInfiniteScroll from './useInfiniteScroll';
-import { BOOTH_FILTER_OPTIONS } from '@/constants/filterConstants';
+import { getFilterOptions } from '@/constants/filterConstants';
 
 // 목록 필터링 커스텀 훅 (무한 스크롤 적용)
 const useFilter = ({
@@ -8,7 +8,8 @@ const useFilter = ({
   queryFn,
   getNextPageParam,
   getTotalCount,
-  getItems
+  getItems,
+  type
 }) => {
   const [filters, setFilters] = useState({
     category: [],
@@ -32,21 +33,25 @@ const useFilter = ({
       getNextPageParam
     });
 
-  const handleFilterChange = useCallback(newFilters => {
-    const sortedFilters = {};
+  const handleFilterChange = useCallback(
+    newFilters => {
+      const sortedFilters = {};
+      const filterOptions = getFilterOptions(type);
 
-    Object.entries(newFilters).forEach(([type, items]) => {
-      const optionsMap = new Map(
-        BOOTH_FILTER_OPTIONS[type].map(option => [option.name, option.id])
-      );
+      Object.entries(newFilters).forEach(([type, items]) => {
+        const optionsMap = new Map(
+          filterOptions[type].map(option => [option.name, option.id])
+        );
 
-      sortedFilters[type] = [...items].sort((a, b) => {
-        return (optionsMap.get(a) || 0) - (optionsMap.get(b) || 0);
+        sortedFilters[type] = [...items].sort((a, b) => {
+          return (optionsMap.get(a) || 0) - (optionsMap.get(b) || 0);
+        });
       });
-    });
 
-    setFilters(sortedFilters);
-  }, []);
+      setFilters(sortedFilters);
+    },
+    [type]
+  );
 
   const items = data?.pages.flatMap(page => getItems(page)) || [];
   const totalCount = data?.pages[0] ? getTotalCount(data.pages[0]) : 0;
