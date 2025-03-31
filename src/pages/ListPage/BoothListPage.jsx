@@ -2,9 +2,10 @@ import styled from 'styled-components';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Header from '@/common/Header';
 import Footer from '@/common/Footer';
-import { Filter } from '@/assets/icons';
+import Filter from './components/Filter';
 import BoothItem from './components/BoothItem';
-import useInfiniteBooths from '@/hooks/useInfiniteBooths';
+import { getBooths } from '@/api/booth';
+import useFilter from '@/hooks/useFilter';
 
 // tanstack query 설정
 const queryClient = new QueryClient({
@@ -17,35 +18,46 @@ const queryClient = new QueryClient({
 });
 
 const BoothListContent = () => {
-  const { booths, totalCount, lastItemRef } = useInfiniteBooths();
+  // 필터링 + 무한 스크롤
+  const {
+    items: booths,
+    totalCount,
+    lastItemRef,
+    setFilters
+  } = useFilter({
+    queryKey: ['booths'],
+    queryFn: params => getBooths(params),
+    getNextPageParam: lastPage => {
+      if (lastPage.data.booth?.next) {
+        const url = new URL(lastPage.data.booth.next);
+        return url.searchParams.get('cursor');
+      }
+      return undefined;
+    },
+    getTotalCount: page => page.data.booth_count || 0,
+    getItems: page => page.data.booth.results || []
+  });
 
   return (
     <>
-      {/* 헤더+필터 */}
+      {/* 헤더 + 필터 */}
       <HeaderWrapper>
         <Header />
-        <FilterWrapper>
-          <Filter />
-          <FilterItem>음식, 굿즈</FilterItem>
-          <FilterItem>수, 목, 금</FilterItem>
-          <FilterItem>포스코관 외 2곳</FilterItem>
-        </FilterWrapper>
+        <Filter onFilterChange={setFilters} />
       </HeaderWrapper>
 
       {/* 부스 리스트 */}
       <BoothList>
         <Num>총 {totalCount}개의 부스</Num>
 
-        {booths.map((booth, index) => {
-          if (index === booths.length - 1) {
-            return (
-              <div key={booth.id} ref={lastItemRef}>
-                <BoothItem booth={booth} />
-              </div>
-            );
-          }
-          return <BoothItem key={booth.id} booth={booth} />;
-        })}
+        {booths.map((booth, index) => (
+          <div
+            key={booth.id}
+            ref={index === booths.length - 1 ? lastItemRef : null}
+          >
+            <BoothItem booth={booth} />
+          </div>
+        ))}
       </BoothList>
 
       <Footer />
@@ -68,21 +80,9 @@ const HeaderWrapper = styled.div`
   background: white;
   border-radius: 0 0 1.5625rem 1.5625rem;
   box-shadow: 0 2px 13.1px rgba(0, 0, 0, 0.08);
-`;
-
-const FilterWrapper = styled.div`
-  display: flex;
-  gap: 0.75rem;
-  padding: 0 1.25rem 1.5rem;
-`;
-
-const FilterItem = styled.div`
-  ${({ theme }) => theme.fontStyles.regular_12pt}
-  color: var(--gray3);
-  border: 1px solid var(--gray3);
-  border-radius: 1.25rem;
-  padding: 0.5rem 0.65rem;
-  white-space: nowrap;
+  max-width: 440px;
+  margin: 0 auto;
+  width: 100%;
 `;
 
 const BoothList = styled.div`
@@ -92,6 +92,7 @@ const BoothList = styled.div`
   padding: 1.25rem;
   gap: 1rem;
   padding-bottom: 5rem;
+  min-height: 100vh;
 `;
 
 const Num = styled.p`
