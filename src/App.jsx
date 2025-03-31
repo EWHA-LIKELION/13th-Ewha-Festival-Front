@@ -9,11 +9,13 @@ import ShowEdit from './pages/EditPage/showEdit';
 import BoothDetail from './pages/DetailPage/Booth/BoothDetail';
 import ShowDetail from './pages/DetailPage/Show/ShowDetail';
 import MyPage from './pages/MyPage/MyPage';
+
 import MainPage from './pages/MainPage/MainPage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import KakaoRedirect from './pages/LoginPage/KakaoRedirect';
 import BoothListPage from './pages/ListPage/BoothListPage';
 import ShowListPage from './pages/ListPage/ShowListPage';
+import SearchPage from './pages/SearchPage/SearchPage';
 
 function App() {
   return (
@@ -33,6 +35,7 @@ function App() {
         <Route path='/oauth/callback/kakao' element={<KakaoRedirect />} />
         <Route path='/boothlist' element={<BoothListPage />} />
         <Route path='/showlist' element={<ShowListPage />} />
+        <Route path='/search' element={<SearchPage />} />
       </Routes>
     </BrowserRouter>
   );
