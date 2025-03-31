@@ -29,3 +29,13 @@ export const getBoothsCount = async (filters = {}) => {
 
   return http.get('/booths/counts', { params: requestParams });
 };
+
+// POST: 부스 스크랩
+export const scrapBooth = async boothId => {
+  return http.post(`/scrap/${boothId}/`);
+};
+
+// DELETE: 부스 스크랩
+export const unscrapBooth = async boothId => {
+  return http.delete(`/scrap/${boothId}/`);
+};
