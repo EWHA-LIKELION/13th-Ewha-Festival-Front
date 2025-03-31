@@ -4,6 +4,7 @@ import { memo, useState } from 'react';
 import { isLoggedIn } from '@/api/auth';
 import http from '@/api/http';
 import LoginBottomSheet from '@/common/LoginBottomSheet';
+import { useNavigate } from 'react-router-dom';
 
 const ShowItem = memo(({ show }) => {
   const {
@@ -40,12 +41,18 @@ const ShowItem = memo(({ show }) => {
     }
   };
 
+  // 상세페이지로 이동
+  const navigate = useNavigate();
+  const handleItemClick = () => {
+    navigate(`/showdetail?${id}`);
+  };
+
   // 구분자(·) 넣어서 요일 포맷팅
   const formattedDays = day_of_week.join(' · ');
 
   return (
     <>
-      <ShowWrapper>
+      <ShowWrapper onClick={handleItemClick}>
         <Photo
           style={images[0] ? { backgroundImage: `url(${images[0]})` } : {}}
         />
@@ -69,7 +76,13 @@ const ShowItem = memo(({ show }) => {
 
         {/* 스크랩 */}
         <ScrapBox>
-          <ScrapIcon onClick={handleScrap} $isScraped={isScrap} />
+          <ScrapIcon
+            onClick={e => {
+              e.stopPropagation();
+              handleScrap(e);
+            }}
+            $isScraped={isScrap}
+          />
           <ScrapCount>{scrapCount}</ScrapCount>
         </ScrapBox>
       </ShowWrapper>
