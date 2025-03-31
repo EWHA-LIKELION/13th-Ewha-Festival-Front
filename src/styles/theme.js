@@ -58,6 +58,14 @@ const theme = {
     line-height: 150%;
     letter-spacing: -0.00625rem;
   `,
+    bold_15pt: `
+    font-family: Pretendard;
+    font-size: 0.9375rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.25rem; 
+    letter-spacing: -0.03125rem;
+  `,
     regular_14pt: `
     font-family: Pretendard;
     font-size: 0.875rem;
