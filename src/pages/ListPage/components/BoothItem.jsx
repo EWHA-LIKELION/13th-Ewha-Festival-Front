@@ -4,6 +4,7 @@ import { memo, useState } from 'react';
 import { isLoggedIn } from '@/api/auth';
 import http from '@/api/http';
 import LoginBottomSheet from '@/common/LoginBottomSheet';
+import { useNavigate } from 'react-router-dom';
 
 const BoothItem = memo(({ booth }) => {
   const {
@@ -40,12 +41,18 @@ const BoothItem = memo(({ booth }) => {
     }
   };
 
+  // 상세페이지로 이동
+  const navigate = useNavigate();
+  const handleItemClick = () => {
+    navigate(`/boothdetail?${id}`);
+  };
+
   // 구분자(·) 넣어서 요일 포맷팅
   const formattedDays = day_of_week.join(' · ');
 
   return (
     <>
-      <BoothWrapper>
+      <BoothWrapper onClick={handleItemClick}>
         <Content>
           <TextBox>
             {/* 제목 */}
@@ -67,7 +74,13 @@ const BoothItem = memo(({ booth }) => {
 
           {/* 스크랩 */}
           <ScrapBox>
-            <ScrapIcon onClick={handleScrap} $isScraped={isScrap} />
+            <ScrapIcon
+              onClick={e => {
+                e.stopPropagation();
+                handleScrap(e);
+              }}
+              $isScraped={isScrap}
+            />
             <ScrapCount>{scrapCount}</ScrapCount>
           </ScrapBox>
         </Content>
