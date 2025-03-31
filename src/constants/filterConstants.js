@@ -38,3 +38,7 @@ export const SHOW_FILTER_OPTIONS = {
     { id: 3, name: '금' }
   ]
 };
+
+export const getFilterOptions = type => {
+  return type === 'booth' ? BOOTH_FILTER_OPTIONS : SHOW_FILTER_OPTIONS;
+};

@@ -6,7 +6,7 @@ import http from '@/api/http';
 import LoginBottomSheet from '@/common/LoginBottomSheet';
 import { useNavigate } from 'react-router-dom';
 
-const BoothItem = memo(({ booth }) => {
+const ShowItem = memo(({ show }) => {
   const {
     id,
     name,
@@ -18,7 +18,7 @@ const BoothItem = memo(({ booth }) => {
     scrap_count,
     is_scrap,
     images = []
-  } = booth;
+  } = show;
 
   // 스크랩 기능
   const [isScrap, setIsScrap] = useState(is_scrap);
@@ -44,7 +44,7 @@ const BoothItem = memo(({ booth }) => {
   // 상세페이지로 이동
   const navigate = useNavigate();
   const handleItemClick = () => {
-    navigate(`/boothdetail?${id}`);
+    navigate(`/showdetail?${id}`);
   };
 
   // 구분자(·) 넣어서 요일 포맷팅
@@ -52,55 +52,40 @@ const BoothItem = memo(({ booth }) => {
 
   return (
     <>
-      <BoothWrapper onClick={handleItemClick}>
-        <Content>
-          <TextBox>
-            {/* 제목 */}
-            <TitleContainer>
-              <Title>{name}</Title>
-              {is_opened === false && <ClosedTag>운영 종료</ClosedTag>}
-            </TitleContainer>
+      <ShowWrapper onClick={handleItemClick}>
+        <Photo
+          style={images[0] ? { backgroundImage: `url(${images[0]})` } : {}}
+        />
+        <TextBox>
+          {/* 제목 */}
+          <TitleContainer>
+            <Title>{name}</Title>
+            {is_opened === false && <ClosedTag>운영 종료</ClosedTag>}
+          </TitleContainer>
 
-            {/* 운영 정보 */}
-            <Info>
-              {category}
-              {formattedDays && ` | ${formattedDays}`}
-              {formatted_location && ` | ${formatted_location}`}
-            </Info>
+          {/* 운영 정보 */}
+          <Info>
+            {category}
+            {formattedDays && ` | ${formattedDays}`}
+            {formatted_location && ` | ${formatted_location}`}
+          </Info>
 
-            {/* 부스 설명 */}
-            <Description>"{description}"</Description>
-          </TextBox>
+          {/* 부스 설명 */}
+          <Description>"{description}"</Description>
+        </TextBox>
 
-          {/* 스크랩 */}
-          <ScrapBox>
-            <ScrapIcon
-              onClick={e => {
-                e.stopPropagation();
-                handleScrap(e);
-              }}
-              $isScraped={isScrap}
-            />
-            <ScrapCount>{scrapCount}</ScrapCount>
-          </ScrapBox>
-        </Content>
-
-        {/* 부스 사진 (5장) */}
-        <Photos>
-          {Array.from({ length: 5 }, (_, index) => (
-            <Photo
-              key={index}
-              $isLast={index === 4}
-              style={
-                images[index]
-                  ? { backgroundImage: `url(${images[index]})` }
-                  : {}
-              }
-            />
-          ))}
-          <Spacer />
-        </Photos>
-      </BoothWrapper>
+        {/* 스크랩 */}
+        <ScrapBox>
+          <ScrapIcon
+            onClick={e => {
+              e.stopPropagation();
+              handleScrap(e);
+            }}
+            $isScraped={isScrap}
+          />
+          <ScrapCount>{scrapCount}</ScrapCount>
+        </ScrapBox>
+      </ShowWrapper>
 
       {/* 로그인 바텀시트 */}
       <LoginBottomSheet
@@ -111,22 +96,15 @@ const BoothItem = memo(({ booth }) => {
   );
 });
 
-BoothItem.displayName = 'BoothItem';
+ShowItem.displayName = 'ShowItem';
 
-export default BoothItem;
+export default ShowItem;
 
-const BoothWrapper = styled.div`
+const ShowWrapper = styled.div`
   display: flex;
-  flex-direction: column;
-  padding: 1rem 0 1.25rem 1.25rem;
+  padding: 0.75rem;
   border: 1px solid var(--green1-50);
   border-radius: 0.75rem;
-  gap: 0.75rem;
-`;
-
-const Content = styled.div`
-  display: flex;
-  justify-content: space-between;
   gap: 0.75rem;
 `;
 
@@ -175,7 +153,6 @@ const ScrapBox = styled.div`
   align-items: center;
   gap: 0.3rem;
   width: fit-content;
-  margin-right: 1.25rem;
 `;
 
 const ScrapIcon = styled(Scrap)`
@@ -202,17 +179,9 @@ const ScrapCount = styled.p`
   color: var(--gray3);
 `;
 
-const Photos = styled.div`
-  display: flex;
-  gap: 0.25rem;
-  border-radius: 0.75rem 0 0 0.75rem;
-  overflow-x: auto;
-  ${({ theme }) => theme.mixins.noScrollbar}
-`;
-
 const Photo = styled.div`
   width: 5rem;
-  height: 5rem;
+  height: 5.5rem;
   flex-shrink: 0;
   background-size: cover;
   background-position: center;
@@ -221,11 +190,5 @@ const Photo = styled.div`
     rgba(24, 187, 122, 0) -43.75%,
     #18bb7a 104.37%
   );
-  border-radius: ${({ $isLast }) => ($isLast ? '0 0.75rem 0.75rem 0' : '0')};
-`;
-
-const Spacer = styled.div`
-  width: 1rem;
-  height: 5rem;
-  flex-shrink: 0;
+  border-radius: 0.5rem;
 `;

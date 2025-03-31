@@ -1,11 +1,18 @@
 import { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
-import { BOOTH_FILTER_OPTIONS } from '@/constants/filterConstants';
 import { getBoothsCount } from '@/api/booth';
+import { getShowsCount } from '@/api/show';
 import { ArrowDown } from '@/assets/icons';
 import { slideUp, slideDown, fadeIn, fadeOut } from '@/styles/animations';
 
-const FilterBottomSheet = ({ isOpen, onClose, onApply, initialFilters }) => {
+const FilterBottomSheet = ({
+  isOpen,
+  onClose,
+  onApply,
+  initialFilters,
+  filterOptions,
+  type
+}) => {
   const [filters, setFilters] = useState({
     category: [],
     location: [],
@@ -26,8 +33,14 @@ const FilterBottomSheet = ({ isOpen, onClose, onApply, initialFilters }) => {
   useEffect(() => {
     const fetchCount = async () => {
       try {
-        const response = await getBoothsCount(filters);
-        setCount(response.data.booth_count);
+        let response;
+        if (type === 'booth') {
+          response = await getBoothsCount(filters);
+          setCount(response.data.booth_count);
+        } else if (type === 'show') {
+          response = await getShowsCount(filters);
+          setCount(response.data.booth_count);
+        }
       } catch {
         setCount(0);
       }
@@ -46,7 +59,7 @@ const FilterBottomSheet = ({ isOpen, onClose, onApply, initialFilters }) => {
 
       // ID 기반 정렬
       const optionIds = {};
-      BOOTH_FILTER_OPTIONS[type].forEach(opt => {
+      filterOptions[type].forEach(opt => {
         optionIds[opt.name] = opt.id;
       });
 
@@ -101,7 +114,7 @@ const FilterBottomSheet = ({ isOpen, onClose, onApply, initialFilters }) => {
             </SectionTitle>
 
             <OptionGroup>
-              {BOOTH_FILTER_OPTIONS[type].map(option => (
+              {filterOptions[type].map(option => (
                 <Option
                   key={option.id}
                   $isActive={filters[type].includes(option.name)}

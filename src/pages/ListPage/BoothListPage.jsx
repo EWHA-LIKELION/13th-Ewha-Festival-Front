@@ -6,6 +6,7 @@ import Filter from './components/Filter';
 import BoothItem from './components/BoothItem';
 import { getBooths } from '@/api/booth';
 import useFilter from '@/hooks/useFilter';
+import { getFilterOptions } from '@/constants/filterConstants';
 
 // tanstack query 설정
 const queryClient = new QueryClient({
@@ -35,7 +36,8 @@ const BoothListContent = () => {
       return undefined;
     },
     getTotalCount: page => page.data.booth_count || 0,
-    getItems: page => page.data.booth.results || []
+    getItems: page => page.data.booth.results || [],
+    type: 'booth'
   });
 
   return (
@@ -43,7 +45,11 @@ const BoothListContent = () => {
       {/* 헤더 + 필터 */}
       <HeaderWrapper>
         <Header />
-        <Filter onFilterChange={setFilters} />
+        <Filter
+          onFilterChange={setFilters}
+          filterOptions={getFilterOptions('booth')}
+          type='booth'
+        />
       </HeaderWrapper>
 
       {/* 부스 리스트 */}
