@@ -24,9 +24,7 @@ const useGuestbookStore = create(set => ({
       set(state => ({
         guestbooks: state.guestbooks.filter(gb => gb.id !== guestbookId)
       }));
-    } catch (error) {
-      console.error('Error deleting guestbook:', error);
-    }
+    } catch (error) {}
   }
 }));
 
@@ -44,9 +42,7 @@ export const fetchGuestbooks = async boothId => {
     }));
 
     useGuestbookStore.getState().setGuestbooks(fetchedGuestbooks);
-  } catch (error) {
-    console.error('Error fetching guestbooks:', error);
-  }
+  } catch (error) {}
 };
 
 export default useGuestbookStore;

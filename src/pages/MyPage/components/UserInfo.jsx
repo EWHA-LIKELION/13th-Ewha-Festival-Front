@@ -64,23 +64,24 @@ const UserDetails = styled.div`
 `;
 
 const UserName = styled.h2`
-  font-size: 1.25rem;
+  color: var(--black, #000);
+  ${({ theme }) => theme.fontStyles.semibold_20pt}
 `;
 
 const LogoutButton = styled.button`
   background: white;
-  color: #007c4a;
-  border-radius: 20px;
-  padding: 0.5rem 1rem;
-  font-size: 0.875rem;
+  color: var(--gray3, #787878);
+  border-radius: 1.25rem;
+  padding: 0.5rem 0.75rem;
+  ${({ theme }) => theme.fontStyles.regular_12pt}
   cursor: pointer;
 `;
 
 const LoginButton = styled.button`
   background: white;
-  color: #007c4a;
-  border-radius: 20px;
-  padding: 0.5rem 1rem;
-  font-size: 0.875rem;
+  color: var(--gray3, #787878);
+  border-radius: 1.25rem;
+  padding: 0.5rem 0.75rem;
+  ${({ theme }) => theme.fontStyles.regular_12pt}
   cursor: pointer;
 `;

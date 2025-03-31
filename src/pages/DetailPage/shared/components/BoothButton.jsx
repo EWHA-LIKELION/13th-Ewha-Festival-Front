@@ -20,7 +20,6 @@ const BoothButton = ({
       const url = `/scrap/${boothId}/`;
 
       if (scrapState) {
-        // ✅ API 요청 전에 UI 업데이트하지 않고, 성공 후 업데이트
         await http.delete(url);
         setScrapState(false);
         setLocalScrapCount(prev => prev - 1);

@@ -25,8 +25,8 @@ function App() {
         <Route path='/menuEditlist' element={<MenuEditList />} />
         <Route path='/noticeEdit' element={<NoticeEdit />} />
         <Route path='/showEdit' element={<ShowEdit />} />
-        <Route path='/showdetail' element={<ShowDetail />} />
-        <Route path='/boothdetail' element={<BoothDetail />} />
+        <Route path='/showdetail/:id' element={<ShowDetail />} />
+        <Route path='/boothdetail/:id' element={<BoothDetail />} />
         <Route path='/mypage' element={<MyPage />} />
         <Route path='/' element={<MainPage />} />
         <Route path='/login' element={<LoginPage />} />
