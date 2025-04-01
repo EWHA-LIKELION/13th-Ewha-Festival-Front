@@ -20,12 +20,12 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/boothEdit' element={<BoothEdit />} />
+        <Route path='/boothEdit/:id' element={<BoothEdit />} />
         <Route path='/menuEdit' element={<MenuEdit />} />
         <Route path='/menuEdit/:id' element={<MenuEdit />} />
         <Route path='/menuEditlist' element={<MenuEditList />} />
         <Route path='/noticeEdit' element={<NoticeEdit />} />
-        <Route path='/showEdit' element={<ShowEdit />} />
+        <Route path='/showEdit/:id' element={<ShowEdit />} />
         <Route path='/showdetail/:id' element={<ShowDetail />} />
         <Route path='/boothdetail/:id' element={<BoothDetail />} />
         <Route path='/mypage' element={<MyPage />} />
