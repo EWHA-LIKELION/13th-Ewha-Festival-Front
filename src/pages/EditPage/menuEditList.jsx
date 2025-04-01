@@ -7,7 +7,9 @@ import http from '@/api/http';
 import { useNavigate } from 'react-router-dom';
 
 const MenuEditList = () => {
-  const boothId = 1;
+  const myBooth = JSON.parse(localStorage.getItem('myBooth'));
+  const boothId = myBooth?.id;
+
   const [menus, setMenus] = useState([]);
   const navigate = useNavigate();
 
