@@ -14,3 +14,4 @@ export { default as CheckBox } from './CheckBox';
 export { default as SmallArrow } from './SmallArrow';
 export { default as Trash } from './Trash';
 export { default as Plus } from './Plus';
+export { default as Error } from './Error';
