@@ -9,12 +9,11 @@ import GuestbookDeleteModal from '@/pages/DetailPage/Show/modals/GuestbookDelete
 import noGuestBookImg from '@/pages/DetailPage/Booth/images/noGuestBook.svg';
 import http from '@/api/http';
 
-const BoothGuestbook = () => {
+const BoothGuestbook = ({ boothId }) => {
   const { guestbooks, addGuestbook, deleteGuestbook } = ShowGuestbookStore();
   const [input, setInput] = useState('');
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedGuestbook, setSelectedGuestbook] = useState(null);
-  const boothId = 2; // ✅ 부스 목록 페이지 개발작업 끝나면 수정해주기
 
   useEffect(() => {
     fetchGuestbooks(boothId);

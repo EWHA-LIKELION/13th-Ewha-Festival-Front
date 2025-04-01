@@ -22,7 +22,6 @@ const HeaderWrapper = styled.div`
   align-items: start;
   justify-content: space-between;
   padding: 1.25rem;
-  z-index: 10;
 
   ${({ $isDark }) =>
     $isDark &&

@@ -27,8 +27,8 @@ const ShowEdit = () => {
   const [noticeCount, setNoticeCount] = useState(0);
   const [menuCount, setMenuCount] = useState(0);
 
-  const user = getUserInfo();
-  const boothId = 1;
+  const myBooth = JSON.parse(localStorage.getItem('myBooth'));
+  const boothId = myBooth?.id;
 
   const getOperatingHoursForAPI = () => {
     const mapping = {

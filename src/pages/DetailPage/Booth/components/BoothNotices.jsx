@@ -5,23 +5,20 @@ import { ReactComponent as UpArrow } from '@/pages/DetailPage/Booth/images/up_ar
 import noNoticesImg from '@/pages/DetailPage/Booth/images/noNotices.svg';
 import http from '@/api/http';
 
-const BoothNotices = () => {
-  const booth_id = 1;
+const BoothNotices = ({ boothId }) => {
   const [notices, setNotices] = useState([]);
   const [expandedIndex, setExpandedIndex] = useState(null);
 
   useEffect(() => {
     const fetchNotices = async () => {
       try {
-        const response = await http.get(`/booths/notices/${booth_id}/`);
+        const response = await http.get(`/booths/notices/${boothId}/`);
         setNotices(response.data.notices || []);
-      } catch (error) {
-        console.error('Error loading data:', error);
-      }
+      } catch (error) {}
     };
 
     fetchNotices();
-  }, []);
+  }, [boothId]);
 
   const toggleNotice = index => {
     setExpandedIndex(expandedIndex === index ? null : index);

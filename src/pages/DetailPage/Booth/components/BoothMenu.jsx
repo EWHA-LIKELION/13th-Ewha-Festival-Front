@@ -3,15 +3,14 @@ import styled from 'styled-components';
 import http from '@/api/http';
 import basicMenuImg from '@/pages/DetailPage/Booth/images/basicmenu.svg';
 
-const BoothMenu = () => {
-  const booth_id = 1;
+const BoothMenu = ({ boothId }) => {
   const [menus, setMenus] = useState([]);
   const [isBasicImage, setIsBasicImage] = useState({});
 
   useEffect(() => {
     const fetchMenus = async () => {
       try {
-        const response = await http.get(`/booths/menus/${booth_id}/`);
+        const response = await http.get(`/booths/menus/${boothId}/`);
 
         const fetchedMenus = response.data.menus || [];
         setMenus(fetchedMenus);
@@ -22,13 +21,11 @@ const BoothMenu = () => {
         }, {});
 
         setIsBasicImage(initialImageState);
-      } catch (error) {
-        console.error('Error loading menu data:', error);
-      }
+      } catch (error) {}
     };
 
     fetchMenus();
-  }, []);
+  }, [boothId]);
 
   const handleImageError = (index, e) => {
     e.target.src = basicMenuImg;
@@ -59,7 +56,7 @@ const BoothMenu = () => {
           </MenuItem>
         ))
       ) : (
-        <NoMenuText>메뉴가 없습니다.</NoMenuText>
+        <NoMenuText>등록된 메뉴가 없습니다.</NoMenuText>
       )}
     </MenuContainer>
   );

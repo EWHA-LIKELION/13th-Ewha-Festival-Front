@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import BoothItem from '../list/components/BoothItem';
+import BoothItem from '../ListPage/components/BoothItem';
 import http from '@/api/http';
 import { Error } from '@/assets/icons';
 import { useNavigate } from 'react-router-dom';

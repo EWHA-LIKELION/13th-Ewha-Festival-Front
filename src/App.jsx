@@ -10,10 +10,11 @@ import BoothDetail from './pages/DetailPage/Booth/BoothDetail';
 import ShowDetail from './pages/DetailPage/Show/ShowDetail';
 import MyPage from './pages/MyPage/MyPage';
 import MyPageCode from './pages/MyPage/MyPageCode';
-import MainPage from './pages/main/MainPage';
-import LoginPage from './pages/login/LoginPage';
-import KakaoRedirect from './pages/login/KakaoRedirect';
-import BoothListPage from './pages/list/BoothListPage';
+import MainPage from './pages/MainPage/MainPage';
+import LoginPage from './pages/LoginPage/LoginPage';
+import KakaoRedirect from './pages/LoginPage/KakaoRedirect';
+import BoothListPage from './pages/ListPage/BoothListPage';
+import ShowListPage from './pages/ListPage/ShowListPage';
 
 function App() {
   return (
@@ -25,14 +26,15 @@ function App() {
         <Route path='/menuEditlist' element={<MenuEditList />} />
         <Route path='/noticeEdit' element={<NoticeEdit />} />
         <Route path='/showEdit' element={<ShowEdit />} />
-        <Route path='/showdetail' element={<ShowDetail />} />
-        <Route path='/boothdetail' element={<BoothDetail />} />
+        <Route path='/showdetail/:id' element={<ShowDetail />} />
+        <Route path='/boothdetail/:id' element={<BoothDetail />} />
         <Route path='/mypage' element={<MyPage />} />
         <Route path='mypage/code' element={<MyPageCode />} />
         <Route path='/' element={<MainPage />} />
         <Route path='/login' element={<LoginPage />} />
         <Route path='/oauth/callback/kakao' element={<KakaoRedirect />} />
         <Route path='/boothlist' element={<BoothListPage />} />
+        <Route path='/showlist' element={<ShowListPage />} />
       </Routes>
     </BrowserRouter>
   );
