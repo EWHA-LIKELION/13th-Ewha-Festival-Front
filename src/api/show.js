@@ -1,7 +1,7 @@
 import http from './http';
 
-// GET: 부스 목록
-export const getBooths = async (params = {}) => {
+// GET: 공연 목록
+export const getShows = async (params = {}) => {
   const requestParams = {};
 
   if (params.cursor) {
@@ -14,11 +14,11 @@ export const getBooths = async (params = {}) => {
     }
   });
 
-  return http.get('/booths/', { params: requestParams });
+  return http.get('/shows/', { params: requestParams });
 };
 
-// GET: 필터링된 부스 개수
-export const getBoothsCount = async (filters = {}) => {
+// GET: 필터링된 공연 개수
+export const getShowsCount = async (filters = {}) => {
   const requestParams = {};
 
   ['category', 'location', 'day_of_week'].forEach(key => {
@@ -27,15 +27,15 @@ export const getBoothsCount = async (filters = {}) => {
     }
   });
 
-  return http.get('/booths/counts', { params: requestParams });
+  return http.get('/shows/counts', { params: requestParams });
 };
 
-// POST: 부스 스크랩
-export const scrapBooth = async boothId => {
-  return http.post(`/scrap/${boothId}/`);
+// POST: 공연 스크랩
+export const scrapShow = async showId => {
+  return http.post(`/scrap/show/${showId}/`);
 };
 
-// DELETE: 부스 스크랩
-export const unscrapBooth = async boothId => {
-  return http.delete(`/scrap/${boothId}/`);
+// DELETE: 공연 스크랩
+export const unscrapShow = async showId => {
+  return http.delete(`/scrap/show/${showId}/`);
 };

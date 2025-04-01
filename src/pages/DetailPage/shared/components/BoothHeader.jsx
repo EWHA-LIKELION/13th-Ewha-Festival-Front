@@ -7,7 +7,7 @@ import backBlackIcon from '@/pages/DetailPage/Booth/images/backBlack.svg';
 import editIcon from '@/pages/DetailPage/Booth/images/edit.svg';
 import editBlackIcon from '@/pages/DetailPage/Booth/images/editBlack.svg';
 
-const BoothHeader = ({ role }) => {
+const BoothHeader = ({ role, isShow }) => {
   const navigate = useNavigate();
   const [$isScrolled, setIsScrolled] = useState(false);
 
@@ -24,11 +24,13 @@ const BoothHeader = ({ role }) => {
 
   return (
     <Header $isScrolled={$isScrolled}>
-      <BackButton onClick={() => navigate('/')}>
+      <BackButton onClick={() => navigate(isShow ? '/showlist' : '/boothlist')}>
         <img src={$isScrolled ? backBlackIcon : backIcon} alt='Back' />
       </BackButton>
       {role === 'admin' && (
-        <EditButton onClick={() => navigate('/booth/edit')}>
+        <EditButton
+          onClick={() => navigate(isShow ? '/showEdit/' : '/boothEdit/')}
+        >
           <img src={$isScrolled ? editBlackIcon : editIcon} alt='edit' />
         </EditButton>
       )}
@@ -49,6 +51,11 @@ const Header = styled.div`
   justify-content: space-between;
   top: 0;
   z-index: 100;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.7) 10%,
+    rgba(0, 0, 0, 0) 100%
+  );
 
   transition:
     background 0.3s ease-in-out,

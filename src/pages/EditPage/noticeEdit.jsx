@@ -7,7 +7,8 @@ import Header2 from './components/Header2';
 import http from '@/api/http';
 
 const NoticeEdit = () => {
-  const boothId = 1;
+  const myBooth = JSON.parse(localStorage.getItem('myBooth'));
+  const boothId = myBooth?.id;
   const [notices, setNotices] = useState([]);
   const [isAddNoticeOpen, setIsAddNoticeOpen] = useState(false);
   const [title, setTitle] = useState('');
