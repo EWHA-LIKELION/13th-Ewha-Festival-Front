@@ -8,7 +8,7 @@ const AdminSection = () => {
   const navigate = useNavigate();
 
   return (
-    <Container onClick={() => navigate('/')}>
+    <Container onClick={() => navigate('/mypage/code')}>
       <BackgroundImage src={AdminBg} alt='Code Input Background' />
       <Text>
         <AdminText>부스/공연 관리자 인가요?</AdminText>

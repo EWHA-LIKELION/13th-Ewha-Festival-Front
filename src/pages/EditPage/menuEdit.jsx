@@ -10,7 +10,8 @@ const MenuEdit = () => {
   const { id: menuId } = useParams();
   const isEditMode = !!menuId;
   const navigate = useNavigate();
-  const boothId = 1;
+  const myBooth = JSON.parse(localStorage.getItem('myBooth'));
+  const boothId = myBooth?.id;
 
   const [name, setName] = useState('');
   const [price, setPrice] = useState(null);

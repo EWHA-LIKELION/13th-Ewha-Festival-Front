@@ -29,9 +29,7 @@ const BoothHeader = ({ role, isShow }) => {
       </BackButton>
       {role === 'admin' && (
         <EditButton
-          onClick={() =>
-            navigate(isShow ? '/showEdit/${id}' : '/boothEdit/${id}')
-          }
+          onClick={() => navigate(isShow ? '/showEdit/' : '/boothEdit/')}
         >
           <img src={$isScrolled ? editBlackIcon : editIcon} alt='edit' />
         </EditButton>
