@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import http from '@/api/http';
 import styled from 'styled-components';
-import { getUserInfo } from '@/api/auth';
+import useBoothStore from '@/store/BoothStore'; // Zustand store import
 
 import ImageEdit from './components/ImageEdit';
 import BoothName from './components/BoothName';
@@ -27,8 +27,8 @@ const BoothEdit = () => {
   const [noticeCount, setNoticeCount] = useState(0);
   const [menuCount, setMenuCount] = useState(0);
 
-  const myBooth = JSON.parse(localStorage.getItem('myBooth'));
-  const boothId = myBooth?.id;
+  const booth = useBoothStore(state => state.booth); // Zustand에서 booth 가져옴
+  const boothId = booth?.id;
 
   const getOperatingHoursForAPI = () => {
     const mapping = {
