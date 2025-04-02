@@ -24,6 +24,7 @@ const MyPage = () => {
       try {
         const response = await http.get('/mypages/boothcount/');
         setBoothInfo(response.data);
+        console.log(boothInfo);
       } catch (error) {
         setBoothInfo(null);
       }
