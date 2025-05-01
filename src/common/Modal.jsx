@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import WarningIcon from '@/pages/DetailPage/Booth/images/warning.svg';
 
-const Modal = ({ onClose, onDelete }) => {
+const Modal = ({ title, onClose, onDelete }) => {
   return (
     <ModalOverlay>
       <DeleteModal>

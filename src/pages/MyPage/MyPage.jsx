@@ -1,18 +1,47 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
+import http from '@/api/http';
 import Header from '@/common/Header';
 import UserInfo from '@/pages/MyPage/components/UserInfo';
 import ScrapBook from '@/pages/MyPage/components/ScrapBook';
 import AdminSection from '@/pages/MyPage/components/AdminSection';
+import MyBoothInfo from '@/pages/MyPage/components/MyBoothInfo';
+import useScrapStore from '@/store/useScrapStore';
 
 const MyPage = () => {
+  const navigate = useNavigate();
+  const { user } = useScrapStore();
+  const [boothInfo, setBoothInfo] = useState(null);
+
+  useEffect(() => {
+    if (!user) {
+      navigate('/login');
+      return;
+    }
+
+    const fetchBoothInfo = async () => {
+      try {
+        const response = await http.get('/mypages/boothcount/');
+        setBoothInfo(response.data);
+        console.log(boothInfo);
+      } catch (error) {
+        setBoothInfo(null);
+      }
+    };
+
+    fetchBoothInfo();
+  }, []);
+
   return (
-    <PageWrapper>
+    <>
       <Header />
-      <UserInfo />
-      <ScrapBook />
-      <AdminSection />
-    </PageWrapper>
+      <PageWrapper>
+        <UserInfo />
+        <ScrapBook />
+        {boothInfo ? <MyBoothInfo boothData={boothInfo} /> : <AdminSection />}
+      </PageWrapper>
+    </>
   );
 };
 
@@ -22,18 +51,5 @@ const PageWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1.25rem;
-`;
-
-const Logo = styled.div`
-  width: 4.5rem;
-  height: 2.25rem;
-  background-color: #d7d7d7;
-  display: grid;
-  place-items: center;
-`;
-
-const Icons = styled.div`
-  display: flex;
-  gap: 0.75rem;
+  padding: 0rem 1.25rem;
 `;
