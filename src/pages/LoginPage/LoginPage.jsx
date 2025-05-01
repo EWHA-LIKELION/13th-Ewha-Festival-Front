@@ -63,6 +63,7 @@ const LoginBtn = styled.div`
   padding: 0.75rem 0;
   background-color: #ffea2b;
   ${({ theme }) => theme.fontStyles.semibold_14pt}
+  cursor: pointer;
 `;
 
 const BackgroundImage = styled.img`
