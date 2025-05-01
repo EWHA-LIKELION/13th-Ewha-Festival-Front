@@ -9,7 +9,7 @@ import ShowEdit from './pages/EditPage/showEdit';
 import BoothDetail from './pages/DetailPage/Booth/BoothDetail';
 import ShowDetail from './pages/DetailPage/Show/ShowDetail';
 import MyPage from './pages/MyPage/MyPage';
-
+import MyPageCode from './pages/MyPage/MyPageCode';
 import MainPage from './pages/MainPage/MainPage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import KakaoRedirect from './pages/LoginPage/KakaoRedirect';
@@ -26,10 +26,11 @@ function App() {
         <Route path='/menuEdit/:id' element={<MenuEdit />} />
         <Route path='/menuEditlist' element={<MenuEditList />} />
         <Route path='/noticeEdit' element={<NoticeEdit />} />
-        <Route path='/showEdit' element={<ShowEdit />} />
-        <Route path='/showdetail' element={<ShowDetail />} />
-        <Route path='/boothdetail' element={<BoothDetail />} />
+        <Route path='/showEdit/:id' element={<ShowEdit />} />
+        <Route path='/showdetail/:id' element={<ShowDetail />} />
+        <Route path='/boothdetail/:id' element={<BoothDetail />} />
         <Route path='/mypage' element={<MyPage />} />
+        <Route path='mypage/code' element={<MyPageCode />} />
         <Route path='/' element={<MainPage />} />
         <Route path='/login' element={<LoginPage />} />
         <Route path='/oauth/callback/kakao' element={<KakaoRedirect />} />

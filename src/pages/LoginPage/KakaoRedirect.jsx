@@ -17,7 +17,7 @@ const KakaoRedirect = () => {
       }
 
       try {
-        const response = await http.get('/accounts/kakao/', {
+        const response = await http.get(process.env.REACT_APP_KAKAO_ENDPOINT, {
           params: { code }
         });
         const { data } = response.data;
