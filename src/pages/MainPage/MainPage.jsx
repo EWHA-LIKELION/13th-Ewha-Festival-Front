@@ -15,7 +15,7 @@ const MainPage = () => {
     <MainWrapper>
       <MainContent>
         {/* 헤더 */}
-        <Header isDark />
+        <Header isMain />
 
         {/* 타이틀 */}
         {loggedIn ? (
@@ -56,7 +56,7 @@ const MainContent = styled.div`
 
 const Title = styled.h1`
   ${({ theme }) => theme.fontStyles.regular_24pt}
-  color: white;
+  color: var(--green3);
   margin-top: 6rem;
   padding-left: 1.25rem;
 `;
