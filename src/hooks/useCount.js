@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { getBoothsCount } from '@/api/booth';
 
-// 목록 필터링 시의 부스 개수 구하기
+// 목록 필터링 시의 부스 개수 구하는 커스텀 훅
 const useCount = (filters, type = 'booth') => {
   const [count, setCount] = useState(0);
   const [loading, setLoading] = useState(false);
