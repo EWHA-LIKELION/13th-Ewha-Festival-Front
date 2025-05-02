@@ -3,6 +3,7 @@ import http from '@/api/http';
 import styled from 'styled-components';
 import getBoothId from '@/api/getBoothId';
 
+
 import ImageEdit from './components/ImageEdit';
 import BoothName from './components/BoothName';
 import RunningTime from './components/RunningTime';
