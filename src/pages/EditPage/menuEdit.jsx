@@ -5,13 +5,13 @@ import http from '@/api/http';
 import ImageEdit from './components/ImageEdit';
 import MenuStatus from './components/MenuStatus';
 import Header1 from './components/Header1';
+import getBoothId from '@/api/getBoothId';
 
 const MenuEdit = () => {
   const { id: menuId } = useParams();
   const isEditMode = !!menuId;
   const navigate = useNavigate();
-  const myBooth = JSON.parse(localStorage.getItem('myBooth'));
-  const boothId = myBooth?.id;
+  const [boothId, setBoothId] = useState(null);
 
   const [name, setName] = useState('');
   const [price, setPrice] = useState(null);
@@ -22,23 +22,24 @@ const MenuEdit = () => {
   useEffect(() => {
     const fetchMenu = async () => {
       try {
-        const res = await http.get(`/menus/${boothId}/`);
+        const id = await getBoothId();
+        setBoothId(id);
+        const res = await http.get(`/menus/${id}/`);
         const targetMenu = res.data.find(menu => menu.id === parseInt(menuId));
         if (targetMenu) {
           setName(targetMenu.name);
           setPrice(targetMenu.price);
           setSale(targetMenu.is_sale);
           setThumbnailImage(targetMenu.thumbnail);
+          setBoothId(id);
         }
       } catch (err) {
         console.error('메뉴 정보 불러오기 실패:', err);
       }
     };
 
-    if (isEditMode) {
-      fetchMenu();
-    }
-  }, [menuId]);
+    fetchMenu();
+  }, []);
 
   useEffect(() => {
     if (!thumbnailImage) {
