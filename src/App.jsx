@@ -16,6 +16,7 @@ import KakaoRedirect from './pages/LoginPage/KakaoRedirect';
 import BoothListPage from './pages/ListPage/BoothListPage';
 import ShowListPage from './pages/ListPage/ShowListPage';
 import SearchPage from './pages/SearchPage/SearchPage';
+import ScrapPage from './pages/ScrapPage/ScrapPage';
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
         <Route path='/boothlist' element={<BoothListPage />} />
         <Route path='/showlist' element={<ShowListPage />} />
         <Route path='/search' element={<SearchPage />} />
+        <Route path='/scrap' element={<ScrapPage />} />
       </Routes>
     </BrowserRouter>
   );

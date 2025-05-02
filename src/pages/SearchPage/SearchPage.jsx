@@ -78,21 +78,44 @@ const SearchContent = () => {
 
   return (
     <>
-      {/* 검색창 */}
-      <SearchBar>
-        <ArrowLeft />
-        <SearchInputWrapper>
-          <SearchInput
-            value={inputValue}
-            onChange={e => setInputValue(e.target.value)}
-            onKeyPress={e =>
-              e.key === 'Enter' && (handleSearch(), e.target.blur())
-            }
-            placeholder='검색어를 입력하세요.'
-          />
-          <SearchIcon onClick={handleSearch} />
-        </SearchInputWrapper>
-      </SearchBar>
+      <TopContainer>
+        {/* 검색창 */}
+        <SearchBar>
+          <ArrowLeft />
+          <SearchInputWrapper>
+            <SearchInput
+              value={inputValue}
+              onChange={e => setInputValue(e.target.value)}
+              onKeyPress={e =>
+                e.key === 'Enter' && (handleSearch(), e.target.blur())
+              }
+              placeholder='검색어를 입력하세요.'
+            />
+            <SearchIcon onClick={handleSearch} />
+          </SearchInputWrapper>
+        </SearchBar>
+
+        {/* 탭 */}
+        {searched && (
+          <TabContainer>
+            <TabsWrapper>
+              <Tab
+                onClick={() => setActiveTab('부스')}
+                $isActive={activeTab === '부스'}
+              >
+                부스
+              </Tab>
+              <Tab
+                onClick={() => setActiveTab('공연')}
+                $isActive={activeTab === '공연'}
+              >
+                공연
+              </Tab>
+              <Indicator $activeTab={activeTab} />
+            </TabsWrapper>
+          </TabContainer>
+        )}
+      </TopContainer>
 
       {/* 검색 내역 */}
       {!searched ? (
@@ -120,25 +143,6 @@ const SearchContent = () => {
             </NoResultsContainer>
           ) : (
             <>
-              {/* 탭 */}
-              <TabContainer>
-                <TabsWrapper>
-                  <Tab
-                    onClick={() => setActiveTab('부스')}
-                    $isActive={activeTab === '부스'}
-                  >
-                    부스
-                  </Tab>
-                  <Tab
-                    onClick={() => setActiveTab('공연')}
-                    $isActive={activeTab === '공연'}
-                  >
-                    공연
-                  </Tab>
-                  <Indicator $activeTab={activeTab} />
-                </TabsWrapper>
-              </TabContainer>
-
               <ListContainer>
                 <ResultCount>
                   총 {filtered.length}개의 {activeTab}
@@ -169,6 +173,13 @@ const SearchPage = () => (
 );
 
 export default SearchPage;
+
+const TopContainer = styled.div`
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: white;
+`;
 
 const SearchBar = styled.div`
   display: flex;
@@ -240,6 +251,7 @@ const Indicator = styled.div`
 
 const ListContainer = styled.div`
   padding: 1.25rem;
+  background-color: white;
 `;
 
 const ResultCount = styled.p`
