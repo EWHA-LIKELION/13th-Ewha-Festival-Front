@@ -5,18 +5,21 @@ import { Plus } from '@/assets/icons';
 import Header2 from './components/Header2';
 import http from '@/api/http';
 import { useNavigate } from 'react-router-dom';
+import getBoothId from '@/api/getBoothId';
 
 const MenuEditList = () => {
-  const myBooth = JSON.parse(localStorage.getItem('myBooth'));
-  const boothId = myBooth?.id;
-
+  const [boothId, setBoothId] = useState(null);
   const [menus, setMenus] = useState([]);
   const navigate = useNavigate();
 
   const fetchMenus = async () => {
     try {
-      const res = await http.get(`/menus/${boothId}/`);
+      const id = await getBoothId();
+      setBoothId(id);
+      const res = await http.get(`/menus/${id}/`);
       setMenus(res.data);
+      setBoothId(id);
+      console.log(res.data);
     } catch (err) {
       console.error('메뉴 불러오기 실패:', err);
     }

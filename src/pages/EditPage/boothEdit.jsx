@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import http from '@/api/http';
 import styled from 'styled-components';
-import useBoothStore from '@/store/BoothStore'; // Zustand store import
+import getBoothId from '@/api/getBoothId';
+
 
 import ImageEdit from './components/ImageEdit';
 import BoothName from './components/BoothName';
@@ -26,9 +27,7 @@ const BoothEdit = () => {
   const [previewUrl, setPreviewUrl] = useState(null);
   const [noticeCount, setNoticeCount] = useState(0);
   const [menuCount, setMenuCount] = useState(0);
-
-  const booth = useBoothStore(state => state.booth); // Zustand에서 booth 가져옴
-  const boothId = booth?.id;
+  const [boothId, setBoothId] = useState(null);
 
   const getOperatingHoursForAPI = () => {
     const mapping = {
@@ -50,7 +49,9 @@ const BoothEdit = () => {
   useEffect(() => {
     const fetchBoothData = async () => {
       try {
-        const res = await http.get(`/booths/${boothId}`);
+        const id = await getBoothId();
+        setBoothId(id);
+        const res = await http.get(`/booths/${id}`);
         const booth = res.data.booth;
         const hours = res.data.operating_hours;
 
@@ -61,6 +62,7 @@ const BoothEdit = () => {
         setThumbnailImage(booth.thumbnail);
         setNoticeCount(booth.notice_count);
         setMenuCount(booth.menu_count);
+        setBoothId(id);
 
         const newSchedule = { ...schedule };
 
