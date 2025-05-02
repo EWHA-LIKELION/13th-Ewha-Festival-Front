@@ -4,16 +4,16 @@ import { useNavigate } from 'react-router-dom';
 import AdminBg from '@/assets/images/myBoothInfo.svg';
 
 const MyBoothInfo = ({ boothData }) => {
-  const { booth_name, scrap_count, guestbook_count, is_show } = boothData;
+  const { booth_name, scrap_count, guestbook_count, booth_id, is_show } =
+    boothData;
+  console.log(boothData);
   const navigate = useNavigate();
-  const myBooth = JSON.parse(localStorage.getItem('myBooth'));
-  const id = myBooth?.id;
 
   const handleClick = () => {
     if (is_show) {
-      navigate(`/showdetail/${id}`);
+      navigate(`/showdetail/${booth_id}`);
     } else {
-      navigate(`/boothdetail/${id}`);
+      navigate(`/boothdetail/${booth_id}`);
     }
   };
 
