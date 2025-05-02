@@ -13,7 +13,8 @@ export const BOOTH_FILTER_OPTIONS = {
     { id: 6, name: '포스코관' },
     { id: 7, name: '학문관' },
     { id: 8, name: '학관' },
-    { id: 9, name: '생활관' }
+    { id: 9, name: '생활관' },
+    { id: 9, name: '스포츠트랙' }
   ],
   day_of_week: [
     { id: 1, name: '수' },

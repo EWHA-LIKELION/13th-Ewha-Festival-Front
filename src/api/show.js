@@ -29,13 +29,3 @@ export const getShowsCount = async (filters = {}) => {
 
   return http.get('/shows/counts', { params: requestParams });
 };
-
-// POST: 공연 스크랩
-export const scrapShow = async showId => {
-  return http.post(`/scrap/show/${showId}/`);
-};
-
-// DELETE: 공연 스크랩
-export const unscrapShow = async showId => {
-  return http.delete(`/scrap/show/${showId}/`);
-};

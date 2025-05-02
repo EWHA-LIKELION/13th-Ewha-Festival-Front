@@ -7,6 +7,7 @@ import BoothItem from '@/pages/ListPage/components/BoothItem';
 import useInfiniteScroll from '@/hooks/useInfiniteScroll';
 import { searchResults } from '@/api/search';
 import { ArrowLeft, Search, Warning } from '@/assets/icons';
+import Tab from '@/common/Tap';
 
 // tanstack query 설정
 const queryClient = new QueryClient({
@@ -78,21 +79,32 @@ const SearchContent = () => {
 
   return (
     <>
-      {/* 검색창 */}
-      <SearchBar>
-        <ArrowLeft />
-        <SearchInputWrapper>
-          <SearchInput
-            value={inputValue}
-            onChange={e => setInputValue(e.target.value)}
-            onKeyPress={e =>
-              e.key === 'Enter' && (handleSearch(), e.target.blur())
-            }
-            placeholder='검색어를 입력하세요.'
+      <TopContainer>
+        {/* 검색창 */}
+        <SearchBar>
+          <ArrowLeft />
+          <SearchInputWrapper>
+            <SearchInput
+              value={inputValue}
+              onChange={e => setInputValue(e.target.value)}
+              onKeyPress={e =>
+                e.key === 'Enter' && (handleSearch(), e.target.blur())
+              }
+              placeholder='검색어를 입력하세요.'
+            />
+            <SearchIcon onClick={handleSearch} />
+          </SearchInputWrapper>
+        </SearchBar>
+
+        {/* 탭 */}
+        {searched && (
+          <Tab
+            tabs={['부스', '공연']}
+            activeTab={activeTab}
+            setActiveTab={setActiveTab}
           />
-          <SearchIcon onClick={handleSearch} />
-        </SearchInputWrapper>
-      </SearchBar>
+        )}
+      </TopContainer>
 
       {/* 검색 내역 */}
       {!searched ? (
@@ -120,25 +132,6 @@ const SearchContent = () => {
             </NoResultsContainer>
           ) : (
             <>
-              {/* 탭 */}
-              <TabContainer>
-                <TabsWrapper>
-                  <Tab
-                    onClick={() => setActiveTab('부스')}
-                    $isActive={activeTab === '부스'}
-                  >
-                    부스
-                  </Tab>
-                  <Tab
-                    onClick={() => setActiveTab('공연')}
-                    $isActive={activeTab === '공연'}
-                  >
-                    공연
-                  </Tab>
-                  <Indicator $activeTab={activeTab} />
-                </TabsWrapper>
-              </TabContainer>
-
               <ListContainer>
                 <ResultCount>
                   총 {filtered.length}개의 {activeTab}
@@ -169,6 +162,13 @@ const SearchPage = () => (
 );
 
 export default SearchPage;
+
+const TopContainer = styled.div`
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: white;
+`;
 
 const SearchBar = styled.div`
   display: flex;
@@ -203,43 +203,9 @@ const ResultsContainer = styled.div`
   flex: 1;
 `;
 
-const TabContainer = styled.div`
-  border-bottom: 0.2rem solid var(--gray1);
-`;
-
-const TabsWrapper = styled.div`
-  display: flex;
-  position: relative;
-`;
-
-const Tab = styled.div`
-  ${({ theme, $isActive }) =>
-    $isActive ? theme.fontStyles.semibold_16pt : theme.fontStyles.regular_16pt};
-  color: ${({ $isActive }) =>
-    $isActive ? 'var(--green1-100)' : 'var(--gray3)'};
-  padding: 0.63rem 1.25rem 0.5rem;
-  text-align: center;
-  cursor: pointer;
-  position: relative;
-  width: 4.25rem;
-  z-index: 1;
-`;
-
-const Indicator = styled.div`
-  position: absolute;
-  height: 0.2rem;
-  width: 4.25rem;
-  background-color: var(--green1-100);
-  bottom: -0.2rem;
-  transition: transform 0.3s ease;
-  z-index: 2;
-  transform: translateX(
-    ${({ $activeTab }) => ($activeTab === '부스' ? '0%' : '100%')}
-  );
-`;
-
 const ListContainer = styled.div`
   padding: 1.25rem;
+  background-color: white;
 `;
 
 const ResultCount = styled.p`
