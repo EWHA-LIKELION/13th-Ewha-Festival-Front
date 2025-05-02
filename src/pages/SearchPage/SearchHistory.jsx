@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { Delete } from '@/assets/icons';
+import cloudBg from '@/assets/images/cloudBg.png';
+import { Delete, Balloon } from '@/assets/icons';
 
 const SearchHistory = ({ onSearchClick }) => {
   const [recentSearches, setRecentSearches] = useState([]);
@@ -23,11 +24,15 @@ const SearchHistory = ({ onSearchClick }) => {
   };
 
   return (
-    <HistoryContainer>
+    <>
       <HistoryTitle>최근 검색어</HistoryTitle>
 
       {recentSearches.length === 0 ? (
-        <NoHistoryMessage>최근 검색 내역이 없어요.</NoHistoryMessage>
+        <NoHistoryContainer>
+          <NoHistoryMessage>최근 검색 내역이 없어요.</NoHistoryMessage>
+          <BottomBalloon />
+          <BackgroundImage src={cloudBg} />
+        </NoHistoryContainer>
       ) : (
         <SearchList>
           {recentSearches.map((search, index) => (
@@ -38,7 +43,7 @@ const SearchHistory = ({ onSearchClick }) => {
           ))}
         </SearchList>
       )}
-    </HistoryContainer>
+    </>
   );
 };
 
@@ -48,18 +53,15 @@ SearchHistory.propTypes = {
 
 export default SearchHistory;
 
-const HistoryContainer = styled.div`
-  padding: 1.25rem;
-`;
-
 const HistoryTitle = styled.h2`
   ${({ theme }) => theme.fontStyles.semibold_14pt}
-  margin-bottom: 0.75rem;
+  margin: 1.25rem;
 `;
 
 const SearchList = styled.div`
   display: flex;
   flex-wrap: wrap;
+  padding: 0 1.25rem;
   gap: 0.75rem;
 `;
 
@@ -74,8 +76,26 @@ const SearchItem = styled.div`
   cursor: pointer;
 `;
 
+const NoHistoryContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 const NoHistoryMessage = styled.p`
   ${({ theme }) => theme.fontStyles.regular_12pt}
   color: var(--gray3);
   text-align: center;
+`;
+
+const BottomBalloon = styled(Balloon)`
+  position: absolute;
+  width: 7rem;
+  bottom: 10rem;
+`;
+
+const BackgroundImage = styled.img`
+  position: absolute;
+  width: 100%;
+  bottom: 0;
 `;
