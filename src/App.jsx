@@ -15,6 +15,8 @@ import LoginPage from './pages/LoginPage/LoginPage';
 import KakaoRedirect from './pages/LoginPage/KakaoRedirect';
 import BoothListPage from './pages/ListPage/BoothListPage';
 import ShowListPage from './pages/ListPage/ShowListPage';
+import SearchPage from './pages/SearchPage/SearchPage';
+import ScrapPage from './pages/ScrapPage/ScrapPage';
 
 function App() {
   return (
@@ -25,7 +27,7 @@ function App() {
         <Route path='/menuEdit/:id' element={<MenuEdit />} />
         <Route path='/menuEditlist' element={<MenuEditList />} />
         <Route path='/noticeEdit' element={<NoticeEdit />} />
-        <Route path='/showEdit' element={<ShowEdit />} />
+        <Route path='/showEdit/:id' element={<ShowEdit />} />
         <Route path='/showdetail/:id' element={<ShowDetail />} />
         <Route path='/boothdetail/:id' element={<BoothDetail />} />
         <Route path='/mypage' element={<MyPage />} />
@@ -35,6 +37,8 @@ function App() {
         <Route path='/oauth/callback/kakao' element={<KakaoRedirect />} />
         <Route path='/boothlist' element={<BoothListPage />} />
         <Route path='/showlist' element={<ShowListPage />} />
+        <Route path='/search' element={<SearchPage />} />
+        <Route path='/scrap' element={<ScrapPage />} />
       </Routes>
     </BrowserRouter>
   );
