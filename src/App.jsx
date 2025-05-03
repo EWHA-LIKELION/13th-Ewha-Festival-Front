@@ -17,6 +17,7 @@ import BoothListPage from './pages/ListPage/BoothListPage';
 import ShowListPage from './pages/ListPage/ShowListPage';
 import SearchPage from './pages/SearchPage/SearchPage';
 import ScrapPage from './pages/ScrapPage/ScrapPage';
+import NoticePage from './pages/NoticePage/NoticesPage';
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
         <Route path='/showlist' element={<ShowListPage />} />
         <Route path='/search' element={<SearchPage />} />
         <Route path='/scrap' element={<ScrapPage />} />
+        <Route path='/notice' element={<NoticePage />} />
       </Routes>
     </BrowserRouter>
   );

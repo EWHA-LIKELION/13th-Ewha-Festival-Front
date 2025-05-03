@@ -1,5 +1,6 @@
 export { default as ArrowDown } from './ArrowDown';
 export { default as ArrowLeft } from './ArrowLeft';
+export { default as ArrowUp } from './ArrowUp';
 export { default as Balloon } from './Balloon';
 export { default as Delete } from './Delete';
 export { default as Filter } from './Filter';
