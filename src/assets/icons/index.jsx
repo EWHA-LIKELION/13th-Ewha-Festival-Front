@@ -14,6 +14,10 @@ export { default as Scrap } from './Scrap';
 export { default as Search } from './Search';
 export { default as SignBoard } from './SignBoard';
 export { default as Warning } from './Warning';
+export { default as Wastebasket } from './Wastebasket';
+export { default as Plate } from './Plate';
+export { default as Butane } from './Butane';
+export { default as Divider } from './Divider';
 
 // 수정 필요
 export { default as Trash } from './Trash';
