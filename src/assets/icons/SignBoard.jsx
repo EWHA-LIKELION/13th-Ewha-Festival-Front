@@ -5,7 +5,10 @@ const SvgSignBoard = ({ left = false, ...props }) => (
     fill='none'
     viewBox='0 0 173 60'
     width='10rem'
-    transform={left ? 'scale(-1,1)' : undefined}
+    style={{
+      display: 'block',
+      transform: left ? 'scale(-1,1)' : undefined
+    }}
     {...props}
   >
     <path

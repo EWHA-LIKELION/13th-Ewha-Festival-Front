@@ -20,6 +20,7 @@ import ScrapPage from './pages/ScrapPage/ScrapPage';
 import SchedulePage from './pages/SchedulePage/SchedulePage';
 import NoticePage from './pages/NoticePage/NoticesPage';
 import FacilityPage from './pages/FacilityPage/FacilityPage';
+import CommitteePage from './pages/CommitteePage/CommitteePage';
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
         <Route path='/schedule' element={<SchedulePage />} />
         <Route path='/notice' element={<NoticePage />} />
         <Route path='/facility' element={<FacilityPage />} />
+        <Route path='/committee' element={<CommitteePage />} />
       </Routes>
     </BrowserRouter>
   );
