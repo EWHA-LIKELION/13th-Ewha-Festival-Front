@@ -65,7 +65,7 @@ const SearchContent = () => {
     enabled: !!searchQuery.trim()
   });
 
-  // 부스•공연 필터링
+  // 탭 필터링
   const results = data?.pages.flatMap(page => page.data.results || []) || [];
   const filtered = results.filter(
     item =>
