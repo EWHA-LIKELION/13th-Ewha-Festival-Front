@@ -54,6 +54,8 @@ export const useScrap = (item, setShowLoginSheet = null) => {
           };
         });
       }
+
+      queryClient.invalidateQueries({ queryKey: ['committees'] });
     } catch (err) {
       console.error('스크랩 처리 중 오류:', err);
     }

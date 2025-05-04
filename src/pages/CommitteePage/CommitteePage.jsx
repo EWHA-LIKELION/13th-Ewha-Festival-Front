@@ -1,6 +1,10 @@
 import styled from 'styled-components';
-import { useState, useEffect } from 'react';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { useState } from 'react';
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQuery
+} from '@tanstack/react-query';
 import committeeBanner from '@/assets/images/committeeBanner.png';
 import Header from '@/common/Header';
 import Footer from '@/common/Footer';
@@ -20,12 +24,13 @@ const queryClient = new QueryClient({
 
 const CommitteeContent = () => {
   const [openCategories, setOpenCategories] = useState({});
-  const [committeeData, setCommitteeData] = useState(null);
 
   // 데이터 가져오기
-  useEffect(() => {
-    http.get('/committees/').then(res => setCommitteeData(res.data));
-  }, []);
+  const { data: committeeData } = useQuery({
+    queryKey: ['committees'],
+    queryFn: () => http.get('/committees/').then(res => res.data),
+    staleTime: 0
+  });
 
   // 카테고리 토글
   const toggleCategory = categoryName => {
