@@ -18,6 +18,7 @@ import ShowListPage from './pages/ListPage/ShowListPage';
 import SearchPage from './pages/SearchPage/SearchPage';
 import ScrapPage from './pages/ScrapPage/ScrapPage';
 import NoticePage from './pages/NoticePage/NoticesPage';
+import FacilityPage from './pages/FacilityPage/FacilityPage';
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
         <Route path='/search' element={<SearchPage />} />
         <Route path='/scrap' element={<ScrapPage />} />
         <Route path='/notice' element={<NoticePage />} />
+        <Route path='/facility' element={<FacilityPage />} />
       </Routes>
     </BrowserRouter>
   );
