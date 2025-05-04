@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import mainBg from '@/assets/images/mainBg.png';
 import Header from '@/common/Header';
-import Footer from '@/common/Footer';
 import Signpost from './components/Signpost';
 import { isLoggedIn, getUserInfo } from '@/api/auth';
 
@@ -35,7 +34,6 @@ const MainPage = () => {
         {/* 표지판 */}
         <Signpost />
       </MainContent>
-      <Footer />
     </MainWrapper>
   );
 };
