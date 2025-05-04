@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { ReactComponent as DownArrow } from '@/pages/DetailPage/Booth/images/down_arrow.svg';
 import { ReactComponent as UpArrow } from '@/pages/DetailPage/Booth/images/up_arrow.svg';
-import noNoticesImg from '@/pages/DetailPage/Booth/images/noNotices.svg';
+import noNoticesImg from '@/assets/images/cloudBg.png';
 import http from '@/api/http';
 
 const BoothNotices = ({ boothId }) => {
@@ -43,7 +43,12 @@ const BoothNotices = ({ boothId }) => {
         ))
       ) : (
         <NoNotices>
-          <img src={noNoticesImg} alt='공지사항 없음' />
+          <NoNoticesText>
+            등록된 공지가 없어요.
+            <br />
+            다음에 다시 확인해주세요.
+          </NoNoticesText>
+          <NoNoticesImage src={noNoticesImg} alt='공지사항 없음' />
         </NoNotices>
       )}
     </NoticesContainer>
@@ -114,15 +119,32 @@ const NoticeTime = styled.span`
 `;
 
 const NoNotices = styled.div`
+  position: relative;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  width: 100%;
-  height: 100%;
+  background-color: white;
+  padding-top: 6.88rem;
+  padding-bottom: 5rem;
+  min-height: 60vh;
+  overflow: hidden;
+`;
 
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+const NoNoticesText = styled.p`
+  color: var(--gray3, #787878);
+  ${({ theme }) => theme.fontStyles.regular_14pt};
+  text-align: center;
+  margin-bottom: 1rem;
+  z-index: 1;
+`;
+
+const NoNoticesImage = styled.img`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  z-index: 0;
 `;

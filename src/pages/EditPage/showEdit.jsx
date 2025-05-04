@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import http from '@/api/http';
 import styled from 'styled-components';
-import { getUserInfo } from '@/api/auth';
+import getBoothId from '@/api/getBoothId';
 
 import ImageEdit from './components/ImageEdit';
 import BoothName from './components/BoothName';
@@ -27,8 +27,7 @@ const ShowEdit = () => {
   const [noticeCount, setNoticeCount] = useState(0);
   const [menuCount, setMenuCount] = useState(0);
 
-  const myBooth = JSON.parse(localStorage.getItem('myBooth'));
-  const boothId = myBooth?.id;
+  const [boothId, setBoothId] = useState(null);
 
   const getOperatingHoursForAPI = () => {
     const mapping = {
@@ -50,7 +49,9 @@ const ShowEdit = () => {
   useEffect(() => {
     const fetchBoothData = async () => {
       try {
-        const res = await http.get(`/shows/${boothId}`);
+        const id = await getBoothId();
+        setBoothId(id);
+        const res = await http.get(`/shows/${id}`);
         const booth = res.data.booth;
         const hours = res.data.operating_hours;
 

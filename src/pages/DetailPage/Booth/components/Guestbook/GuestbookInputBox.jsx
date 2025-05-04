@@ -40,6 +40,7 @@ const InputContainer = styled.div`
   right: 0;
   max-width: 440px;
   margin: 0 auto;
+  z-index: 1;
 `;
 
 const InputWrapper = styled.div`

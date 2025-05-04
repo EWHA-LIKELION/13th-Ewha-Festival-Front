@@ -5,18 +5,20 @@ import Notice from './components/Notice';
 import AddNotice from './components/AddNotice';
 import Header2 from './components/Header2';
 import http from '@/api/http';
+import getBoothId from '@/api/getBoothId';
 
 const NoticeEdit = () => {
-  const myBooth = JSON.parse(localStorage.getItem('myBooth'));
-  const boothId = myBooth?.id;
   const [notices, setNotices] = useState([]);
   const [isAddNoticeOpen, setIsAddNoticeOpen] = useState(false);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const [boothId, setBoothId] = useState(null);
 
   const fetchNotices = async () => {
     try {
-      const res = await http.get(`/notices/${boothId}/`);
+      const id = await getBoothId();
+      setBoothId(id);
+      const res = await http.get(`/notices/${id}/`);
       console.log('📦 서버 응답 데이터:', res.data);
 
       res.data.forEach((notice, idx) => {
@@ -45,6 +47,10 @@ const NoticeEdit = () => {
         content
       });
       alert('공지 등록 완료');
+      await fetchNotices();
+      setTitle('');
+      setContent('');
+      setIsAddNoticeOpen(false);
     } catch (err) {
       console.error('공지 등록 실패:', err);
       alert('공지 등록 중 오류가 발생했습니다.');
