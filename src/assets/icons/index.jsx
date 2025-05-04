@@ -1,6 +1,7 @@
 export { default as ArrowDown } from './ArrowDown';
 export { default as ArrowLeft } from './ArrowLeft';
 export { default as ArrowRight } from './ArrowRight';
+export { default as ArrowUp } from './ArrowUp';
 export { default as Balloon } from './Balloon';
 export { default as Day1 } from './Day1';
 export { default as Day2 } from './Day2';
@@ -19,6 +20,10 @@ export { default as Scrap } from './Scrap';
 export { default as Search } from './Search';
 export { default as SignBoard } from './SignBoard';
 export { default as Warning } from './Warning';
+export { default as Wastebasket } from './Wastebasket';
+export { default as Plate } from './Plate';
+export { default as Butane } from './Butane';
+export { default as Divider } from './Divider';
 
 // 수정 필요
 export { default as Trash } from './Trash';
