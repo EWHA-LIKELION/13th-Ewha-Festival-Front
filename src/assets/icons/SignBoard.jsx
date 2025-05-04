@@ -4,6 +4,7 @@ const SvgSignBoard = ({ left = false, ...props }) => (
     xmlns='http://www.w3.org/2000/svg'
     fill='none'
     viewBox='0 0 173 60'
+    width='10rem'
     transform={left ? 'scale(-1,1)' : undefined}
     {...props}
   >
