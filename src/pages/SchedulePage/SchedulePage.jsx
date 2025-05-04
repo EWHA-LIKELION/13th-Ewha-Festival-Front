@@ -31,39 +31,33 @@ const SchedulePage = () => {
   const DayIcon = DAY_ICONS[currentDay];
 
   return (
-    <MainWrapper>
-      <MainContent>
-        {/* 헤더 */}
-        <Header isMain />
+    <MainContent>
+      {/* 헤더 */}
+      <Header isMain />
 
-        {/* 일정 내용 */}
-        <DateContainer>
-          <StyledArrowLeft onClick={handlePrevDay} $visible={currentDay > 1} />
-          <DayIcon />
-          <StyledArrowRight onClick={handleNextDay} $visible={currentDay < 3} />
-        </DateContainer>
-        <ScheduleList>
-          {SCHEDULE_DATA[currentDay].map((item, index) => (
-            <ScheduleItem key={index}>
-              <EventTitle>{item.title}</EventTitle>
-              <EventTime>{item.time}</EventTime>
-            </ScheduleItem>
-          ))}
-        </ScheduleList>
-      </MainContent>
-      <Footer />
-    </MainWrapper>
+      {/* 일정 내용 */}
+      <DateContainer>
+        <StyledArrowLeft onClick={handlePrevDay} $visible={currentDay > 1} />
+        <DayIcon />
+        <StyledArrowRight onClick={handleNextDay} $visible={currentDay < 3} />
+      </DateContainer>
+      <ScheduleList>
+        {SCHEDULE_DATA[currentDay].map((item, index) => (
+          <ScheduleItem key={index}>
+            <EventTitle>{item.title}</EventTitle>
+            <EventTime>{item.time}</EventTime>
+          </ScheduleItem>
+        ))}
+      </ScheduleList>
+    </MainContent>
   );
 };
 
 export default SchedulePage;
 
-const MainWrapper = styled.div`
+const MainContent = styled.div`
   display: flex;
   flex-direction: column;
-`;
-
-const MainContent = styled.div`
   background-image: url(${lightBg});
   background-size: cover;
   height: 100dvh;
