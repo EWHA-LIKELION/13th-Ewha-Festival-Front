@@ -32,7 +32,7 @@ export const SCHEDULE_DATA = {
       time: '09:30~22:00'
     },
     {
-      title: '학생문화관 학생생 공연',
+      title: '학생문화관 학생 공연',
       time: '11:00~18:30'
     },
     {
