@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import mainBg from '@/assets/images/mainBg.png';
 import Header from '@/common/Header';
@@ -6,9 +8,14 @@ import Signpost from './components/Signpost';
 import { isLoggedIn, getUserInfo } from '@/api/auth';
 
 const MainPage = () => {
-  const loggedIn = isLoggedIn();
+  const location = useLocation();
+  const [loggedIn, setLoggedIn] = useState(isLoggedIn());
   const userInfo = loggedIn ? getUserInfo() : null;
   const nickname = userInfo?.nickname || '';
+
+  useEffect(() => {
+    setLoggedIn(isLoggedIn());
+  }, [location]);
 
   return (
     <MainContent>

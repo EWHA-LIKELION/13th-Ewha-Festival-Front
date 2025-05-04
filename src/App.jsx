@@ -21,6 +21,7 @@ import SchedulePage from './pages/SchedulePage/SchedulePage';
 import NoticePage from './pages/NoticePage/NoticesPage';
 import FacilityPage from './pages/FacilityPage/FacilityPage';
 import CommitteePage from './pages/CommitteePage/CommitteePage';
+import FleamarketPage from './pages/FleamarketPage/FleamarketPage';
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function App() {
         <Route path='/notice' element={<NoticePage />} />
         <Route path='/facility' element={<FacilityPage />} />
         <Route path='/committee' element={<CommitteePage />} />
+        <Route path='/fleamarket' element={<FleamarketPage />} />
       </Routes>
     </BrowserRouter>
   );
