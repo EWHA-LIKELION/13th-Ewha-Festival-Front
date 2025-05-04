@@ -11,44 +11,37 @@ const MainPage = () => {
   const nickname = userInfo?.nickname || '';
 
   return (
-    <MainWrapper>
-      <MainContent>
-        {/* 헤더 */}
-        <Header isMain />
+    <MainContent>
+      {/* 헤더 */}
+      <Header isMain />
 
-        {/* 타이틀 */}
-        {loggedIn ? (
-          <Title>
-            <strong>{nickname}</strong> 님,
-            <br />
-            어디로 가볼까요?
-          </Title>
-        ) : (
-          <Title>
-            <LoginLink to='/login'>로그인</LoginLink>하고 사이트를
-            <br />
-            편하게 즐겨보세요.
-          </Title>
-        )}
+      {/* 타이틀 */}
+      {loggedIn ? (
+        <Title>
+          <strong>{nickname}</strong> 님,
+          <br />
+          어디로 가볼까요?
+        </Title>
+      ) : (
+        <Title>
+          <LoginLink to='/login'>로그인</LoginLink>하고 사이트를
+          <br />
+          편하게 즐겨보세요.
+        </Title>
+      )}
 
-        {/* 표지판 */}
-        <Signpost />
-      </MainContent>
-    </MainWrapper>
+      {/* 표지판 */}
+      <Signpost />
+    </MainContent>
   );
 };
 
 export default MainPage;
 
-const MainWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
 const MainContent = styled.div`
+  display: flex;
   background-image: url(${mainBg});
   background-size: cover;
-  background-position: bottom;
   height: 100dvh;
 `;
 

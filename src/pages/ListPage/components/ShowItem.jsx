@@ -49,8 +49,8 @@ const ShowItem = memo(({ show }) => {
 
           {/* 운영 정보 */}
           <Info>
-            {category}
-            {formattedDays && ` | ${formattedDays}`}
+            {category && `${category} | `}
+            {formattedDays}
             {formatted_location && ` | ${formatted_location}`}
           </Info>
 
