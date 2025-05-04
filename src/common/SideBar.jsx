@@ -44,7 +44,7 @@ const SideBar = ({ isOpen, onClose }) => {
 
   const handleLogoutClick = () => {
     handleLogout();
-    navigate('/');
+    navigate('/', { replace: true, state: { shouldRefresh: true } });
     onClose();
   };
 
@@ -82,7 +82,7 @@ const SideBar = ({ isOpen, onClose }) => {
           <StyledBtn onClick={() => navigate('/makers')}>만든이들</StyledBtn>
           <p>|</p>
           <StyledBtn
-            onClick={loggedIn ? handleLogout() : () => navigate('/login')}
+            onClick={loggedIn ? handleLogoutClick : () => navigate('/login')}
           >
             {loggedIn ? '로그아웃' : '로그인'}
           </StyledBtn>
