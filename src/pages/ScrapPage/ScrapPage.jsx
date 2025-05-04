@@ -9,7 +9,6 @@ import { isLoggedIn } from '@/api/auth';
 import { useNavigate } from 'react-router-dom';
 import { getScrapList } from '@/api/scrap';
 import LoginBottomSheet from '@/common/LoginBottomSheet';
-import Tab from '@/common/Tap';
 
 // tanstack query 설정
 const queryClient = new QueryClient({
@@ -30,9 +29,8 @@ const ScrapContent = () => {
   useEffect(() => {
     if (!isLoggedIn()) {
       setShowLoginSheet(true);
-      return;
     }
-  });
+  }, []);
 
   // 스크랩 목록
   const { data, lastItemRef, isLoading } = useInfiniteScroll({
@@ -47,19 +45,14 @@ const ScrapContent = () => {
     }
   });
 
-  const allScraps =
-    data?.pages.flatMap(page => {
-      const booths = page.data.booths || [];
-      const shows = page.data.shows || [];
-      return [...booths, ...shows];
-    }) || [];
+  // 현재 탭에 맞는 데이터 가져오기
+  const currentData =
+    activeTab === '부스'
+      ? data?.pages.flatMap(page => page.data.results?.booths || [])
+      : data?.pages.flatMap(page => page.data.results?.shows || []);
 
-  // 탭 필터링
-  const filteredScraps = allScraps.filter(
-    item =>
-      (activeTab === '부스' && !item.is_show) ||
-      (activeTab === '공연' && item.is_show)
-  );
+  // booth 객체만 추출
+  const currentItems = currentData?.map(item => item.booth) || [];
 
   return (
     <>
@@ -71,16 +64,28 @@ const ScrapContent = () => {
         </Header>
 
         {/* 탭 */}
-        <Tab
-          tabs={['부스', '공연']}
-          activeTab={activeTab}
-          setActiveTab={setActiveTab}
-        />
+        <TabContainer>
+          <TabsWrapper>
+            <Tab
+              $isActive={activeTab === '부스'}
+              onClick={() => setActiveTab('부스')}
+            >
+              부스
+            </Tab>
+            <Tab
+              $isActive={activeTab === '공연'}
+              onClick={() => setActiveTab('공연')}
+            >
+              공연
+            </Tab>
+            <Indicator $activeTab={activeTab} />
+          </TabsWrapper>
+        </TabContainer>
       </TopContainer>
 
       {/* 스크랩 목록 */}
       <ListContainer>
-        {!isLoading && filteredScraps.length === 0 ? (
+        {!isLoading && currentItems.length === 0 ? (
           <NoScrapContainer>
             <Warning />
             <NoScrapText>
@@ -99,17 +104,17 @@ const ScrapContent = () => {
         ) : (
           <ItemList>
             <ScrapCount>
-              총 {filteredScraps.length}개의 {activeTab}
+              총 {currentItems.length}개의 {activeTab}
             </ScrapCount>
-            {filteredScraps.map((item, index) => (
+            {currentItems.map((item, index) => (
               <div
                 key={item.id}
-                ref={index === filteredScraps.length - 1 ? lastItemRef : null}
+                ref={index === currentItems.length - 1 ? lastItemRef : null}
               >
-                {item.is_show ? (
-                  <ShowItem show={item} />
-                ) : (
+                {activeTab === '부스' ? (
                   <BoothItem booth={item} />
+                ) : (
+                  <ShowItem show={item} />
                 )}
               </div>
             ))}
@@ -126,13 +131,13 @@ const ScrapContent = () => {
   );
 };
 
-const ScrapbookPage = () => (
+const ScrapPage = () => (
   <QueryClientProvider client={queryClient}>
     <ScrapContent />
   </QueryClientProvider>
 );
 
-export default ScrapbookPage;
+export default ScrapPage;
 
 const TopContainer = styled.div`
   position: sticky;
@@ -150,6 +155,41 @@ const Header = styled.div`
 
 const Title = styled.h1`
   ${({ theme }) => theme.fontStyles.regular_20pt}
+`;
+
+const TabContainer = styled.div`
+  border-bottom: 0.2rem solid var(--gray1);
+`;
+
+const TabsWrapper = styled.div`
+  display: flex;
+  position: relative;
+`;
+
+const Tab = styled.div`
+  ${({ theme, $isActive }) =>
+    $isActive ? theme.fontStyles.semibold_16pt : theme.fontStyles.regular_16pt};
+  color: ${({ $isActive }) =>
+    $isActive ? 'var(--green1-100)' : 'var(--gray3)'};
+  padding: 0.63rem 1.25rem 0.5rem;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  width: 4.25rem;
+  z-index: 1;
+`;
+
+const Indicator = styled.div`
+  position: absolute;
+  height: 0.2rem;
+  width: 4.25rem;
+  background-color: var(--green1-100);
+  bottom: -0.2rem;
+  transition: transform 0.3s ease;
+  z-index: 2;
+  transform: translateX(
+    ${({ $activeTab }) => ($activeTab === '부스' ? '0%' : '100%')}
+  );
 `;
 
 const ListContainer = styled.div`
