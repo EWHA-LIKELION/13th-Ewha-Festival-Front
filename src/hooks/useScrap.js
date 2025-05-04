@@ -38,10 +38,17 @@ export const useScrap = (item, setShowLoginSheet = null) => {
               ...page,
               data: {
                 ...page.data,
-                booths:
-                  page.data.booths?.filter(booth => booth.id !== item.id) || [],
-                shows:
-                  page.data.shows?.filter(show => show.id !== item.id) || []
+                results: {
+                  ...page.data.results,
+                  booths:
+                    page.data.results?.booths?.filter(
+                      booth => booth.booth.id !== item.id
+                    ) || [],
+                  shows:
+                    page.data.results?.shows?.filter(
+                      show => show.booth.id !== item.id
+                    ) || []
+                }
               }
             }))
           };
