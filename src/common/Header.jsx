@@ -1,10 +1,10 @@
 import styled from 'styled-components';
-import { Search, Menu } from '@/assets/icons';
+import { LogoDark, Search, Menu } from '@/assets/icons';
 
 const Header = ({ isMain = false }) => {
   return (
     <HeaderWrapper $isMain={isMain}>
-      <Logo>로고</Logo>
+      <LogoDark />
       <Icons>
         <Search />
         <Menu />
