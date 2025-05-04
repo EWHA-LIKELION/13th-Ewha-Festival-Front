@@ -17,6 +17,7 @@ import BoothListPage from './pages/ListPage/BoothListPage';
 import ShowListPage from './pages/ListPage/ShowListPage';
 import SearchPage from './pages/SearchPage/SearchPage';
 import ScrapPage from './pages/ScrapPage/ScrapPage';
+import SchedulePage from './pages/SchedulePage/SchedulePage';
 import NoticePage from './pages/NoticePage/NoticesPage';
 import FacilityPage from './pages/FacilityPage/FacilityPage';
 
@@ -41,6 +42,7 @@ function App() {
         <Route path='/showlist' element={<ShowListPage />} />
         <Route path='/search' element={<SearchPage />} />
         <Route path='/scrap' element={<ScrapPage />} />
+        <Route path='/schedule' element={<SchedulePage />} />
         <Route path='/notice' element={<NoticePage />} />
         <Route path='/facility' element={<FacilityPage />} />
       </Routes>
