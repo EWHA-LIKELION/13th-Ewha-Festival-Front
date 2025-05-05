@@ -35,7 +35,9 @@ const MyPage = () => {
 
   return (
     <>
-      <Header />
+      <FixedHeader>
+        <Header />
+      </FixedHeader>
       <PageWrapper>
         <UserInfo />
         {loggedIn ? (
@@ -60,9 +62,20 @@ const MyPage = () => {
 
 export default MyPage;
 
+const FixedHeader = styled.div`
+  position: fixed;
+  top: 0;
+  max-width: 440px;
+  width: 100%;
+  z-index: 1000;
+  margin: 0 auto;
+  background-color: white;
+`;
+
 const PageWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0rem 1.25rem;
+  padding: 4.5rem 1.25rem 3rem;
+  background-color: white;
 `;

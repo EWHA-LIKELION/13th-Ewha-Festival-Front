@@ -27,7 +27,9 @@ const NoticesPage = () => {
 
   return (
     <>
-      <Header />
+      <FixedHeader>
+        <Header />
+      </FixedHeader>
       <Container $hasNotices={notices.length > 0}>
         <Title>공지사항</Title>
         <Link
@@ -69,11 +71,22 @@ export default NoticesPage;
 
 const Container = styled.div`
   background: white;
+  padding-top: 4.5rem;
   ${({ $hasNotices }) =>
     $hasNotices &&
     `
       padding: 1.5rem 1.25rem;
     `}
+`;
+
+const FixedHeader = styled.div`
+  position: fixed;
+  top: 0;
+  max-width: 440px;
+  width: 100%;
+  z-index: 1000;
+  margin: 0 auto;
+  background-color: white;
 `;
 
 const Title = styled.h1`
