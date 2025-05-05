@@ -29,6 +29,7 @@ const MyPageCode = () => {
       setError('');
     } catch (err) {
       const msg = err.response?.data?.message || '코드를 확인해주세요.';
+      console.log(err.response?.data);
       setError(msg);
       setBooth(null);
     }
@@ -43,6 +44,7 @@ const MyPageCode = () => {
       navigate('/mypage');
     } catch (err) {
       const msg = err.response?.data?.message || '권한 부여에 실패했습니다.';
+
       setError(msg);
     }
   };

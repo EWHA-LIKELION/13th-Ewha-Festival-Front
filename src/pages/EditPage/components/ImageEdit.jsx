@@ -2,7 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import DefaultBoothImage from '../images/defaultBoothImage';
 
-const ImageEdit = ({ imageSrc, onImageChange }) => {
+const ImageEdit = ({ imageSrc, onImageChange, setIsEdited, isEdited }) => {
+  const handleChange = e => {
+    onImageChange(e); // 기존 기능 유지
+    setIsEdited(true); // 수정 감지
+  };
+
   return (
     <ImageContainer>
       <ImageWrapper>
@@ -13,7 +18,7 @@ const ImageEdit = ({ imageSrc, onImageChange }) => {
         )}
         <Overlay>
           사진 수정하기
-          <HiddenInput type='file' accept='image/*' onChange={onImageChange} />
+          <HiddenInput type='file' accept='image/*' onChange={handleChange} />
         </Overlay>
       </ImageWrapper>
     </ImageContainer>

@@ -1,15 +1,28 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Status = ({ isOpened, setIsOpened }) => {
+const Status = ({ isOpened, setIsOpened, setIsEdited, isEdited }) => {
+  const handleStatusChange = value => {
+    if (value !== isOpened) {
+      setIsOpened(value);
+      setIsEdited(true); // 변경 감지
+    }
+  };
+
   return (
     <Container>
       <Title>운영 여부</Title>
       <ButtonContainer>
-        <StatusButton active={isOpened} onClick={() => setIsOpened(true)}>
+        <StatusButton
+          active={isOpened}
+          onClick={() => handleStatusChange(true)}
+        >
           운영 중
         </StatusButton>
-        <StatusButton active={!isOpened} onClick={() => setIsOpened(false)}>
+        <StatusButton
+          active={!isOpened}
+          onClick={() => handleStatusChange(false)}
+        >
           운영 종료
         </StatusButton>
       </ButtonContainer>
