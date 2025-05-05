@@ -1,11 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
-const Introduce = ({ value, onChange }) => {
+const Introduce = ({ value, onChange, saveTrigger, setIsEdited, isEdited }) => {
+  useEffect(() => {
+    setIsEdited(false);
+  }, [saveTrigger]);
+
+  const handleChange = e => {
+    onChange(e);
+    setIsEdited(true);
+  };
+
   return (
     <Container>
       <Title>소개글</Title>
-      <input value={value} onChange={onChange} />
+      <StyledTextarea
+        value={value}
+        onChange={handleChange}
+        $active={isEdited}
+        placeholder='소개를 입력하세요'
+        rows={2}
+      />
     </Container>
   );
 };
@@ -17,17 +32,20 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 1.5rem;
-  input {
-    border-radius: 0.6875rem;
-    border: none;
-    background: var(--gray1);
-    width: 100%;
-    height: 2.8125rem;
-    padding: 0.75rem 1rem;
-    color: var(--gray3);
-    ${({ theme }) => theme.fontStyles.regular_14pt}
-    min-height: 4.125rem;
-  }
+`;
+
+const StyledTextarea = styled.textarea`
+  border-radius: 0.6875rem;
+  border: none;
+  background: var(--gray1);
+  width: 100%;
+  padding: 0.75rem 1rem;
+  min-height: 5rem;
+  resize: vertical;
+
+  color: ${({ $active }) => ($active ? '#000' : 'var(--gray3)')};
+  font-weight: ${({ $active }) => ($active ? 600 : 400)};
+  ${({ theme }) => theme.fontStyles.regular_16pt}
 `;
 
 const Title = styled.h2`

@@ -2,10 +2,10 @@ import { ArrowLeft } from '@/assets/icons';
 import React from 'react';
 import styled from 'styled-components';
 
-const Header1 = ({ buttonText = '저장', onClick }) => {
+const Header1 = ({ buttonText = '저장', onClick, onArrowClick }) => {
   return (
     <Wrapper>
-      <ArrowLeft />
+      <ArrowLeft onClick={onArrowClick} style={{ cursor: 'pointer' }} />
       <Button onClick={onClick}>{buttonText}</Button>
     </Wrapper>
   );
