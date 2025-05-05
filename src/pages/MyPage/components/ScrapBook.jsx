@@ -8,8 +8,10 @@ import { useNavigate } from 'react-router-dom';
 const ScrapBook = () => {
   const { scraps, fetchScraps } = useScrapStore();
   const booths = scraps?.booths || [];
+  const shows = scraps?.shows || [];
+  const items = [...booths, ...shows];
   const totalScraps = scraps?.total_scrap_count || 0;
-  const hasScraps = booths.length > 0;
+  const hasScraps = items.length > 0;
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -27,7 +29,7 @@ const ScrapBook = () => {
       </Header>
       {hasScraps ? (
         <Grid>
-          {booths.slice(0, 4).map(item => (
+          {items.slice(0, 4).map(item => (
             <ScrapItem
               key={item.id}
               name={item.booth?.name}
