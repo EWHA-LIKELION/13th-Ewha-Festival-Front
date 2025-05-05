@@ -34,7 +34,7 @@ const BoothButton = ({
         <ButtonContainer>
           <ButtonItem>
             <a href={contact} target='_blank' rel='noopener noreferrer'>
-              <Kakao />
+              <KakaoIcon />
             </a>
             <ContactText>
               {isCommittee ? '축준위 연락처' : '부스 운영진 연락처'}
@@ -45,7 +45,6 @@ const BoothButton = ({
             <ScrapButton as='div'>
               <ScrapIcon onClick={handleScrap} $isScraped={isScrap} />
             </ScrapButton>
-
             <ContactText>{localScrapCount}명이 스크랩했어요</ContactText>
           </ButtonItem>
         </ButtonContainer>
@@ -85,7 +84,7 @@ const ButtonItem = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 3px;
+  gap: 0.3rem;
 `;
 
 const ColumnDivider = styled.div`
@@ -117,4 +116,10 @@ const ScrapIcon = styled(Scrap)`
       $isScraped ? 'fill: var(--green1-50);' : 'fill: none;'}
   }
   cursor: pointer;
+`;
+
+const KakaoIcon = styled(Kakao)`
+  width: 1.5rem;
+  height: 1.5rem;
+  display: block;
 `;
