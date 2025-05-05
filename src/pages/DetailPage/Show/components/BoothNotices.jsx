@@ -109,7 +109,8 @@ const NoticeTitle = styled.h3`
 
 const NoticeContent = styled.p`
   color: var(--black, #000);
-  ${({ theme }) => theme.fontStyles.light_12pt}
+  white-space: pre-line;
+  ${({ theme }) => theme.fontStyles.regular_14pt}
 `;
 
 const NoticeTime = styled.span`
