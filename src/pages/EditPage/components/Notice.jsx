@@ -10,8 +10,8 @@ const Notice = ({ id, title, content, onDelete }) => {
         <Trash
           stroke='var(--green1-100)'
           onClick={e => {
-            e.stopPropagation(); // 카드 클릭 방지
-            onDelete?.(id); // 삭제 요청
+            e.stopPropagation();
+            onDelete?.(id);
           }}
         />
       </Top>
@@ -34,7 +34,7 @@ const Top = styled.div`
   padding-bottom: 0.5rem;
 `;
 const Title = styled.h2`
-  ${({ theme }) => theme.fontStyles.medium_14pt}
+  ${({ theme }) => theme.fontStyles.semibold_16pt}
 `;
 const Content = styled.h3`
   ${({ theme }) => theme.fontStyles.light_12pt}

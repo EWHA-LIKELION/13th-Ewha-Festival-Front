@@ -6,10 +6,13 @@ import Header2 from './components/Header2';
 import http from '@/api/http';
 import { useNavigate } from 'react-router-dom';
 import getBoothId from '@/api/getBoothId';
+import Modal from '@/common/Modal';
 
 const MenuEditList = () => {
   const [boothId, setBoothId] = useState(null);
   const [menus, setMenus] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedId, setSelectedId] = useState(null);
   const navigate = useNavigate();
 
   const fetchMenus = async () => {
@@ -36,17 +39,21 @@ const MenuEditList = () => {
   const handleAddMenu = () => {
     navigate('/menuEdit');
   };
-  const handleDelete = async id => {
-    if (!window.confirm('정말 삭제하시겠습니까?')) return;
-
+  const handleDelete = async () => {
     try {
-      await http.delete(`/menus/${boothId}/${id}/`);
-      setMenus(prev => prev.filter(menu => menu.id !== id));
-      alert('삭제되었습니다.');
+      await http.delete(`/menus/${boothId}/${selectedId}/`);
+      setMenus(prev => prev.filter(menu => menu.id !== selectedId));
     } catch (err) {
       console.error('삭제 실패:', err);
       alert('삭제 중 오류가 발생했습니다.');
+    } finally {
+      setIsModalOpen(false);
+      setSelectedId(null);
     }
+  };
+  const openDeleteModal = id => {
+    setSelectedId(id);
+    setIsModalOpen(true);
   };
   return (
     <EditWrapper>
@@ -62,13 +69,29 @@ const MenuEditList = () => {
             thumbnail={menu.thumbnail}
             isSale={menu.is_sale}
             onClick={() => handleMenuClick(menu.id)}
-            onDelete={handleDelete}
+            onDelete={() => {
+              openDeleteModal(menu.id);
+            }}
           />
         ))}
         <AddMenu onClick={() => handleAddMenu()}>
           <Plus />
         </AddMenu>
       </MenuWrapper>
+      {isModalOpen && (
+        <Modal
+          title='메뉴 삭제'
+          modalText={
+            <>
+              메뉴를 삭제하시겠습니까?
+              <br />
+              삭제한 메뉴는 복구되지 않습니다.
+            </>
+          }
+          onDelete={handleDelete}
+          onClose={() => setIsModalOpen(false)}
+        />
+      )}
     </EditWrapper>
   );
 };
