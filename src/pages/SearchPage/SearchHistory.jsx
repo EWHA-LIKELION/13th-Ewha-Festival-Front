@@ -54,7 +54,7 @@ SearchHistory.propTypes = {
 export default SearchHistory;
 
 const HistoryTitle = styled.h2`
-  ${({ theme }) => theme.fontStyles.semibold_14pt}
+  ${({ theme }) => theme.fontStyles.semibold_16pt}
   margin: 1.25rem;
 `;
 
@@ -72,7 +72,7 @@ const SearchItem = styled.div`
   gap: 0.31rem;
   border: 1px solid var(--green1-100);
   border-radius: 1.25rem;
-  ${({ theme }) => theme.fontStyles.regular_12pt}
+  ${({ theme }) => theme.fontStyles.regular_14pt}
   cursor: pointer;
 `;
 
@@ -83,7 +83,7 @@ const NoHistoryContainer = styled.div`
 `;
 
 const NoHistoryMessage = styled.p`
-  ${({ theme }) => theme.fontStyles.regular_12pt}
+  ${({ theme }) => theme.fontStyles.regular_14pt}
   color: var(--gray3);
   text-align: center;
 `;

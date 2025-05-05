@@ -32,6 +32,11 @@ const ScrapContent = () => {
     }
   }, []);
 
+  const handleLoginSheetClose = () => {
+    setShowLoginSheet(false);
+    navigate('/login');
+  };
+
   // 스크랩 목록
   const { data, lastItemRef, isLoading } = useInfiniteScroll({
     queryKey: ['scraps'],
@@ -42,16 +47,16 @@ const ScrapContent = () => {
         return url.searchParams.get('cursor');
       }
       return undefined;
-    }
+    },
+    enabled: isLoggedIn()
   });
 
-  // 현재 탭에 맞는 데이터 가져오기
+  // 탭 필터링
   const currentData =
     activeTab === '부스'
       ? data?.pages.flatMap(page => page.data.results?.booths || [])
       : data?.pages.flatMap(page => page.data.results?.shows || []);
 
-  // booth 객체만 추출
   const currentItems = currentData?.map(item => item.booth) || [];
 
   return (
@@ -84,48 +89,52 @@ const ScrapContent = () => {
       </TopContainer>
 
       {/* 스크랩 목록 */}
-      <ListContainer>
-        {!isLoading && currentItems.length === 0 ? (
-          <NoScrapContainer>
-            <Warning />
-            <NoScrapText>
-              아직 스크랩한 내용이
-              <br />
-              없어요.
-            </NoScrapText>
-            <Suggestion
-              onClick={() =>
-                navigate(`/${activeTab === '부스' ? 'boothlist' : 'showlist'}`)
-              }
-            >
-              스크랩 하러 가기
-            </Suggestion>
-          </NoScrapContainer>
-        ) : (
-          <ItemList>
-            <ScrapCount>
-              총 {currentItems.length}개의 {activeTab}
-            </ScrapCount>
-            {currentItems.map((item, index) => (
-              <div
-                key={item.id}
-                ref={index === currentItems.length - 1 ? lastItemRef : null}
+      {!isLoggedIn() ? null : (
+        <ListContainer>
+          {!isLoading && currentItems.length === 0 ? (
+            <NoScrapContainer>
+              <Warning />
+              <NoScrapText>
+                아직 스크랩한 내용이
+                <br />
+                없어요.
+              </NoScrapText>
+              <Suggestion
+                onClick={() =>
+                  navigate(
+                    `/${activeTab === '부스' ? 'boothlist' : 'showlist'}`
+                  )
+                }
               >
-                {activeTab === '부스' ? (
-                  <BoothItem booth={item} />
-                ) : (
-                  <ShowItem show={item} />
-                )}
-              </div>
-            ))}
-          </ItemList>
-        )}
-      </ListContainer>
+                스크랩 하러 가기
+              </Suggestion>
+            </NoScrapContainer>
+          ) : (
+            <ItemList>
+              <ScrapCount>
+                총 {currentItems.length}개의 {activeTab}
+              </ScrapCount>
+              {currentItems.map((item, index) => (
+                <div
+                  key={item.id}
+                  ref={index === currentItems.length - 1 ? lastItemRef : null}
+                >
+                  {activeTab === '부스' ? (
+                    <BoothItem booth={item} />
+                  ) : (
+                    <ShowItem show={item} />
+                  )}
+                </div>
+              ))}
+            </ItemList>
+          )}
+        </ListContainer>
+      )}
 
       {/* 로그인 바텀시트 */}
       <LoginBottomSheet
         isOpen={showLoginSheet}
-        onClose={() => setShowLoginSheet(false)}
+        onClose={handleLoginSheetClose}
       />
     </>
   );

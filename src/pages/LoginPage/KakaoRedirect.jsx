@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { handleLogin } from '@/api/auth';
 import http from '@/api/http';
+import LoadingScreen from '@/common/LoadingScreen';
 
 const KakaoRedirect = () => {
   const navigate = useNavigate();
@@ -39,12 +40,7 @@ const KakaoRedirect = () => {
     processKakaoLogin();
   }, [navigate]);
 
-  return (
-    <div>
-      <h2>로그인 처리 중...</h2>
-      <p>추후 로딩 스피너 삽입 예정</p>
-    </div>
-  );
+  return <LoadingScreen />;
 };
 
 export default KakaoRedirect;

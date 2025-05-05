@@ -51,7 +51,10 @@ const SideBar = ({ isOpen, onClose }) => {
   return (
     <Overlay $isOpen={isOpen} onClick={onClose}>
       <Container $isOpen={isOpen} onClick={e => e.stopPropagation()}>
-        <ArrowLeft onClick={onClose} style={{ margin: '1.25rem' }} />
+        <ArrowLeft
+          onClick={onClose}
+          style={{ margin: '1.25rem', cursor: 'pointer' }}
+        />
 
         {/* 페이지 리스트 */}
         <MenuList>
@@ -163,6 +166,7 @@ const BottomBtns = styled.div`
 
 const StyledBtn = styled.p`
   ${props => props.theme.fontStyles.regular_14pt}
+  cursor: pointer;
 `;
 
 const BottomBalloon = styled(Balloon)`
