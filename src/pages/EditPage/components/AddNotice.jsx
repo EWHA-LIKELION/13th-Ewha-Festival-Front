@@ -32,7 +32,7 @@ const TitleInput = styled.input`
   background: transparent;
   color: var(--gray3);
   outline: none;
-  ${({ theme }) => theme.fontStyles.medium_14pt}
+  ${({ theme }) => theme.fontStyles.semibold_16pt}
   padding:1rem 1.25rem;
 `;
 

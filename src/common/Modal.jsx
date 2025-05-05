@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import WarningIcon from '@/assets/icons/Warning';
 
 const Modal = ({ title, onClose, onDelete, modalText }) => {
+  const isNoticeDisabled = title === '공지 등록 불가';
+
   return (
     <ModalOverlay>
       <DeleteModal>
@@ -12,8 +14,16 @@ const Modal = ({ title, onClose, onDelete, modalText }) => {
           </ModalHeader>
           <ModalText>{modalText}</ModalText>
           <ModalButtons>
-            <CancelButton onClick={onClose}>취소</CancelButton>
-            <DeleteConfirmButton onClick={onDelete}>삭제</DeleteConfirmButton>
+            {isNoticeDisabled ? (
+              <OkayButton onClick={onClose}>확인</OkayButton>
+            ) : (
+              <>
+                <CancelButton onClick={onClose}>취소</CancelButton>
+                <DeleteConfirmButton onClick={onDelete}>
+                  삭제
+                </DeleteConfirmButton>
+              </>
+            )}
           </ModalButtons>
         </ModalContent>
       </DeleteModal>
@@ -89,6 +99,18 @@ const CancelButton = styled.button`
 
 const DeleteConfirmButton = styled.button`
   width: 8.125rem;
+  border-radius: 0.5rem;
+  background: var(--red-100, #ff635e);
+  padding: 0.75rem 0.625rem;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: var(--white, #fff);
+  text-align: center;
+  ${({ theme }) => theme.fontStyles.regular_14pt}
+`;
+const OkayButton = styled.button`
+  width: 17rem;
   border-radius: 0.5rem;
   background: var(--red-100, #ff635e);
   padding: 0.75rem 0.625rem;
