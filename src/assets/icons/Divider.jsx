@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-const Divider = props => (
+const SvgDivider = props => (
   <svg
     width={400}
     height={3}
@@ -16,4 +16,4 @@ const Divider = props => (
     />
   </svg>
 );
-export default Divider;
+export default SvgDivider;

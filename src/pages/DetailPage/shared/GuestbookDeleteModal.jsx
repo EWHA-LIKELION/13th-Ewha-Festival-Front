@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import WarningIcon from '@/pages/DetailPage/Booth/images/warning.svg';
+import { Warning } from '@/assets/icons';
 
 const GuestbookDeleteModal = ({ onClose, onDelete }) => {
   return (
@@ -8,7 +8,8 @@ const GuestbookDeleteModal = ({ onClose, onDelete }) => {
       <DeleteModal>
         <ModalContent>
           <ModalHeader>
-            <img src={WarningIcon} alt='warning' /> 방명록 삭제
+            <Warning />
+            방명록 삭제
           </ModalHeader>
           <ModalText>
             <p>방명록을 삭제할까요?</p>

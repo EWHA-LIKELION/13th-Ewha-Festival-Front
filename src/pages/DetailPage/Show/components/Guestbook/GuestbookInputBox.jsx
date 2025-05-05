@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ReactComponent as SendIcon } from '@/pages/DetailPage/Booth/images/send.svg';
+import { Send } from '@/assets/icons';
 
 const GuestbookInputBox = ({ input, setInput, onSend }) => {
   const handleInputChange = e => {
@@ -20,7 +20,7 @@ const GuestbookInputBox = ({ input, setInput, onSend }) => {
           rows={1}
         />
         <SendButton onClick={onSend}>
-          <SendIcon />
+          <Send />
         </SendButton>
       </InputWrapper>
     </InputContainer>

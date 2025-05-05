@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ReactComponent as GarbageIcon } from '@/pages/DetailPage/Booth/images/garbage.svg';
+import { Garbage } from '@/assets/icons';
 
 const GuestbookItem = ({ guestbook, onDelete }) => {
   return (
@@ -9,7 +9,7 @@ const GuestbookItem = ({ guestbook, onDelete }) => {
         <Username>{guestbook.username}</Username>
         {guestbook.isAuthor && (
           <DeleteButton onClick={onDelete}>
-            <GarbageIcon />
+            <Garbage />
           </DeleteButton>
         )}
       </Header>
