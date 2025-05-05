@@ -1,61 +1,61 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import http from '@/api/http';
-
-import kakaoIcon from '@/pages/DetailPage/Booth/images/kakao.svg';
-import beforescrapIcon from '@/pages/DetailPage/Booth/images/beforescrap.svg';
-import afterscrapIcon from '@/pages/DetailPage/Booth/images/afterscrap.svg';
+import { Scrap, Kakao } from '@/assets/icons';
+import { useScrap } from '@/hooks/useScrap';
+import LoginBottomSheet from '@/common/LoginBottomSheet';
 
 const BoothButton = ({
   contact,
+  boothId,
   scrapCount,
   scrapState,
   setScrapState,
-  boothId
+  isCommittee
 }) => {
-  const [localScrapCount, setLocalScrapCount] = useState(scrapCount);
+  const [showLoginSheet, setShowLoginSheet] = useState(false);
 
-  const handleScrapToggle = async () => {
-    try {
-      const url = `/scrap/${boothId}/`;
-
-      if (scrapState) {
-        await http.delete(url);
-        setScrapState(false);
-        setLocalScrapCount(prev => prev - 1);
-      } else {
-        await http.post(url);
-        setScrapState(true);
-        setLocalScrapCount(prev => prev + 1);
-      }
-    } catch (error) {
-      if (error.response?.status === 400) {
-        alert('로그인 후 이용 가능합니다.');
-      }
-    }
-  };
+  const {
+    isScrap,
+    scrapCount: localScrapCount,
+    handleScrap
+  } = useScrap(
+    {
+      id: boothId,
+      is_scrap: scrapState,
+      scrap_count: scrapCount
+    },
+    setShowLoginSheet,
+    setScrapState
+  );
 
   return (
-    <ButtonWrapper>
-      <ButtonContainer>
-        <ButtonItem>
-          <a href={contact} target='_blank' rel='noopener noreferrer'>
-            <img src={kakaoIcon} alt='kakao' />
-          </a>
-          <ContactText>부스 운영진 연락처</ContactText>
-        </ButtonItem>
-        <ColumnDivider />
-        <ButtonItem>
-          <ScrapButton onClick={handleScrapToggle}>
-            <img
-              src={scrapState ? afterscrapIcon : beforescrapIcon}
-              alt='scrap'
-            />
-          </ScrapButton>
-          <ContactText>{localScrapCount}명이 스크랩했어요</ContactText>
-        </ButtonItem>
-      </ButtonContainer>
-    </ButtonWrapper>
+    <>
+      <ButtonWrapper>
+        <ButtonContainer>
+          <ButtonItem>
+            <a href={contact} target='_blank' rel='noopener noreferrer'>
+              <Kakao />
+            </a>
+            <ContactText>
+              {isCommittee ? '축준위 연락처' : '부스 운영진 연락처'}
+            </ContactText>
+          </ButtonItem>
+          <ColumnDivider />
+          <ButtonItem>
+            <ScrapButton as='div'>
+              <ScrapIcon onClick={handleScrap} $isScraped={isScrap} />
+            </ScrapButton>
+
+            <ContactText>{localScrapCount}명이 스크랩했어요</ContactText>
+          </ButtonItem>
+        </ButtonContainer>
+      </ButtonWrapper>
+
+      <LoginBottomSheet
+        isOpen={showLoginSheet}
+        onClose={() => setShowLoginSheet(false)}
+      />
+    </>
   );
 };
 
@@ -109,4 +109,12 @@ const ScrapButton = styled.button`
   cursor: pointer;
   color: var(--gray3, #787878);
   ${({ theme }) => theme.fontStyles.regular_12pt}
+`;
+
+const ScrapIcon = styled(Scrap)`
+  path {
+    ${({ $isScraped }) =>
+      $isScraped ? 'fill: var(--green1-50);' : 'fill: none;'}
+  }
+  cursor: pointer;
 `;

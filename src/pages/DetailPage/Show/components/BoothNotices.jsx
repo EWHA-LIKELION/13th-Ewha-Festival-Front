@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { ReactComponent as DownArrow } from '@/pages/DetailPage/Booth/images/down_arrow.svg';
-import { ReactComponent as UpArrow } from '@/pages/DetailPage/Booth/images/up_arrow.svg';
+import { ArrowDown, ArrowUp } from '@/assets/icons';
 import noNoticesImg from '@/assets/images/cloudBg.png';
 import http from '@/api/http';
 
@@ -33,7 +32,7 @@ const BoothNotices = ({ boothId }) => {
               <NoticeTitle $expanded={expandedIndex === index}>
                 {notice.title}
               </NoticeTitle>
-              {expandedIndex === index ? <UpArrow /> : <DownArrow />}
+              {expandedIndex === index ? <ArrowUp /> : <ArrowDown />}
             </NoticeHeader>
             {expandedIndex === index && (
               <NoticeContent>{notice.content}</NoticeContent>

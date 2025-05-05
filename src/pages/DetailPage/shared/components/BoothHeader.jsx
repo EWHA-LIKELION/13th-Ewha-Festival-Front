@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-
-import backIcon from '@/pages/DetailPage/Booth/images/back.svg';
-import backBlackIcon from '@/pages/DetailPage/Booth/images/backBlack.svg';
-import editIcon from '@/pages/DetailPage/Booth/images/edit.svg';
-import editBlackIcon from '@/pages/DetailPage/Booth/images/editBlack.svg';
+import { Back, BackBlack, Edit, EditBlack } from '@/assets/icons';
 
 const BoothHeader = ({ role, isShow, id }) => {
   const navigate = useNavigate();
@@ -33,7 +29,7 @@ const BoothHeader = ({ role, isShow, id }) => {
           }
         }}
       >
-        <img src={$isScrolled ? backBlackIcon : backIcon} alt='Back' />
+        {$isScrolled ? <BackBlack /> : <Back />}
       </BackButton>
 
       {role === 'admin' && (
@@ -42,7 +38,7 @@ const BoothHeader = ({ role, isShow, id }) => {
             navigate(isShow ? `/showEdit/${id}` : `/boothEdit/${id}`)
           }
         >
-          <img src={$isScrolled ? editBlackIcon : editIcon} alt='edit' />
+          {$isScrolled ? <EditBlack /> : <Edit />}
         </EditButton>
       )}
     </Header>

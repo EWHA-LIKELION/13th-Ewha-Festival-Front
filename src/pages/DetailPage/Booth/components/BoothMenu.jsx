@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import http from '@/api/http';
-import basicMenuImg from '@/pages/DetailPage/Booth/images/basicmenu.svg';
+import basicMenuImg from '@/assets/images/BasicMenu.png';
 import noMenuImg from '@/assets/images/cloudBg.png';
 
 const BoothMenu = ({ boothId }) => {

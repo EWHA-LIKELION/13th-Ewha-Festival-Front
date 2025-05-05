@@ -4,7 +4,7 @@ import BoothHeader from './BoothHeader.jsx';
 import BoothButton from './BoothButton.jsx';
 import BoothMeta from './BoothMeta.jsx';
 import BoothInfo from './BoothInfo.jsx';
-import basicThumbnail from '@/pages/DetailPage/Booth/images/basicThumbnail.svg';
+import basicThumbnail from '@/assets/images/BasicThumbnail.png';
 
 const ThumbnailWrapper = styled.div`
   position: relative;
@@ -67,13 +67,14 @@ const DetailTemplate = ({
           scrapState={scrapState}
           setScrapState={setScrapState}
           boothId={boothId}
+          isCommittee={boothData.is_committee}
         />
         <BoothMeta
           location={boothData.formatted_location}
           operatingHours={operatingHours}
         />
       </InfoWrapper>
-      <BoothTabsComponent boothId={boothId} />
+      {!boothData.is_committee && <BoothTabsComponent boothId={boothId} />}
     </>
   );
 };
