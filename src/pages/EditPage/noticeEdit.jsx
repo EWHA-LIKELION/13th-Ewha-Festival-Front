@@ -16,6 +16,7 @@ const NoticeEdit = () => {
   const [boothId, setBoothId] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
+  const [isDisabledModalOpen, setIsDisabledModalOpen] = useState(false);
   const prevNoticesLengthRef = useRef(null);
   const isButtonActive =
     (title.trim() && content.trim()) ||
@@ -88,7 +89,12 @@ const NoticeEdit = () => {
 
   return (
     <EditWrapper>
-      <Header2 text='공지' onSubmit={handleSubmit} disabled={!isButtonActive} />
+      <Header2
+        text='공지'
+        onSubmit={handleSubmit}
+        disabled={!isButtonActive}
+        onDisabledClick={() => setIsDisabledModalOpen(true)}
+      />
       <AddMenu onClick={() => setIsAddNoticeOpen(true)}>
         <Plus />
       </AddMenu>
@@ -124,6 +130,20 @@ const NoticeEdit = () => {
           }
           onDelete={handleDelete}
           onClose={() => setIsModalOpen(false)}
+        />
+      )}
+      {isDisabledModalOpen && (
+        <Modal
+          title='공지 등록 불가'
+          modalText={
+            <>
+              제목과 내용을 모두 입력해야
+              <br />
+              공지를 등록할 수 있습니다.
+            </>
+          }
+          onClose={() => setIsDisabledModalOpen(false)}
+          hideDelete={true}
         />
       )}
     </EditWrapper>
