@@ -22,8 +22,11 @@ const ShowItem = memo(({ show }) => {
   } = show;
 
   // 스크랩 기능
-  const { isScrap, scrapCount, handleScrap } = useScrap(show);
   const [showLoginSheet, setShowLoginSheet] = useState(false);
+  const { isScrap, scrapCount, handleScrap } = useScrap(
+    show,
+    setShowLoginSheet
+  );
 
   // 상세페이지로 이동
   const navigate = useNavigate();
@@ -49,8 +52,8 @@ const ShowItem = memo(({ show }) => {
 
           {/* 운영 정보 */}
           <Info>
-            {category}
-            {formattedDays && ` | ${formattedDays}`}
+            {category && `${category} | `}
+            {formattedDays}
             {formatted_location && ` | ${formatted_location}`}
           </Info>
 
@@ -138,6 +141,7 @@ const ScrapIcon = styled(Scrap)`
     ${({ $isScraped }) =>
       $isScraped ? 'fill: var(--green1-50);' : 'fill: none;'}
   }
+  cursor: pointer;
 `;
 
 const Description = styled.p`

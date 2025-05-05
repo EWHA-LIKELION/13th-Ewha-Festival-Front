@@ -1,56 +1,54 @@
 import styled from 'styled-components';
+import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import mainBg from '@/assets/images/mainBg.png';
 import Header from '@/common/Header';
-import Footer from '@/common/Footer';
 import Signpost from './components/Signpost';
 import { isLoggedIn, getUserInfo } from '@/api/auth';
 
 const MainPage = () => {
-  const loggedIn = isLoggedIn();
+  const location = useLocation();
+  const [loggedIn, setLoggedIn] = useState(isLoggedIn());
   const userInfo = loggedIn ? getUserInfo() : null;
   const nickname = userInfo?.nickname || '';
 
+  useEffect(() => {
+    setLoggedIn(isLoggedIn());
+  }, [location]);
+
   return (
-    <MainWrapper>
-      <MainContent>
-        {/* 헤더 */}
-        <Header isMain />
+    <MainContent>
+      {/* 헤더 */}
+      <Header isMain />
 
-        {/* 타이틀 */}
-        {loggedIn ? (
-          <Title>
-            <strong>{nickname}</strong> 님,
-            <br />
-            어디로 가볼까요?
-          </Title>
-        ) : (
-          <Title>
-            <LoginLink to='/login'>로그인</LoginLink>하고 사이트를
-            <br />
-            편하게 즐겨보세요.
-          </Title>
-        )}
+      {/* 타이틀 */}
+      {loggedIn ? (
+        <Title>
+          <strong>{nickname}</strong> 님,
+          <br />
+          어디로 가볼까요?
+        </Title>
+      ) : (
+        <Title>
+          <LoginLink to='/login'>로그인</LoginLink>하고 사이트를
+          <br />
+          편하게 즐겨보세요.
+        </Title>
+      )}
 
-        {/* 표지판 */}
-        <Signpost />
-      </MainContent>
-      <Footer />
-    </MainWrapper>
+      {/* 표지판 */}
+      <Signpost />
+    </MainContent>
   );
 };
 
 export default MainPage;
 
-const MainWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
 const MainContent = styled.div`
+  display: flex;
   background-image: url(${mainBg});
   background-size: cover;
-  background-position: bottom;
   height: 100dvh;
 `;
 

@@ -14,7 +14,9 @@ export const useScrap = (item, setShowLoginSheet = null) => {
     }
 
     if (!isLoggedIn()) {
-      setShowLoginSheet(true);
+      if (setShowLoginSheet) {
+        setShowLoginSheet(true);
+      }
       return;
     }
 
@@ -26,27 +28,11 @@ export const useScrap = (item, setShowLoginSheet = null) => {
       setIsScrap(newIsScraped);
       setScrapCount(response.data.scrap_count);
 
-      // 스크랩 페이지 갱신
-      const currentPath = window.location.pathname;
-      if (currentPath.includes('/scrap') && !newIsScraped) {
-        queryClient.setQueryData(['scraps'], oldData => {
-          if (!oldData) return oldData;
-
-          return {
-            ...oldData,
-            pages: oldData.pages.map(page => ({
-              ...page,
-              data: {
-                ...page.data,
-                booths:
-                  page.data.booths?.filter(booth => booth.id !== item.id) || [],
-                shows:
-                  page.data.shows?.filter(show => show.id !== item.id) || []
-              }
-            }))
-          };
-        });
-      }
+      // 쿼리 갱신
+      queryClient.invalidateQueries({ queryKey: ['booths'] });
+      queryClient.invalidateQueries({ queryKey: ['shows'] });
+      queryClient.invalidateQueries({ queryKey: ['committees'] });
+      queryClient.invalidateQueries({ queryKey: ['scraps'] });
     } catch (err) {
       console.error('스크랩 처리 중 오류:', err);
     }
