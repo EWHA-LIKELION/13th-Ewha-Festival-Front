@@ -23,7 +23,7 @@ const FleamarketPage = () => {
       <FleamarketSection>
         {/* 지도 */}
         <MainContent>
-          <Title>화랑's Flea Market</Title>
+          <Title>화령's Flea Market</Title>
           <Subtitle>스포츠트랙</Subtitle>
 
           <Divider />
