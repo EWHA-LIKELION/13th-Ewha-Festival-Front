@@ -24,9 +24,18 @@ const BoothHeader = ({ role, isShow, id }) => {
 
   return (
     <Header $isScrolled={$isScrolled}>
-      <BackButton onClick={() => navigate(isShow ? '/showlist' : '/boothlist')}>
+      <BackButton
+        onClick={() => {
+          if (window.history.length > 1) {
+            navigate(-1);
+          } else {
+            navigate(isShow ? '/showlist' : '/boothlist');
+          }
+        }}
+      >
         <img src={$isScrolled ? backBlackIcon : backIcon} alt='Back' />
       </BackButton>
+
       {role === 'admin' && (
         <EditButton
           onClick={() =>
