@@ -60,7 +60,7 @@ const Input = styled.input`
   padding: 0.75rem 1rem;
   color: ${({ $active }) => ($active ? '#000' : 'var(--gray3)')};
   font-weight: ${({ $active }) => ($active ? 600 : 400)};
-  ${({ theme }) => theme.fontStyles.regular_14pt}
+  ${({ theme }) => theme.fontStyles.regular_16pt}
 `;
 
 const Title = styled.h2`

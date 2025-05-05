@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import WarningIcon from '@/pages/DetailPage/Booth/images/warning.svg';
+import WarningIcon from '@/assets/icons/Warning';
 
 const Modal = ({ title, onClose, onDelete, modalText }) => {
   return (
@@ -8,7 +8,7 @@ const Modal = ({ title, onClose, onDelete, modalText }) => {
       <DeleteModal>
         <ModalContent>
           <ModalHeader>
-            <img src={WarningIcon} alt='warning' /> {title}
+            <WarningIcon /> {title}
           </ModalHeader>
           <ModalText>{modalText}</ModalText>
           <ModalButtons>

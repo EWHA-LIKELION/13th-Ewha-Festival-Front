@@ -1,20 +1,38 @@
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Pole } from '@/assets/icons';
 import Sign from './Sign';
 import { getUserInfo } from '@/api/auth';
+import getBoothId from '@/api/getBoothId';
 
-const allSigns = [
+const baseSigns = [
   { korean: '부스 목록', english: 'Booth\nList', to: '/boothlist' },
   { korean: '공연 목록', english: 'Stage\nList', to: '/showlist' },
   { korean: '축제 일정', english: 'Liberté\nPlan', to: '/schedule' },
-  { korean: '스크랩북', english: 'Scrap\nBook', to: '/scrap' },
-  { korean: '부스 관리', english: 'Booth\nAdmin', to: '/boothEdit' }
+  { korean: '스크랩북', english: 'Scrap\nBook', to: '/scrap' }
 ];
 
 const Signpost = () => {
-  const userInfo = getUserInfo();
-  const isBooth = userInfo?.is_booth || false;
-  const signs = isBooth ? allSigns : allSigns.slice(0, 4);
+  const [signs, setSigns] = useState(baseSigns);
+
+  useEffect(() => {
+    const initSigns = async () => {
+      const userInfo = getUserInfo();
+      if (userInfo?.is_booth) {
+        const boothId = await getBoothId();
+        setSigns([
+          ...baseSigns,
+          {
+            korean: '부스 관리',
+            english: 'Booth\nAdmin',
+            to: `/boothEdit/${boothId}`
+          }
+        ]);
+      }
+    };
+
+    initSigns();
+  }, []);
 
   return (
     <SignpostWrapper>

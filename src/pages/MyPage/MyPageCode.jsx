@@ -1,13 +1,24 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import BoothItem from '../ListPage/components/BoothItem';
 import http from '@/api/http';
 import { Error } from '@/assets/icons';
 import { useNavigate } from 'react-router-dom';
 import useBoothStore from '@/store/BoothStore';
+import { ArrowLeft } from '@/assets/icons';
 
-const MyPageCode = () => {
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      retry: 1
+    }
+  }
+});
+
+const MyPageCodeInner = () => {
   const navigate = useNavigate();
   const [value, setValue] = useState('');
   const [booth, setBoothState] = useState(null);
@@ -42,10 +53,10 @@ const MyPageCode = () => {
       const response = await http.patch('/mypages/code/', { code: value });
       const msg = response.data?.message || '관리자 권한이 부여되었습니다.';
 
-      setBooth(booth); // Zustand에 booth 정보 저장
+      setBooth(booth);
       setMessage(msg);
 
-      navigate('/mypage'); // 필요한 경우만 이동
+      navigate('/mypage');
     } catch (err) {
       const msg = err.response?.data?.message || '권한 부여에 실패했습니다.';
 
@@ -57,6 +68,10 @@ const MyPageCode = () => {
 
   return (
     <PageWrapper>
+      <Header>
+        <ArrowLeft />
+        <Title>코드 입력하기</Title>
+      </Header>
       <input
         value={value}
         onChange={handleChange}
@@ -87,6 +102,14 @@ const MyPageCode = () => {
   );
 };
 
+const MyPageCode = () => {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <MyPageCodeInner />
+    </QueryClientProvider>
+  );
+};
+
 export default MyPageCode;
 
 const PageWrapper = styled.div`
@@ -105,7 +128,7 @@ const PageWrapper = styled.div`
     display: none;
   }
   & > * {
-    width: 100%; // 내부 요소들이 부모 너비 기준으로 맞춰짐
+    width: 100%;
   }
 
   input {
@@ -120,19 +143,33 @@ const PageWrapper = styled.div`
   }
 `;
 
+const Header = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-bottom: 1rem;
+`;
+
+const Title = styled.h1`
+  ${({ theme }) => theme.fontStyles.regular_20pt}
+`;
+
 const Button = styled.button`
   position: absolute;
   bottom: 3rem;
   padding: 0.75rem 3.25rem;
   border: none;
   border-radius: 0.5rem;
-  background: var(--green1-100);
   color: white;
-  cursor: pointer;
+  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
+  background: ${({ disabled }) =>
+    disabled ? 'var(--gray2, #CDCDCD)' : 'var(--green1-100)'};
   ${({ theme }) => theme.fontStyles.semibold_14pt}
   width: 90%;
   height: 2.625rem;
+  transition: background 0.3s ease-in-out;
 `;
+
 const Search = styled.div`
   width: 100%;
 `;

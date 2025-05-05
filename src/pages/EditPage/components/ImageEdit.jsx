@@ -1,20 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
-import DefaultBoothImage from '../images/defaultBoothImage';
+import DefaultBoothImage from '@/assets/images/BasicThumbnail.png';
 
 const ImageEdit = ({ imageSrc, onImageChange, setIsEdited, isEdited }) => {
   const handleChange = e => {
     onImageChange(e); // 기존 기능 유지
-    setIsEdited(true); // 수정 감지
+    if (setIsEdited) setIsEdited(true); // 안전하게 호출
   };
 
   return (
     <ImageContainer>
       <ImageWrapper>
-        {imageSrc ? (
+        {imageSrc && imageSrc !== '' ? (
           <Image src={imageSrc} alt='대표 사진' />
         ) : (
-          <DefaultBoothImage />
+          <Image src={DefaultBoothImage} alt='기본 사진' />
         )}
         <Overlay>
           사진 수정하기
