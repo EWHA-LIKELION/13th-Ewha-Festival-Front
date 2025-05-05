@@ -16,8 +16,13 @@ const KakaoRedirect = () => {
         return;
       }
 
+      const isProd = process.env.NODE_ENV === 'production';
+      const kakaoEndpoint = isProd
+        ? '/accounts/kakao/prod'
+        : '/accounts/kakao/dev';
+
       try {
-        const response = await http.get('/accounts/kakao/', {
+        const response = await http.get(kakaoEndpoint, {
           params: { code }
         });
         const { data } = response.data;

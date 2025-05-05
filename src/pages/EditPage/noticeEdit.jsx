@@ -12,12 +12,13 @@ const NoticeEdit = () => {
   const [isAddNoticeOpen, setIsAddNoticeOpen] = useState(false);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const [boothId, setBoothId] = useState(null);
-
+  //const [boothId, setBoothId] = useState(null);
+  const boothId = 4;
+  const id = 4;
   const fetchNotices = async () => {
     try {
-      const id = await getBoothId();
-      setBoothId(id);
+      // const id = await getBoothId();
+      // setBoothId(id);
       const res = await http.get(`/notices/${id}/`);
       console.log('📦 서버 응답 데이터:', res.data);
 
