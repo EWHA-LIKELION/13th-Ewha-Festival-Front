@@ -5,6 +5,7 @@ import { isLoggedIn } from '@/api/auth';
 import http from '@/api/http';
 import LoginBottomSheet from '@/common/LoginBottomSheet';
 import { useNavigate } from 'react-router-dom';
+import { useScrap } from '@/hooks/useScrap';
 
 const ShowItem = memo(({ show }) => {
   const {
@@ -21,25 +22,11 @@ const ShowItem = memo(({ show }) => {
   } = show;
 
   // 스크랩 기능
-  const [isScrap, setIsScrap] = useState(is_scrap);
-  const [scrapCount, setScrapCount] = useState(scrap_count);
   const [showLoginSheet, setShowLoginSheet] = useState(false);
-
-  const handleScrap = async () => {
-    if (!isLoggedIn()) {
-      setShowLoginSheet(true);
-      return;
-    }
-
-    try {
-      const response = await http[isScrap ? 'delete' : 'post'](`/scrap/${id}/`);
-
-      setIsScrap(!isScrap);
-      setScrapCount(response.data.scrap_count);
-    } catch (err) {
-      console.error('스크랩 처리 중 오류:', err);
-    }
-  };
+  const { isScrap, scrapCount, handleScrap } = useScrap(
+    show,
+    setShowLoginSheet
+  );
 
   // 상세페이지로 이동
   const navigate = useNavigate();
@@ -65,8 +52,8 @@ const ShowItem = memo(({ show }) => {
 
           {/* 운영 정보 */}
           <Info>
-            {category}
-            {formattedDays && ` | ${formattedDays}`}
+            {category && `${category} | `}
+            {formattedDays}
             {formatted_location && ` | ${formatted_location}`}
           </Info>
 
@@ -76,13 +63,7 @@ const ShowItem = memo(({ show }) => {
 
         {/* 스크랩 */}
         <ScrapBox>
-          <ScrapIcon
-            onClick={e => {
-              e.stopPropagation();
-              handleScrap(e);
-            }}
-            $isScraped={isScrap}
-          />
+          <ScrapIcon onClick={handleScrap} $isScraped={isScrap} />
           <ScrapCount>{scrapCount}</ScrapCount>
         </ScrapBox>
       </ShowWrapper>
@@ -160,6 +141,7 @@ const ScrapIcon = styled(Scrap)`
     ${({ $isScraped }) =>
       $isScraped ? 'fill: var(--green1-50);' : 'fill: none;'}
   }
+  cursor: pointer;
 `;
 
 const Description = styled.p`

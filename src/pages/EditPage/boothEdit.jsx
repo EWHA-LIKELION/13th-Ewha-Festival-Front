@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import getBoothId from '@/api/getBoothId';
 import { useNavigate } from 'react-router-dom';
 
+
 import ImageEdit from './components/ImageEdit';
 import BoothName from './components/BoothName';
 import RunningTime from './components/RunningTime';

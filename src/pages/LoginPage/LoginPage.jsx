@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { ArrowLeft } from '@/assets/icons';
 import { KakaoChat } from '@/assets/icons';
-import loginBg from '@/assets/images/loginBg.png';
+import cloudBg from '@/assets/images/cloudBg.png';
 import { getKakaoAuthUrl } from '@/api/auth';
 
 const handleKakaoLogin = () => {
@@ -24,7 +24,7 @@ const LoginPage = () => {
           카카오톡 간편 로그인
         </LoginBtn>
       </Content>
-      <BackgroundImage src={loginBg} />
+      <BackgroundImage src={cloudBg} />
     </>
   );
 };
@@ -49,10 +49,12 @@ const Title = styled.h1`
   text-align: center;
   margin-bottom: 0.69rem;
 `;
+
 const SubTitle = styled.h3`
   ${({ theme }) => theme.fontStyles.regular_14pt}
   margin-bottom: 3.75rem;
 `;
+
 const LoginBtn = styled.div`
   display: flex;
   justify-content: center;
@@ -63,6 +65,7 @@ const LoginBtn = styled.div`
   padding: 0.75rem 0;
   background-color: #ffea2b;
   ${({ theme }) => theme.fontStyles.semibold_14pt}
+  cursor: pointer;
 `;
 
 const BackgroundImage = styled.img`

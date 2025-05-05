@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import http from '@/api/http';
-import basicMenuImg from '@/pages/DetailPage/Booth/images/basicmenu.svg';
+import basicMenuImg from '@/assets/images/BasicMenu.png';
+import noMenuImg from '@/assets/images/cloudBg.png';
 
 const BoothMenu = ({ boothId }) => {
   const [menus, setMenus] = useState([]);
@@ -36,7 +37,7 @@ const BoothMenu = ({ boothId }) => {
   };
 
   return (
-    <MenuContainer>
+    <MenuContainer $hasMenus={menus.length > 0}>
       {menus.length > 0 ? (
         menus.map((menu, index) => (
           <MenuItem key={index} isSoldOut={!menu.is_sale}>
@@ -56,7 +57,14 @@ const BoothMenu = ({ boothId }) => {
           </MenuItem>
         ))
       ) : (
-        <NoMenuText>등록된 메뉴가 없습니다.</NoMenuText>
+        <NoMenu>
+          <NoMenuText>
+            등록된 메뉴가 없어요.
+            <br />
+            다음에 다시 확인해주세요.
+          </NoMenuText>
+          <NoMenuImage src={noMenuImg} alt='등록된 메뉴 없음' />
+        </NoMenu>
       )}
     </MenuContainer>
   );
@@ -68,8 +76,12 @@ const MenuContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 0.75rem;
-  padding: 1.19rem 1.25rem;
   background-color: white;
+  ${({ $hasMenus }) =>
+    $hasMenus &&
+    `
+    padding: 1.19rem 1.25rem;
+  `}
 `;
 
 const MenuItem = styled.div`
@@ -153,10 +165,34 @@ const MenuPrice = styled.div`
   ${({ theme }) => theme.fontStyles.regular_14pt}
 `;
 
-const NoMenuText = styled.div`
-  text-align: center;
-  font-size: 1rem;
-  color: #888;
-  width: 100%;
+const NoMenu = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  padding-top: 6.88rem;
+  padding-bottom: 5rem;
+  min-height: 60vh;
+  overflow: hidden;
   grid-column: span 2;
+`;
+
+const NoMenuText = styled.p`
+  color: var(--gray3, #787878);
+  ${({ theme }) => theme.fontStyles.regular_14pt};
+  text-align: center;
+  margin-bottom: 1rem;
+  z-index: 1;
+`;
+
+const NoMenuImage = styled.img`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  z-index: 0;
 `;

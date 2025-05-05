@@ -2,11 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 const BoothMeta = ({ location, operatingHours }) => {
-  // 날짜 형식 변환: '12 금요일 09:00 ~ 18:00' → '12일 금요일 09:00 ~ 18:00'
-  const formattedOperatingHours = operatingHours.map(hour => {
-    return hour.replace(/^(\d+)/, '$1일');
-  });
-
   return (
     <BoothMetaWrapper>
       <MetaRow>
@@ -17,10 +12,8 @@ const BoothMeta = ({ location, operatingHours }) => {
         <MetaLabel>운영 시간</MetaLabel>
         <MetaContent>
           <ul>
-            {formattedOperatingHours && formattedOperatingHours.length > 0 ? (
-              formattedOperatingHours.map((hour, index) => (
-                <li key={index}>{hour}</li>
-              ))
+            {operatingHours && operatingHours.length > 0 ? (
+              operatingHours.map((hour, index) => <li key={index}>{hour}</li>)
             ) : (
               <li>운영 시간 정보 없음</li>
             )}

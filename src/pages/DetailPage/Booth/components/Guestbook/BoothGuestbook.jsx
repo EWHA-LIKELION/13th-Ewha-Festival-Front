@@ -3,15 +3,17 @@ import styled from 'styled-components';
 import useGuestbookStore, { fetchGuestbooks } from '@/store/guestbookStore';
 import GuestbookItem from '@/pages/DetailPage/Booth/components/Guestbook/GuestbookItem';
 import GuestbookInputBox from '@/pages/DetailPage/Booth/components/Guestbook/GuestbookInputBox';
-import GuestbookDeleteModal from '@/pages/DetailPage/Booth/modals/GuestbookDeleteModal';
-import noGuestBookImg from '@/pages/DetailPage/Booth/images/noGuestBook.svg';
+import GuestbookDeleteModal from '@/pages/DetailPage/shared/GuestbookDeleteModal';
+import noGuestBookImg from '@/assets/images/cloudBg.png';
 import http from '@/api/http';
+import LoginBottomSheet from '@/common/LoginBottomSheet';
 
 const BoothGuestbook = ({ boothId }) => {
   const { guestbooks, addGuestbook, deleteGuestbook } = useGuestbookStore();
   const [input, setInput] = useState('');
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedGuestbook, setSelectedGuestbook] = useState(null);
+  const [showLoginSheet, setShowLoginSheet] = useState(false);
 
   useEffect(() => {
     fetchGuestbooks(boothId);
@@ -44,7 +46,7 @@ const BoothGuestbook = ({ boothId }) => {
       }
     } catch (error) {
       if (error.response?.status === 401) {
-        alert('로그인 후 이용 가능합니다.');
+        setShowLoginSheet(true);
       }
     }
   };
@@ -72,7 +74,11 @@ const BoothGuestbook = ({ boothId }) => {
         ))
       ) : (
         <NoGuestbook>
-          <img src={noGuestBookImg} alt='방명록 없음' />
+          <NoGuestbookText>
+            등록된 방명록이 없어요.
+            <br />첫 방명록을 남겨볼까요?
+          </NoGuestbookText>
+          <NoGuestbookImage src={noGuestBookImg} alt='방명록 없음' />
         </NoGuestbook>
       )}
       <GuestbookInputBox
@@ -86,6 +92,10 @@ const BoothGuestbook = ({ boothId }) => {
           onDelete={handleDelete}
         />
       )}
+      <LoginBottomSheet
+        isOpen={showLoginSheet}
+        onClose={() => setShowLoginSheet(false)}
+      />
     </GuestbookContainer>
   );
 };
@@ -103,15 +113,32 @@ const GuestbookContainer = styled.div`
 `;
 
 const NoGuestbook = styled.div`
+  position: relative;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  width: 100%;
-  height: 100%;
+  background-color: white;
+  padding-top: 6.88rem;
+  padding-bottom: 5rem;
+  min-height: 60vh;
+  overflow: hidden;
+`;
 
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+const NoGuestbookText = styled.p`
+  color: var(--gray3, #787878);
+  ${({ theme }) => theme.fontStyles.regular_14pt};
+  text-align: center;
+  margin-bottom: 1rem;
+  z-index: 1;
+`;
+
+const NoGuestbookImage = styled.img`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  z-index: 0;
 `;

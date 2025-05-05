@@ -15,17 +15,25 @@ import LoginPage from './pages/LoginPage/LoginPage';
 import KakaoRedirect from './pages/LoginPage/KakaoRedirect';
 import BoothListPage from './pages/ListPage/BoothListPage';
 import ShowListPage from './pages/ListPage/ShowListPage';
+import SearchPage from './pages/SearchPage/SearchPage';
+import ScrapPage from './pages/ScrapPage/ScrapPage';
+import SchedulePage from './pages/SchedulePage/SchedulePage';
+import NoticePage from './pages/NoticePage/NoticesPage';
+import FacilityPage from './pages/FacilityPage/FacilityPage';
+import CommitteePage from './pages/CommitteePage/CommitteePage';
+import FleamarketPage from './pages/FleamarketPage/FleamarketPage';
+import MakersPage from './pages/MakersPage/MakersPage';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/boothEdit' element={<BoothEdit />} />
+        <Route path='/boothEdit/:id' element={<BoothEdit />} />
         <Route path='/menuEdit' element={<MenuEdit />} />
         <Route path='/menuEdit/:id' element={<MenuEdit />} />
         <Route path='/menuEditlist' element={<MenuEditList />} />
         <Route path='/noticeEdit' element={<NoticeEdit />} />
-        <Route path='/showEdit' element={<ShowEdit />} />
+        <Route path='/showEdit/:id' element={<ShowEdit />} />
         <Route path='/showdetail/:id' element={<ShowDetail />} />
         <Route path='/boothdetail/:id' element={<BoothDetail />} />
         <Route path='/mypage' element={<MyPage />} />
@@ -35,6 +43,14 @@ function App() {
         <Route path='/oauth/callback/kakao' element={<KakaoRedirect />} />
         <Route path='/boothlist' element={<BoothListPage />} />
         <Route path='/showlist' element={<ShowListPage />} />
+        <Route path='/search' element={<SearchPage />} />
+        <Route path='/scrap' element={<ScrapPage />} />
+        <Route path='/schedule' element={<SchedulePage />} />
+        <Route path='/notice' element={<NoticePage />} />
+        <Route path='/facility' element={<FacilityPage />} />
+        <Route path='/committee' element={<CommitteePage />} />
+        <Route path='/fleamarket' element={<FleamarketPage />} />
+        <Route path='/makers' element={<MakersPage />} />
       </Routes>
     </BrowserRouter>
   );
