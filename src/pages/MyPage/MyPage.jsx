@@ -1,22 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
 import http from '@/api/http';
 import Header from '@/common/Header';
 import UserInfo from '@/pages/MyPage/components/UserInfo';
 import ScrapBook from '@/pages/MyPage/components/ScrapBook';
 import AdminSection from '@/pages/MyPage/components/AdminSection';
 import MyBoothInfo from '@/pages/MyPage/components/MyBoothInfo';
-import useScrapStore from '@/store/useScrapStore';
+import { isLoggedIn } from '@/api/auth';
+import LoginBottomSheet from '@/common/LoginBottomSheet';
 
 const MyPage = () => {
-  const navigate = useNavigate();
-  const { user } = useScrapStore();
   const [boothInfo, setBoothInfo] = useState(null);
+  const [showLoginSheet, setShowLoginSheet] = useState(false);
+
+  const loggedIn = isLoggedIn();
 
   useEffect(() => {
-    if (!user) {
-      navigate('/login');
+    if (!loggedIn) {
+      setShowLoginSheet(true);
       return;
     }
 
@@ -30,15 +31,28 @@ const MyPage = () => {
     };
 
     fetchBoothInfo();
-  }, []);
+  }, [loggedIn]);
 
   return (
     <>
       <Header />
       <PageWrapper>
         <UserInfo />
-        <ScrapBook />
-        {boothInfo ? <MyBoothInfo boothData={boothInfo} /> : <AdminSection />}
+        {loggedIn ? (
+          <>
+            <ScrapBook />
+            {boothInfo ? (
+              <MyBoothInfo boothData={boothInfo} />
+            ) : (
+              <AdminSection />
+            )}
+          </>
+        ) : (
+          <LoginBottomSheet
+            isOpen={showLoginSheet}
+            onClose={() => setShowLoginSheet(false)}
+          />
+        )}
       </PageWrapper>
     </>
   );
