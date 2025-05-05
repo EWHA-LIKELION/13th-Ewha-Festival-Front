@@ -44,7 +44,7 @@ const Username = styled.div`
 
 const Content = styled.p`
   color: var(--black, #000);
-  ${({ theme }) => theme.fontStyles.light_12pt}
+  ${({ theme }) => theme.fontStyles.regular_14pt}
   white-space: pre-wrap;
   word-break: break-word;
   overflow-wrap: break-word;
