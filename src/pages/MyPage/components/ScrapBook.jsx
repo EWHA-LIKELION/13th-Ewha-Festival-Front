@@ -14,6 +14,7 @@ const ScrapBook = () => {
 
   useEffect(() => {
     fetchScraps();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -22,15 +23,17 @@ const ScrapBook = () => {
 
       <Header>
         <Title>스크랩북({totalScraps})</Title>
-        <More onClick={() => navigate('/')}>더보기</More>
+        <More onClick={() => navigate('/scrap')}>더보기</More>
       </Header>
       {hasScraps ? (
         <Grid>
-          {booths.slice(0, 4).map(booth => (
+          {booths.slice(0, 4).map(item => (
             <ScrapItem
-              key={booth.id}
-              name={booth.name}
-              thumbnail={booth.thumbnail}
+              key={item.id}
+              name={item.booth?.name}
+              thumbnail={item.booth?.images?.[0] || ''}
+              booth_id={item.booth?.id}
+              is_show={item.is_show}
             />
           ))}
         </Grid>

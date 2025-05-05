@@ -39,7 +39,7 @@ const BoothButton = ({
     <ButtonWrapper>
       <ButtonContainer>
         <ButtonItem>
-          <a href={`tel:${contact}`}>
+          <a href={contact} target='_blank' rel='noopener noreferrer'>
             <img src={kakaoIcon} alt='kakao' />
           </a>
           <ContactText>부스 운영진 연락처</ContactText>

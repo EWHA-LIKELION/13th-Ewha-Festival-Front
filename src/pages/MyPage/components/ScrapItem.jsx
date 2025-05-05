@@ -1,9 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
-const ScrapItem = ({ name, thumbnail }) => {
+const ScrapItem = ({ name, thumbnail, booth_id, is_show }) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    if (is_show) {
+      navigate(`/showdetail/${booth_id}`);
+    } else {
+      navigate(`/boothdetail/${booth_id}`);
+    }
+  };
+
   return (
-    <Item>
+    <Item onClick={handleClick}>
       <Image src={thumbnail} alt={name} />
       <Name>{name}</Name>
     </Item>
@@ -18,6 +29,7 @@ const Item = styled.div`
   overflow: hidden;
   height: 8.75rem;
   width: 100%;
+  cursor: pointer;
 
   &::after {
     content: '';
