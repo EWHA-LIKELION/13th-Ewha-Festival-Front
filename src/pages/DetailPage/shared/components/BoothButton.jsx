@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Scrap } from '@/assets/icons';
+import { Scrap, Kakao } from '@/assets/icons';
 import { useScrap } from '@/hooks/useScrap';
 import LoginBottomSheet from '@/common/LoginBottomSheet';
-import kakaoIcon from '@/pages/DetailPage/Booth/images/kakao.svg';
 
 const BoothButton = ({
   contact,
@@ -35,7 +34,7 @@ const BoothButton = ({
         <ButtonContainer>
           <ButtonItem>
             <a href={contact} target='_blank' rel='noopener noreferrer'>
-              <img src={kakaoIcon} alt='kakao' />
+              <Kakao />
             </a>
             <ContactText>
               {isCommittee ? '축준위 연락처' : '부스 운영진 연락처'}
