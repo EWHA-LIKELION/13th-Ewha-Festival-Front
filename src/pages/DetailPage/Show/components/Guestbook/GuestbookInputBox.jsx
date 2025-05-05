@@ -53,7 +53,7 @@ const InputWrapper = styled.div`
   background: var(--gray1, #f2f2f2);
   position: relative;
 
-  ${({ theme }) => theme.fontStyles.light_12pt}
+  ${({ theme }) => theme.fontStyles.regular_16pt}
 
   ::placeholder {
     color: var(--gray3, #787878);
@@ -65,7 +65,7 @@ const InputField = styled.textarea`
   border: none;
   background: transparent;
   color: var(--gray3, #787878);
-  ${({ theme }) => theme.fontStyles.light_12pt}
+  ${({ theme }) => theme.fontStyles.regular_16pt}
   outline: none;
   resize: none;
   overflow-y: hidden;
