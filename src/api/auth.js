@@ -22,6 +22,7 @@ export const handleLogin = (accessToken, refreshToken, userData) => {
 export const handleLogout = () => {
   Cookies.remove('accessToken');
   localStorage.removeItem('user');
+  window.location.href = '/';
 };
 
 // <로그인 여부 확인> 함수
