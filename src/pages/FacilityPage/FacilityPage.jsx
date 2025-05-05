@@ -19,7 +19,9 @@ const FacilityPage = () => {
 
   return (
     <>
-      <Header />
+      <FixedHeader>
+        <Header />
+      </FixedHeader>
       <Container>
         <Title>주요 시설 위치</Title>
         <Map src={mapImage} alt='지도' />
@@ -69,6 +71,16 @@ const Title = styled.div`
   color: var(--black, #000);
   text-align: center;
   ${({ theme }) => theme.fontStyles.semibold_24pt};
+`;
+
+const FixedHeader = styled.div`
+  position: fixed;
+  top: 0;
+  max-width: 440px;
+  width: 100%;
+  z-index: 1000;
+  margin: 0 auto;
+  background-color: white;
 `;
 
 const Map = styled.img`
