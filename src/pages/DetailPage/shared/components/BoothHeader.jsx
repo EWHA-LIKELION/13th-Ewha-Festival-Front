@@ -77,17 +77,9 @@ const Header = styled.div`
 `;
 
 const BackButton = styled.div`
-  img {
-    width: 1.5rem;
-    height: 1.5rem;
-    cursor: pointer;
-  }
+  cursor: pointer;
 `;
 
 const EditButton = styled.div`
-  img {
-    width: 1.5rem;
-    height: 1.5rem;
-    cursor: pointer;
-  }
+  cursor: pointer;
 `;
