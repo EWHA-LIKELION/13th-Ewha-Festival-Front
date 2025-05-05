@@ -22,6 +22,7 @@ import NoticePage from './pages/NoticePage/NoticesPage';
 import FacilityPage from './pages/FacilityPage/FacilityPage';
 import CommitteePage from './pages/CommitteePage/CommitteePage';
 import FleamarketPage from './pages/FleamarketPage/FleamarketPage';
+import MakersPage from './pages/MakersPage/MakersPage';
 
 function App() {
   return (
@@ -49,6 +50,7 @@ function App() {
         <Route path='/facility' element={<FacilityPage />} />
         <Route path='/committee' element={<CommitteePage />} />
         <Route path='/fleamarket' element={<FleamarketPage />} />
+        <Route path='/makers' element={<MakersPage />} />
       </Routes>
     </BrowserRouter>
   );

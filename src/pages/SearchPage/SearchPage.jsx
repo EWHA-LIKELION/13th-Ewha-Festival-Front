@@ -74,8 +74,10 @@ const SearchContent = () => {
   );
 
   const noResults =
+    !!searchQuery.trim() &&
     !isLoading &&
-    (error?.response?.status === 204 || (searched && results.length === 0));
+    data !== undefined &&
+    results.length === 0;
 
   return (
     <>
