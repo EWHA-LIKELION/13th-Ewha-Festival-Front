@@ -65,7 +65,7 @@ const SearchContent = () => {
     enabled: !!searchQuery.trim()
   });
 
-  // 부스•공연 필터링
+  // 탭 필터링
   const results = data?.pages.flatMap(page => page.data.results || []) || [];
   const filtered = results.filter(
     item =>
@@ -74,8 +74,10 @@ const SearchContent = () => {
   );
 
   const noResults =
+    !!searchQuery.trim() &&
     !isLoading &&
-    (error?.response?.status === 204 || (searched && results.length === 0));
+    data !== undefined &&
+    results.length === 0;
 
   return (
     <>
@@ -181,7 +183,7 @@ const SearchInputWrapper = styled.div`
   flex: 1;
   background-color: var(--gray1);
   border-radius: 0.68rem;
-  padding: 0.75rem 1rem;
+  padding: 0.5rem 0.75rem;
   gap: 0.75rem;
 `;
 
@@ -189,7 +191,7 @@ const SearchInput = styled.input`
   width: 100%;
   background-color: transparent;
   border: none;
-  ${({ theme }) => theme.fontStyles.regular_14pt}
+  ${({ theme }) => theme.fontStyles.regular_16pt}
   &:focus {
     outline: none;
   }

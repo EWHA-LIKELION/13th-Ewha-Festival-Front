@@ -24,7 +24,6 @@ export default Sign;
 const SignWrapper = styled.div`
   display: flex;
   position: relative;
-  width: 10rem;
   cursor: pointer;
 `;
 
