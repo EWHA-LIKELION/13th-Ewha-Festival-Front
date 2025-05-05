@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import getBoothId from '@/api/getBoothId';
 import { useNavigate } from 'react-router-dom';
 
-
 import ImageEdit from './components/ImageEdit';
 import BoothName from './components/BoothName';
 import RunningTime from './components/RunningTime';
@@ -67,9 +66,9 @@ const BoothEdit = () => {
   useEffect(() => {
     const fetchBoothData = async () => {
       try {
-        //const id = await getBoothId();
-        //setBoothId(id);
-        const id = 13;
+        const id = await getBoothId();
+        setBoothId(id);
+
         const res = await http.get(`/booths/${id}`);
         const booth = res.data.booth;
         const hours = res.data.operating_hours;
