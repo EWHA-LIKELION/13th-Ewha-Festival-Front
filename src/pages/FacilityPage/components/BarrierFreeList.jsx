@@ -78,7 +78,7 @@ const Content = styled.div`
 `;
 
 const BulletLine = styled.div`
-  ${({ theme }) => theme.fontStyles.light_12pt};
+  ${({ theme }) => theme.fontStyles.regular_14pt};
   color: #000;
   display: flex;
   gap: 0.25rem;
