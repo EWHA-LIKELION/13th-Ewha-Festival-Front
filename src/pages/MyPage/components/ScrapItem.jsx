@@ -15,7 +15,7 @@ const ScrapItem = ({ name, thumbnail, booth_id, is_show }) => {
 
   return (
     <Item onClick={handleClick}>
-      <Image src={thumbnail} alt={name} />
+      {thumbnail ? <Image src={thumbnail} alt={name} /> : <ImageFallback />}
       <Name>{name}</Name>
     </Item>
   );
@@ -47,6 +47,12 @@ const Image = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+`;
+
+const ImageFallback = styled.div`
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
 `;
 
 const Name = styled.div`
