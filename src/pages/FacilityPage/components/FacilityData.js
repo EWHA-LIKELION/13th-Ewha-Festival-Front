@@ -47,7 +47,7 @@ const facilityData = [
   },
   {
     title: '교육관',
-    description: '교육관 1번 부스 옆',
+    description: '교육관 2번 부스 옆',
     image: Facility8
   },
   {
