@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { handleLogin } from '@/api/auth';
 import http from '@/api/http';
+import LoadingScreen from '@/common/LoadingScreen';
 
 const KakaoRedirect = () => {
   const navigate = useNavigate();
@@ -16,13 +17,8 @@ const KakaoRedirect = () => {
         return;
       }
 
-      const isProd = process.env.NODE_ENV === 'production';
-      const kakaoEndpoint = isProd
-        ? '/accounts/kakao/prod'
-        : '/accounts/kakao/dev';
-
       try {
-        const response = await http.get(kakaoEndpoint, {
+        const response = await http.get(process.env.REACT_APP_KAKAO_ENDPOINT, {
           params: { code }
         });
         const { data } = response.data;
@@ -34,7 +30,7 @@ const KakaoRedirect = () => {
           is_booth: data.is_booth
         });
 
-        navigate('/', { replace: true });
+        window.location.href = '/';
       } catch (err) {
         console.error('로그인 처리 중 오류:', err);
         navigate('/login');
@@ -44,12 +40,7 @@ const KakaoRedirect = () => {
     processKakaoLogin();
   }, [navigate]);
 
-  return (
-    <div>
-      <h2>로그인 처리 중...</h2>
-      <p>추후 로딩 스피너 삽입 예정</p>
-    </div>
-  );
+  return <LoadingScreen />;
 };
 
 export default KakaoRedirect;

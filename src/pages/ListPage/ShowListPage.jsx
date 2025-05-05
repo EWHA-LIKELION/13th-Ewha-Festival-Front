@@ -51,7 +51,7 @@ const ShowListContent = () => {
         />
       </HeaderWrapper>
 
-      {/* 부스 리스트 */}
+      {/* 공연 리스트 */}
       <ShowList>
         <Num>총 {totalCount}개의 공연</Num>
 

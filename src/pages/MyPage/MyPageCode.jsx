@@ -5,19 +5,21 @@ import BoothItem from '../ListPage/components/BoothItem';
 import http from '@/api/http';
 import { Error } from '@/assets/icons';
 import { useNavigate } from 'react-router-dom';
+import useBoothStore from '@/store/BoothStore';
 
 const MyPageCode = () => {
   const navigate = useNavigate();
   const [value, setValue] = useState('');
-  const [booth, setBooth] = useState(null);
+  const [booth, setBoothState] = useState(null);
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
+  const setBooth = useBoothStore(state => state.setBooth); // Zustand store 사용
 
   const handleChange = e => {
     setValue(e.target.value);
     setError('');
     setMessage('');
-    setBooth(null);
+    setBoothState(null);
   };
 
   const handleSearch = async () => {
@@ -25,13 +27,13 @@ const MyPageCode = () => {
       const response = await http.get('/mypages/code/', {
         params: { code: value }
       });
-      setBooth(response.data);
+      setBoothState(response.data);
       setError('');
     } catch (err) {
       const msg = err.response?.data?.message || '코드를 확인해주세요.';
       console.log(err.response?.data);
       setError(msg);
-      setBooth(null);
+      setBoothState(null);
     }
   };
 
@@ -39,9 +41,11 @@ const MyPageCode = () => {
     try {
       const response = await http.patch('/mypages/code/', { code: value });
       const msg = response.data?.message || '관리자 권한이 부여되었습니다.';
-      localStorage.setItem('myBooth', JSON.stringify(booth));
+
+      setBooth(booth); // Zustand에 booth 정보 저장
       setMessage(msg);
-      navigate('/mypage');
+
+      navigate('/mypage'); // 필요한 경우만 이동
     } catch (err) {
       const msg = err.response?.data?.message || '권한 부여에 실패했습니다.';
 

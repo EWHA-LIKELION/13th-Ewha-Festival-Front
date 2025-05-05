@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ReactComponent as GarbageIcon } from '@/pages/DetailPage/Booth/images/garbage.svg';
+import { Garbage } from '@/assets/icons';
 
 const GuestbookItem = ({ guestbook, onDelete }) => {
   return (
@@ -9,7 +9,7 @@ const GuestbookItem = ({ guestbook, onDelete }) => {
         <Username>{guestbook.username}</Username>
         {guestbook.isAuthor && (
           <DeleteButton onClick={onDelete}>
-            <GarbageIcon />
+            <Garbage />
           </DeleteButton>
         )}
       </Header>
@@ -44,7 +44,7 @@ const Username = styled.div`
 
 const Content = styled.p`
   color: var(--black, #000);
-  ${({ theme }) => theme.fontStyles.light_12pt}
+  ${({ theme }) => theme.fontStyles.regular_14pt}
   white-space: pre-wrap;
   word-break: break-word;
   overflow-wrap: break-word;

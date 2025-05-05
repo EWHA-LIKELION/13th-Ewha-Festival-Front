@@ -9,7 +9,7 @@ const SvgMenu = props => (
     {...props}
   >
     <g strokeLinecap='round' strokeWidth={1.5}>
-      <path d='M3 5h18M3 12h18M3 19h18' />
+      <path stroke='#000000' d='M3 5h18M3 12h18M3 19h18' />
     </g>
   </svg>
 );
