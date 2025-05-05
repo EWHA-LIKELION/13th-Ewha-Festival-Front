@@ -70,12 +70,10 @@ const MenuEdit = () => {
         await http.patch(`/menus/${boothId}/${menuId}/`, formData, {
           headers: { 'Content-Type': 'multipart/form-data' }
         });
-        alert('메뉴가 수정되었습니다.');
       } else {
         await http.post(`/menus/${boothId}/`, formData, {
           headers: { 'Content-Type': 'multipart/form-data' }
         });
-        alert('메뉴가 생성되었습니다.');
       }
       navigate(-1);
     } catch (err) {
@@ -96,11 +94,16 @@ const MenuEdit = () => {
       />
       <InputWrapper>
         <Title>메뉴명</Title>
-        <Input value={name} onChange={e => setName(e.target.value)} />
+        <Input
+          placeholder='메뉴명을 입력해주세요. (최대 18자)'
+          value={name}
+          onChange={e => setName(e.target.value)}
+        />
 
         <Title>가격</Title>
         <section>
           <Input
+            placeholder='가격을 입력해주세요.'
             type='number'
             value={price}
             onChange={e => setPrice(parseInt(e.target.value, 10) || 0)}

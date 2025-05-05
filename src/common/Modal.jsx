@@ -1,19 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
-import WarningIcon from '@/pages/DetailPage/Booth/images/warning.svg';
+import WarningIcon from '@/assets/icons/Warning';
 
-const Modal = ({ title, onClose, onDelete }) => {
+const Modal = ({ title, onClose, onDelete, modalText }) => {
   return (
     <ModalOverlay>
       <DeleteModal>
         <ModalContent>
           <ModalHeader>
-            <img src={WarningIcon} alt='warning' /> {title}
+            <WarningIcon /> {title}
           </ModalHeader>
-          <ModalText>
-            <p>방명록을 삭제할까요?</p>
-            <p>삭제한 방명록은 복구되지 않아요.</p>
-          </ModalText>
+          <ModalText>{modalText}</ModalText>
           <ModalButtons>
             <CancelButton onClick={onClose}>취소</CancelButton>
             <DeleteConfirmButton onClick={onDelete}>삭제</DeleteConfirmButton>
