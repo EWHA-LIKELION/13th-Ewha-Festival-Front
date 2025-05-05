@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import http from '@/api/http';
 import { useParams } from 'react-router-dom';
 import DetailTemplate from '@/pages/DetailPage/shared/components/DetailTemplate.jsx';
-
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import BoothTabs from '@/pages/DetailPage/Booth/components/BoothTabs.jsx';
+
+const queryClient = new QueryClient();
 
 const BoothDetail = () => {
   const { id } = useParams();
@@ -30,17 +32,19 @@ const BoothDetail = () => {
   }, [booth_id]);
 
   return (
-    <DetailTemplate
-      boothData={boothData}
-      operatingHours={operatingHours}
-      thumbnailSrc={thumbnailSrc}
-      setThumbnailSrc={setThumbnailSrc}
-      scrapState={scrapState}
-      setScrapState={setScrapState}
-      boothId={booth_id}
-      role={role}
-      BoothTabsComponent={BoothTabs}
-    />
+    <QueryClientProvider client={queryClient}>
+      <DetailTemplate
+        boothData={boothData}
+        operatingHours={operatingHours}
+        thumbnailSrc={thumbnailSrc}
+        setThumbnailSrc={setThumbnailSrc}
+        scrapState={scrapState}
+        setScrapState={setScrapState}
+        boothId={booth_id}
+        role={role}
+        BoothTabsComponent={BoothTabs}
+      />
+    </QueryClientProvider>
   );
 };
 

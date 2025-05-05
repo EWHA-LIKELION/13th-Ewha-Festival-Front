@@ -3,6 +3,9 @@ import http from '@/api/http';
 import DetailTemplate from '@/pages/DetailPage/shared/components/DetailTemplate.jsx';
 import BoothTabs from '@/pages/DetailPage/Show/components/BoothTabs.jsx';
 import { useParams } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+const queryClient = new QueryClient();
 
 const ShowDetail = () => {
   const { id } = useParams();
@@ -29,7 +32,7 @@ const ShowDetail = () => {
   }, [booth_id]);
 
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
       <DetailTemplate
         boothData={boothData}
         operatingHours={operatingHours}
@@ -41,7 +44,7 @@ const ShowDetail = () => {
         role={role}
         BoothTabsComponent={BoothTabs}
       />
-    </>
+    </QueryClientProvider>
   );
 };
 
