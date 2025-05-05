@@ -67,13 +67,14 @@ const DetailTemplate = ({
           scrapState={scrapState}
           setScrapState={setScrapState}
           boothId={boothId}
+          isCommittee={boothData.is_committee}
         />
         <BoothMeta
           location={boothData.formatted_location}
           operatingHours={operatingHours}
         />
       </InfoWrapper>
-      <BoothTabsComponent boothId={boothId} />
+      {!boothData.is_committee && <BoothTabsComponent boothId={boothId} />}
     </>
   );
 };

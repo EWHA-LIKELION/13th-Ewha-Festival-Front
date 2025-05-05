@@ -11,7 +11,8 @@ const BoothButton = ({
   scrapCount,
   scrapState,
   setScrapState,
-  boothId
+  boothId,
+  isCommittee
 }) => {
   const [localScrapCount, setLocalScrapCount] = useState(scrapCount);
 
@@ -42,7 +43,9 @@ const BoothButton = ({
           <a href={contact} target='_blank' rel='noopener noreferrer'>
             <img src={kakaoIcon} alt='kakao' />
           </a>
-          <ContactText>부스 운영진 연락처</ContactText>
+          <ContactText>
+            {isCommittee ? '축준위 연락처' : '부스 운영진 연락처'}
+          </ContactText>
         </ButtonItem>
         <ColumnDivider />
         <ButtonItem>
