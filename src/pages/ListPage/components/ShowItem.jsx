@@ -40,9 +40,15 @@ const ShowItem = memo(({ show }) => {
   return (
     <>
       <ShowWrapper onClick={handleItemClick}>
-        <Photo
-          style={images[0] ? { backgroundImage: `url(${images[0]})` } : {}}
-        />
+        <Photo>
+          {images[0] && (
+            <img
+              src={images[0]}
+              alt={`${name} 이미지`}
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            />
+          )}
+        </Photo>
         <TextBox>
           {/* 제목 */}
           <TitleContainer>
@@ -173,4 +179,5 @@ const Photo = styled.div`
     #18bb7a 104.37%
   );
   border-radius: 0.5rem;
+  overflow: hidden;
 `;
