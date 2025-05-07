@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import useScrapStore from '@/store/useScrapStore';
 import ScrapItem from './ScrapItem';
-import noScrapBg from '@/assets/images/noScrap.svg';
+import noScrapBg from '@/assets/images/noScrap.png';
 import { useNavigate } from 'react-router-dom';
 
 const ScrapBook = () => {
@@ -110,6 +110,7 @@ const Message = styled.p`
   ${({ theme }) => theme.fontStyles.regular_14pt}
   position: relative;
   z-index: 1;
+  white-space: nowrap;
 `;
 
 const GoLink = styled.p`

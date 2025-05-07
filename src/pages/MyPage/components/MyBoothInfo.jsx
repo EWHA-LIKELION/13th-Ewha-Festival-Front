@@ -1,10 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import AdminBg from '@/assets/images/myBoothInfo.svg';
+import AdminBg from '@/assets/images/myBoothInfo.png';
 
 const MyBoothInfo = ({ boothData }) => {
-
   const { booth_name, scrap_count, guestbook_count, booth_id, is_show } =
     boothData;
   console.log(boothData);
