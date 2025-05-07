@@ -2,23 +2,20 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Error } from '@/assets/icons';
 
-const BoothName = ({
-  title,
-  value,
-  onChange,
-  saveTrigger,
-  setIsEdited,
-  isEdited
-}) => {
+const BoothName = ({ title, value, onChange, saveTrigger, setIsEdited }) => {
+  const [isEditedLocal, setIsEditedLocal] = useState(false);
   const isTooLong = value.length > 13;
 
   useEffect(() => {
-    setIsEdited(false);
+    setIsEditedLocal(false);
   }, [saveTrigger]);
 
   const handleChange = e => {
-    onChange(e);
-    setIsEdited(true);
+    if (e.target.value.length <= 14) {
+      onChange(e);
+      setIsEditedLocal(true);
+      setIsEdited(true);
+    }
   };
 
   return (
@@ -27,7 +24,7 @@ const BoothName = ({
       <Input
         value={value}
         onChange={handleChange}
-        $active={isEdited}
+        $active={isEditedLocal}
         $error={isTooLong}
         placeholder='부스명을 입력하세요'
       />
@@ -75,6 +72,7 @@ const ErrorMsg = styled.span`
   width: 100%;
   text-align: left;
 `;
+
 const ErrorContainer = styled.div`
   display: flex;
   align-items: center;

@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import { SmallArrow } from '@/assets/icons';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, matchPath } from 'react-router-dom';
 
 const EditList = ({ noticeCount, menuCount }) => {
   const navigate = useNavigate();
   const location = useLocation();
+  const isShowEditPage = matchPath('/showEdit/:id', location.pathname);
 
   const handleClickNotice = () => {
     navigate('/noticeEdit');
@@ -22,7 +23,7 @@ const EditList = ({ noticeCount, menuCount }) => {
           <SmallArrow />
         </DetailButton>
       </List>
-      {location.pathname !== '/showEdit' && (
+      {!isShowEditPage && (
         <List>
           <Title>메뉴 수정하기</Title>
           <DetailButton onClick={() => handleClickMenu()}>
