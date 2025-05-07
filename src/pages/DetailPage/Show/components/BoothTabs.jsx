@@ -48,6 +48,7 @@ const TabButton = styled.button`
   color: var(--gray3, #787878);
   align-items: center;
   height: 2.1875rem;
+  white-space: nowrap;
 
   ${({ theme }) => theme.fontStyles.regular_16pt}
   cursor: pointer;
