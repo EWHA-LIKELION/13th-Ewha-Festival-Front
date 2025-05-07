@@ -2,13 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { CheckBox } from '@/assets/icons';
 
-const RunningTime = ({
-  schedule,
-  setSchedule,
-  saveTrigger,
-  setIsEdited,
-  isEdited
-}) => {
+const RunningTime = ({ schedule, setSchedule, saveTrigger, setIsEdited }) => {
   const [edited, setEdited] = useState({
     day1: { start: false, end: false },
     day2: { start: false, end: false },

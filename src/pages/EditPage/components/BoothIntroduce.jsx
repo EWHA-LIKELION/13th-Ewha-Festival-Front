@@ -1,13 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-const Introduce = ({ value, onChange, saveTrigger, setIsEdited, isEdited }) => {
+const Introduce = ({ value, onChange, saveTrigger, setIsEdited }) => {
+  const [isEditedLocal, setIsEditedLocal] = useState(false);
+
   useEffect(() => {
-    setIsEdited(false);
+    setIsEditedLocal(false);
   }, [saveTrigger]);
 
   const handleChange = e => {
     onChange(e);
+    setIsEditedLocal(true);
     setIsEdited(true);
   };
 
@@ -17,7 +20,7 @@ const Introduce = ({ value, onChange, saveTrigger, setIsEdited, isEdited }) => {
       <StyledTextarea
         value={value}
         onChange={handleChange}
-        $active={isEdited}
+        $active={isEditedLocal}
         placeholder='소개를 입력하세요'
         rows={2}
       />
