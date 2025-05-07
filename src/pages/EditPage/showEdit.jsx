@@ -231,6 +231,7 @@ const EditWrapper = styled.div`
   overflow-y: auto;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  padding-bottom: 2rem;
 
   &::-webkit-scrollbar {
     display: none;

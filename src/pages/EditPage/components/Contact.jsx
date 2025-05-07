@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-const Contact = ({ value, onChange, saveTrigger, setIsEdited, isEdited }) => {
+const Contact = ({ value, onChange, saveTrigger, setIsEdited }) => {
+  const [isEditedLocal, setIsEditedLocal] = useState(false);
+
   useEffect(() => {
-    setIsEdited(false); // 저장되면 다시 회색으로
+    setIsEditedLocal(false); // 저장되면 다시 회색
   }, [saveTrigger]);
 
   const handleChange = e => {
     onChange(e);
+    setIsEditedLocal(true);
     setIsEdited(true);
   };
 
@@ -17,7 +20,7 @@ const Contact = ({ value, onChange, saveTrigger, setIsEdited, isEdited }) => {
       <StyledInput
         value={value}
         onChange={handleChange}
-        $active={isEdited}
+        $active={isEditedLocal}
         placeholder='연락처를 입력하세요'
       />
     </Container>
@@ -26,7 +29,7 @@ const Contact = ({ value, onChange, saveTrigger, setIsEdited, isEdited }) => {
 
 export default Contact;
 
-// 스타일 분리
+// 스타일
 const Container = styled.div`
   display: flex;
   flex-direction: column;
