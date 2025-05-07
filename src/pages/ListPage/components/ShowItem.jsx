@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 import { Scrap } from '@/assets/icons';
 import { memo, useState } from 'react';
-import { isLoggedIn } from '@/api/auth';
-import http from '@/api/http';
 import LoginBottomSheet from '@/common/LoginBottomSheet';
 import { useNavigate } from 'react-router-dom';
 import { useScrap } from '@/hooks/useScrap';
