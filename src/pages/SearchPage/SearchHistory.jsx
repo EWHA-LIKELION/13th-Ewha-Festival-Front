@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import cloudBg from '@/assets/images/cloudBg.png';
 import { Delete, Balloon } from '@/assets/icons';
+import truncateText from '@/utils/turncateText';
 
 const SearchHistory = ({ onSearchClick }) => {
   const [recentSearches, setRecentSearches] = useState([]);
@@ -37,7 +38,7 @@ const SearchHistory = ({ onSearchClick }) => {
         <SearchList>
           {recentSearches.map((search, index) => (
             <SearchItem key={index} onClick={() => onSearchClick(search)}>
-              {search}
+              {truncateText(search)}
               <Delete onClick={e => handleRemoveSearch(e, search)} />
             </SearchItem>
           ))}
