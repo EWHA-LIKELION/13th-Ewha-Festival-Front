@@ -1,13 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { CheckBox } from '@/assets/icons';
 
-const RunningTime = ({ schedule, setSchedule }) => {
+const RunningTime = ({ schedule, setSchedule, saveTrigger, setIsEdited }) => {
+  const [edited, setEdited] = useState({
+    day1: { start: false, end: false },
+    day2: { start: false, end: false },
+    day3: { start: false, end: false }
+  });
+
+  useEffect(() => {
+    setEdited({
+      day1: { start: false, end: false },
+      day2: { start: false, end: false },
+      day3: { start: false, end: false }
+    });
+    setIsEdited(false); // 저장됨
+  }, [saveTrigger]);
+
   const toggleTimeInputs = day => {
     setSchedule(prev => ({
       ...prev,
       [day]: { ...prev[day], enabled: !prev[day].enabled }
     }));
+    setIsEdited(true); // 수정됨
   };
 
   const handleTimeChange = (day, field, value) => {
@@ -15,6 +31,13 @@ const RunningTime = ({ schedule, setSchedule }) => {
       ...prev,
       [day]: { ...prev[day], [field]: value }
     }));
+
+    setEdited(prev => ({
+      ...prev,
+      [day]: { ...prev[day], [field]: true }
+    }));
+
+    setIsEdited(true); // 수정됨
   };
 
   return (
@@ -32,6 +55,7 @@ const RunningTime = ({ schedule, setSchedule }) => {
             value={data.start}
             onChange={e => handleTimeChange(day, 'start', e.target.value)}
             disabled={!data.enabled}
+            $active={edited[day].start}
           />
           ~
           <TimeInput
@@ -40,6 +64,7 @@ const RunningTime = ({ schedule, setSchedule }) => {
             value={data.end}
             onChange={e => handleTimeChange(day, 'end', e.target.value)}
             disabled={!data.enabled}
+            $active={edited[day].end}
           />
         </ScheduleItem>
       ))}
@@ -69,9 +94,12 @@ const TimeInput = styled.input`
   background: var(--gray1);
   border: none;
   text-align: center;
-  color: var(--gray3);
+
+  color: ${({ $active }) => ($active ? '#000' : 'var(--gray3)')};
+  font-weight: ${({ $active }) => ($active ? 600 : 400)};
   ${({ theme }) => theme.fontStyles.regular_14pt}
 `;
+
 const ScheduleItem = styled.div`
   display: flex;
   align-items: center;

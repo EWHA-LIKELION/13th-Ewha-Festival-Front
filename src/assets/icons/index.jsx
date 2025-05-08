@@ -26,8 +26,16 @@ export { default as Search } from './Search';
 export { default as SignBoard } from './SignBoard';
 export { default as Warning } from './Warning';
 export { default as Wastebasket } from './Wastebasket';
-
-// 수정 필요
+export { default as Plate } from './Plate';
+export { default as Butane } from './Butane';
+export { default as Divider } from './Divider';
+export { default as Kakao } from './Kakao';
+export { default as Send } from './Send';
+export { default as Edit } from './Edit';
+export { default as EditBlack } from './EditBlack';
+export { default as Garbage } from './Garbage';
+export { default as Back } from './Back';
+export { default as BackBlack } from './BackBlack';
 export { default as Trash } from './Trash';
 export { default as SmallArrow } from './SmallArrow';
 export { default as CheckBox } from './CheckBox';
