@@ -10,7 +10,8 @@ const BoothButton = ({
   scrapCount,
   scrapState,
   setScrapState,
-  isCommittee
+  isCommittee,
+  isShow
 }) => {
   const [showLoginSheet, setShowLoginSheet] = useState(false);
 
@@ -37,7 +38,11 @@ const BoothButton = ({
               <KakaoIcon />
             </a>
             <ContactText>
-              {isCommittee ? '축준위 연락처' : '부스 운영진 연락처'}
+              {isCommittee
+                ? '축준위 연락처'
+                : isShow
+                  ? '공연 운영진 연락처'
+                  : '부스 운영진 연락처'}
             </ContactText>
           </ButtonItem>
           <ColumnDivider />

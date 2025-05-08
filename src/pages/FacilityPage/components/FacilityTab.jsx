@@ -25,7 +25,6 @@ export default FacilityTab;
 const TabWrapper = styled.div`
   display: flex;
   gap: 0.63rem;
-  margin-top: 2rem;
   margin-bottom: 1rem;
 `;
 
@@ -37,4 +36,9 @@ const TabButton = styled.button`
   cursor: pointer;
   ${({ theme }) => theme.fontStyles.regular_14pt};
   padding: 0.5rem 1rem;
+
+  @media (max-width: 320px) {
+    font-size: 13px;
+    padding: 0.5rem 0.5rem;
+  }
 `;
