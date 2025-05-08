@@ -6,6 +6,7 @@ import mainBg from '@/assets/images/mainBg.png';
 import Header from '@/common/Header';
 import Signpost from './components/Signpost';
 import { isLoggedIn, getUserInfo } from '@/api/auth';
+import Popup from './components/Popup';
 
 const MainPage = () => {
   const location = useLocation();
@@ -16,6 +17,22 @@ const MainPage = () => {
   useEffect(() => {
     setLoggedIn(isLoggedIn());
   }, [location]);
+
+  //팝업 로직
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  useEffect(() => {
+    const popupClosed = localStorage.getItem('popupClosed');
+    const today = new Date().toDateString();
+
+    if (popupClosed !== today) {
+      setIsPopupOpen(true);
+    }
+  }, []);
+
+  const closePopup = () => {
+    setIsPopupOpen(false);
+  };
 
   return (
     <MainContent>
@@ -39,6 +56,7 @@ const MainPage = () => {
 
       {/* 표지판 */}
       <Signpost />
+      {isPopupOpen && <Popup onClose={closePopup} />}
     </MainContent>
   );
 };

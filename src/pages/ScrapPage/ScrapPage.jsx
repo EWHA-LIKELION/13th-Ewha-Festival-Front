@@ -34,7 +34,7 @@ const ScrapContent = () => {
 
   const handleLoginSheetClose = () => {
     setShowLoginSheet(false);
-    navigate('/login');
+    navigate('/');
   };
 
   // 스크랩 목록
