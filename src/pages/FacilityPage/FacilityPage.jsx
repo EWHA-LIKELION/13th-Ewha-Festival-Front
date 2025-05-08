@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Header from '@/common/Header';
 import FacilityTab from '@/pages/FacilityPage/components/FacilityTab';
@@ -15,7 +15,19 @@ const FacilityPage = () => {
     setSelectedTab(tab);
   };
 
+  const useWindowWidth = () => {
+    const [width, setWidth] = useState(window.innerWidth);
+    useEffect(() => {
+      const handleResize = () => setWidth(window.innerWidth);
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+    }, []);
+    return width;
+  };
+
   const mapImage = selectedTab === 'facility' ? FacilityMap : BarrierFreeMap;
+  const width = useWindowWidth();
+  const isSmall = width <= 320;
 
   return (
     <>
@@ -48,7 +60,7 @@ const FacilityPage = () => {
             2025 리베르테가 모든 이화인이 함께 즐길 수 있는
             <br />
             배리어프리한 축제가 될 수 있도록, 이동이나 활동에 불편함을 겪는
-            <br />
+            {isSmall ? ' ' : <br />}
             학우들을 위해 배리어프리존을 운영합니다.
           </BarrierFreeNotice>
         )}
@@ -92,7 +104,9 @@ const IconWrapper = styled.div`
   display: flex;
   justify-content: center;
   gap: 0.75rem;
-  margin-top: 0.63rem;
+  margin-top: 0.91rem;
+  margin-bottom: 3.46rem;
+  height: 1rem;
 `;
 
 const IconItem = styled.div`
@@ -110,4 +124,6 @@ const BarrierFreeNotice = styled.p`
   ${({ theme }) => theme.fontStyles.regular_12pt};
   text-align: center;
   color: var(--green3, #00462a);
+  margin-bottom: 2rem;
+  word-break: keep-all;
 `;
