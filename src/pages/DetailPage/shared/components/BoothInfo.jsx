@@ -1,12 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import truncateText from '@/utils/turncateText';
 
 const BoothInfo = ({ name, category, description }) => {
   return (
     <InfoContainer>
       <Top>
-        <Title>{truncateText(name)}</Title>
+        <Title>{name}</Title>
         <Category>{category}</Category>
       </Top>
       <Description>{description}</Description>
@@ -27,20 +26,25 @@ const Top = styled.div`
   height: 2.25rem;
   align-items: center;
 `;
+
 const Title = styled.h1`
-  flex: 1;
+  flex-grow: 0;
+  flex-shrink: 1;
   min-width: 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  ${({ theme }) => theme.fontStyles.semibold_24pt};
+  color: var(--black, #000);
+  padding: 0;
+  margin: 0;
+  ${({ theme }) => theme.fontStyles.semibold_24pt}
 `;
 
 const Category = styled.span`
   flex-shrink: 0;
   margin-left: 0.75rem;
   color: var(--green1-100, #18bb7a);
-  ${({ theme }) => theme.fontStyles.regular_14pt};
+  ${({ theme }) => theme.fontStyles.regular_14pt}
 `;
 
 const Description = styled.p`
