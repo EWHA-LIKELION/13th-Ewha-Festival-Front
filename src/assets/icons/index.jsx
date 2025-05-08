@@ -26,7 +26,6 @@ export { default as Search } from './Search';
 export { default as SignBoard } from './SignBoard';
 export { default as Warning } from './Warning';
 export { default as Wastebasket } from './Wastebasket';
-export { default as Plate } from './Plate';
 export { default as Butane } from './Butane';
 export { default as Divider } from './Divider';
 export { default as Kakao } from './Kakao';
