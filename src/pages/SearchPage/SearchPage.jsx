@@ -8,6 +8,7 @@ import useInfiniteScroll from '@/hooks/useInfiniteScroll';
 import { searchResults } from '@/api/search';
 import { ArrowLeft, Search, Warning } from '@/assets/icons';
 import Tab from '@/common/Tap';
+import truncateText from '@/utils/turncateText';
 
 // tanstack query 설정
 const queryClient = new QueryClient({
@@ -122,7 +123,7 @@ const SearchContent = () => {
             <NoResultsContainer>
               <Warning />
               <NoResultsText>
-                <SearchText>'{searchQuery}'</SearchText>에 대한
+                <SearchText>'{truncateText(searchQuery)}'</SearchText>에 대한
                 <br />
                 검색 결과가 없어요.
               </NoResultsText>

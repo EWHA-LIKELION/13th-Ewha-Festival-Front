@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 import { Scrap } from '@/assets/icons';
 import { memo, useState } from 'react';
-import { isLoggedIn } from '@/api/auth';
-import http from '@/api/http';
 import LoginBottomSheet from '@/common/LoginBottomSheet';
 import { useNavigate } from 'react-router-dom';
 import { useScrap } from '@/hooks/useScrap';
@@ -69,15 +67,11 @@ const BoothItem = memo(({ booth }) => {
         {/* 부스 사진 (5장) */}
         <Photos>
           {Array.from({ length: 5 }, (_, index) => (
-            <Photo
-              key={index}
-              $isLast={index === 4}
-              style={
-                images[index]
-                  ? { backgroundImage: `url(${images[index]})` }
-                  : {}
-              }
-            />
+            <Photo key={index} $isLast={index === 4}>
+              {images[index] && (
+                <img src={images[index]} alt={`부스 이미지 ${index + 1}`} />
+              )}
+            </Photo>
           ))}
           <Spacer />
         </Photos>
@@ -189,6 +183,7 @@ const Photos = styled.div`
   gap: 0.25rem;
   border-radius: 0.75rem 0 0 0.75rem;
   overflow-x: auto;
+  overflow-y: hidden;
   ${({ theme }) => theme.mixins.noScrollbar}
 `;
 
@@ -203,6 +198,14 @@ const Photo = styled.div`
     rgba(24, 187, 122, 0) -43.75%,
     #18bb7a 104.37%
   );
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: inherit;
+  }
+
   border-radius: ${({ $isLast }) => ($isLast ? '0 0.75rem 0.75rem 0' : '0')};
 `;
 

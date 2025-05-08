@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
+import truncateText from '@/utils/turncateText';
 
 const BoothInfo = ({ name, category, description }) => {
   return (
     <InfoContainer>
       <Top>
-        <Title>{name}</Title>
+        <Title>{truncateText(name)}</Title>
         <Category>{category}</Category>
       </Top>
       <Description>{description}</Description>

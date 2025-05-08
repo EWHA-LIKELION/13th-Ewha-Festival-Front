@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 import { Scrap } from '@/assets/icons';
 import { memo, useState } from 'react';
-import { isLoggedIn } from '@/api/auth';
-import http from '@/api/http';
 import LoginBottomSheet from '@/common/LoginBottomSheet';
 import { useNavigate } from 'react-router-dom';
 import { useScrap } from '@/hooks/useScrap';
@@ -40,9 +38,15 @@ const ShowItem = memo(({ show }) => {
   return (
     <>
       <ShowWrapper onClick={handleItemClick}>
-        <Photo
-          style={images[0] ? { backgroundImage: `url(${images[0]})` } : {}}
-        />
+        <Photo>
+          {images[0] && (
+            <img
+              src={images[0]}
+              alt={`${name} 이미지`}
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            />
+          )}
+        </Photo>
         <TextBox>
           {/* 제목 */}
           <TitleContainer>
@@ -173,4 +177,5 @@ const Photo = styled.div`
     #18bb7a 104.37%
   );
   border-radius: 0.5rem;
+  overflow: hidden;
 `;
