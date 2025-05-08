@@ -1,5 +1,5 @@
 import * as React from 'react';
-const Butane = props => (
+const SvgButane = props => (
   <svg
     width={24}
     height={24}
@@ -115,4 +115,4 @@ const Butane = props => (
     </defs>
   </svg>
 );
-export default Butane;
+export default SvgButane;

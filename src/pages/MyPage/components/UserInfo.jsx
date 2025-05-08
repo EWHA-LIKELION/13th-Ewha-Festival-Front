@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import userInfoBg from '@/assets/images/userInfo.svg';
+import userInfoBg from '@/assets/images/userInfo.png';
 import useUserStore from '@/store/useScrapStore';
 import { handleLogout } from '@/api/auth';
 

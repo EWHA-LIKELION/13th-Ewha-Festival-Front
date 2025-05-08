@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import http from '@/api/http';
 import styled from 'styled-components';
 import getBoothId from '@/api/getBoothId';
-
+import { useNavigate } from 'react-router-dom';
 
 import ImageEdit from './components/ImageEdit';
 import BoothName from './components/BoothName';
@@ -12,8 +12,10 @@ import Contact from './components/Contact';
 import Status from './components/OperationStatus';
 import EditList from './components/NoticeMenuEditButton';
 import Header1 from './components/Header1';
+import Modal from '@/common/Modal';
 
 const BoothEdit = () => {
+  const navigate = useNavigate();
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [contact, setContact] = useState('');
@@ -28,6 +30,21 @@ const BoothEdit = () => {
   const [noticeCount, setNoticeCount] = useState(0);
   const [menuCount, setMenuCount] = useState(0);
   const [boothId, setBoothId] = useState(null);
+  const [saveTrigger, setSaveTrigger] = useState(0);
+  const [isEdited, setIsEdited] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleArrowClick = () => {
+    if (isEdited) {
+      setIsModalOpen(true); // 변경사항 있으면 모달 띄움
+    } else {
+      navigate(-1); // 변경사항 없으면 바로 뒤로감
+    }
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   const getOperatingHoursForAPI = () => {
     const mapping = {
@@ -51,6 +68,7 @@ const BoothEdit = () => {
       try {
         const id = await getBoothId();
         setBoothId(id);
+
         const res = await http.get(`/booths/${id}`);
         const booth = res.data.booth;
         const hours = res.data.operating_hours;
@@ -121,7 +139,7 @@ const BoothEdit = () => {
     for (let pair of formData.entries()) {
       console.log(`${pair[0]}:`, pair[1]);
     }
-
+    setSaveTrigger(prev => prev + 1);
     try {
       const response = await http.patch(`/booths/${boothId}/`, formData, {
         headers: {
@@ -137,27 +155,75 @@ const BoothEdit = () => {
 
   return (
     <EditWrapper>
-      <Header1 buttonText='저장' onClick={onSave} />
+      <Header1
+        buttonText='저장'
+        onClick={onSave}
+        onArrowClick={handleArrowClick}
+        setIsEdited={setIsEdited}
+        isEdited={isEdited}
+      />
       <ImageEdit
         imageSrc={previewUrl}
         onImageChange={e => {
           const file = e.target.files[0];
           if (file) setThumbnailImage(file);
         }}
+        setIsEdited={setIsEdited}
+        isEdited={isEdited}
       />
       <BoothName
         title='부스명'
         value={name}
         onChange={e => setName(e.target.value)}
+        saveTrigger={saveTrigger}
+        setIsEdited={setIsEdited}
+        isEdited={isEdited}
       />
       <Introduce
         value={description}
         onChange={e => setDescription(e.target.value)}
+        saveTrigger={saveTrigger}
+        setIsEdited={setIsEdited}
+        isEdited={isEdited}
       />
-      <RunningTime schedule={schedule} setSchedule={setSchedule} />
-      <Contact value={contact} onChange={e => setContact(e.target.value)} />
-      <Status isOpened={isOpened} setIsOpened={setIsOpened} />
+      <RunningTime
+        saveTrigger={saveTrigger}
+        schedule={schedule}
+        setSchedule={setSchedule}
+        setIsEdited={setIsEdited}
+        isEdited={isEdited}
+      />
+      <Contact
+        value={contact}
+        onChange={e => setContact(e.target.value)}
+        saveTrigger={saveTrigger}
+        setIsEdited={setIsEdited}
+        isEdited={isEdited}
+      />
+      <Status
+        isOpened={isOpened}
+        setIsOpened={setIsOpened}
+        setIsEdited={setIsEdited}
+        isEdited={isEdited}
+      />
       <EditList noticeCount={noticeCount} menuCount={menuCount} />
+      {isModalOpen && (
+        <Modal
+          onClose={() => setIsModalOpen(false)}
+          onDelete={() => {
+            setIsModalOpen(false);
+            navigate(-1);
+          }}
+          title='변경사항 폐기'
+          modalText={
+            <>
+              변경사항을 폐기하시겠습니까?
+              <br />
+              변경사항은 복구되지 않습니다.
+            </>
+          }
+        />
+      )}
     </EditWrapper>
   );
 };

@@ -1,22 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
 import http from '@/api/http';
 import Header from '@/common/Header';
 import UserInfo from '@/pages/MyPage/components/UserInfo';
 import ScrapBook from '@/pages/MyPage/components/ScrapBook';
 import AdminSection from '@/pages/MyPage/components/AdminSection';
 import MyBoothInfo from '@/pages/MyPage/components/MyBoothInfo';
-import useScrapStore from '@/store/useScrapStore';
+import { isLoggedIn } from '@/api/auth';
+import LoginBottomSheet from '@/common/LoginBottomSheet';
 
 const MyPage = () => {
-  const navigate = useNavigate();
-  const { user } = useScrapStore();
   const [boothInfo, setBoothInfo] = useState(null);
+  const [showLoginSheet, setShowLoginSheet] = useState(false);
+
+  const loggedIn = isLoggedIn();
 
   useEffect(() => {
-    if (!user) {
-      navigate('/login');
+    if (!loggedIn) {
+      setShowLoginSheet(true);
       return;
     }
 
@@ -24,22 +25,36 @@ const MyPage = () => {
       try {
         const response = await http.get('/mypages/boothcount/');
         setBoothInfo(response.data);
-        console.log(boothInfo);
       } catch (error) {
         setBoothInfo(null);
       }
     };
 
     fetchBoothInfo();
-  }, []);
+  }, [loggedIn]);
 
   return (
     <>
-      <Header />
+      <FixedHeader>
+        <Header />
+      </FixedHeader>
       <PageWrapper>
         <UserInfo />
-        <ScrapBook />
-        {boothInfo ? <MyBoothInfo boothData={boothInfo} /> : <AdminSection />}
+        {loggedIn ? (
+          <>
+            <ScrapBook />
+            {boothInfo ? (
+              <MyBoothInfo boothData={boothInfo} />
+            ) : (
+              <AdminSection />
+            )}
+          </>
+        ) : (
+          <LoginBottomSheet
+            isOpen={showLoginSheet}
+            onClose={() => setShowLoginSheet(false)}
+          />
+        )}
       </PageWrapper>
     </>
   );
@@ -47,9 +62,20 @@ const MyPage = () => {
 
 export default MyPage;
 
+const FixedHeader = styled.div`
+  position: fixed;
+  top: 0;
+  max-width: 440px;
+  width: 100%;
+  z-index: 1000;
+  margin: 0 auto;
+  background-color: white;
+`;
+
 const PageWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0rem 1.25rem;
+  padding: 4.5rem 1.25rem 3rem;
+  background-color: white;
 `;

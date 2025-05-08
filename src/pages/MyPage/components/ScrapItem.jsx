@@ -1,10 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
-const ScrapItem = ({ name, thumbnail }) => {
+const ScrapItem = ({ name, thumbnail, booth_id, is_show }) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    if (is_show) {
+      navigate(`/showdetail/${booth_id}`);
+    } else {
+      navigate(`/boothdetail/${booth_id}`);
+    }
+  };
+
   return (
-    <Item>
-      <Image src={thumbnail} alt={name} />
+    <Item onClick={handleClick}>
+      {thumbnail ? <Image src={thumbnail} alt={name} /> : <ImageFallback />}
       <Name>{name}</Name>
     </Item>
   );
@@ -18,6 +29,7 @@ const Item = styled.div`
   overflow: hidden;
   height: 8.75rem;
   width: 100%;
+  cursor: pointer;
 
   &::after {
     content: '';
@@ -35,6 +47,12 @@ const Image = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+`;
+
+const ImageFallback = styled.div`
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
 `;
 
 const Name = styled.div`

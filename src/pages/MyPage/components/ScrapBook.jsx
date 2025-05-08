@@ -2,18 +2,21 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import useScrapStore from '@/store/useScrapStore';
 import ScrapItem from './ScrapItem';
-import noScrapBg from '@/assets/images/noScrap.svg';
+import noScrapBg from '@/assets/images/noScrap.png';
 import { useNavigate } from 'react-router-dom';
 
 const ScrapBook = () => {
   const { scraps, fetchScraps } = useScrapStore();
   const booths = scraps?.booths || [];
+  const shows = scraps?.shows || [];
+  const items = [...booths, ...shows];
   const totalScraps = scraps?.total_scrap_count || 0;
-  const hasScraps = booths.length > 0;
+  const hasScraps = items.length > 0;
   const navigate = useNavigate();
 
   useEffect(() => {
     fetchScraps();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -22,15 +25,17 @@ const ScrapBook = () => {
 
       <Header>
         <Title>스크랩북({totalScraps})</Title>
-        <More onClick={() => navigate('/')}>더보기</More>
+        <More onClick={() => navigate('/scrap')}>더보기</More>
       </Header>
       {hasScraps ? (
         <Grid>
-          {booths.slice(0, 4).map(booth => (
+          {items.slice(0, 4).map(item => (
             <ScrapItem
-              key={booth.id}
-              name={booth.name}
-              thumbnail={booth.thumbnail}
+              key={item.id}
+              name={item.booth?.name}
+              thumbnail={item.booth?.images?.[0] || ''}
+              booth_id={item.booth?.id}
+              is_show={item.is_show}
             />
           ))}
         </Grid>
@@ -105,6 +110,7 @@ const Message = styled.p`
   ${({ theme }) => theme.fontStyles.regular_14pt}
   position: relative;
   z-index: 1;
+  white-space: nowrap;
 `;
 
 const GoLink = styled.p`

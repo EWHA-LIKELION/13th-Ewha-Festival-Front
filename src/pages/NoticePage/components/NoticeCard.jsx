@@ -58,7 +58,7 @@ const TitleText = styled.h3`
 `;
 
 const Content = styled.p`
-  ${({ theme }) => theme.fontStyles.light_12pt};
+  ${({ theme }) => theme.fontStyles.regular_14pt};
   color: black;
   margin-bottom: 0.5rem;
 `;

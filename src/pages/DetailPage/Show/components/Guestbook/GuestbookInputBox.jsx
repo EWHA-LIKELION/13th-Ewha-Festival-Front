@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ReactComponent as SendIcon } from '@/pages/DetailPage/Booth/images/send.svg';
+import { Send } from '@/assets/icons';
 
 const GuestbookInputBox = ({ input, setInput, onSend }) => {
   const handleInputChange = e => {
@@ -20,7 +20,7 @@ const GuestbookInputBox = ({ input, setInput, onSend }) => {
           rows={1}
         />
         <SendButton onClick={onSend}>
-          <SendIcon />
+          <Send />
         </SendButton>
       </InputWrapper>
     </InputContainer>
@@ -53,7 +53,7 @@ const InputWrapper = styled.div`
   background: var(--gray1, #f2f2f2);
   position: relative;
 
-  ${({ theme }) => theme.fontStyles.light_12pt}
+  ${({ theme }) => theme.fontStyles.regular_16pt}
 
   ::placeholder {
     color: var(--gray3, #787878);
@@ -65,7 +65,7 @@ const InputField = styled.textarea`
   border: none;
   background: transparent;
   color: var(--gray3, #787878);
-  ${({ theme }) => theme.fontStyles.light_12pt}
+  ${({ theme }) => theme.fontStyles.regular_16pt}
   outline: none;
   resize: none;
   overflow-y: hidden;

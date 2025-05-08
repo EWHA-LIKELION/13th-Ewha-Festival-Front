@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import http from '@/api/http';
 import styled from 'styled-components';
 import getBoothId from '@/api/getBoothId';
+import { useNavigate } from 'react-router-dom';
 
 import ImageEdit from './components/ImageEdit';
 import BoothName from './components/BoothName';
@@ -11,23 +12,40 @@ import Contact from './components/Contact';
 import Status from './components/OperationStatus';
 import EditList from './components/NoticeMenuEditButton';
 import Header1 from './components/Header1';
+import Modal from '@/common/Modal';
 
 const ShowEdit = () => {
+  const navigate = useNavigate();
+
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [contact, setContact] = useState('');
   const [isOpened, setIsOpened] = useState(true);
   const [schedule, setSchedule] = useState({
-    day1: { enabled: false, start: '', end: '' }, // 수요일
-    day2: { enabled: false, start: '', end: '' }, // 목요일
-    day3: { enabled: false, start: '', end: '' } // 금요일
+    day1: { enabled: false, start: '', end: '' },
+    day2: { enabled: false, start: '', end: '' },
+    day3: { enabled: false, start: '', end: '' }
   });
   const [thumbnailImage, setThumbnailImage] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
   const [noticeCount, setNoticeCount] = useState(0);
   const [menuCount, setMenuCount] = useState(0);
-
   const [boothId, setBoothId] = useState(null);
+  const [saveTrigger, setSaveTrigger] = useState(0);
+  const [isEdited, setIsEdited] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleArrowClick = () => {
+    if (isEdited) {
+      setIsModalOpen(true);
+    } else {
+      navigate(-1);
+    }
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   const getOperatingHoursForAPI = () => {
     const mapping = {
@@ -64,21 +82,18 @@ const ShowEdit = () => {
         setMenuCount(booth.menu_count);
 
         const newSchedule = { ...schedule };
-
         hours.forEach(item => {
           const key =
             item.date === 14 ? 'day1' : item.date === 15 ? 'day2' : 'day3';
-
           newSchedule[key] = {
             enabled: true,
             start: item.open_time,
             end: item.close_time
           };
         });
-
         setSchedule(newSchedule);
       } catch (err) {
-        alert('부스 정보를 불러오지 못했습니다.');
+        alert('공연 정보를 불러오지 못했습니다.');
       }
     };
 
@@ -102,7 +117,6 @@ const ShowEdit = () => {
 
   const onSave = async () => {
     const formData = new FormData();
-
     formData.append('name', name);
     formData.append('description', description);
     formData.append('contact', contact);
@@ -120,6 +134,8 @@ const ShowEdit = () => {
       console.log(`${pair[0]}:`, pair[1]);
     }
 
+    setSaveTrigger(prev => prev + 1);
+
     try {
       const response = await http.patch(`/shows/${boothId}/`, formData, {
         headers: {
@@ -132,29 +148,78 @@ const ShowEdit = () => {
       alert('수정 실패');
     }
   };
+
   return (
     <EditWrapper>
-      <Header1 buttonText='저장' onClick={onSave} />
+      <Header1
+        buttonText='저장'
+        onClick={onSave}
+        onArrowClick={handleArrowClick}
+        setIsEdited={setIsEdited}
+        isEdited={isEdited}
+      />
       <ImageEdit
         imageSrc={previewUrl}
         onImageChange={e => {
           const file = e.target.files[0];
           if (file) setThumbnailImage(file);
         }}
+        setIsEdited={setIsEdited}
+        isEdited={isEdited}
       />
       <BoothName
         title='공연명'
         value={name}
         onChange={e => setName(e.target.value)}
+        saveTrigger={saveTrigger}
+        setIsEdited={setIsEdited}
+        isEdited={isEdited}
       />
       <Introduce
         value={description}
         onChange={e => setDescription(e.target.value)}
+        saveTrigger={saveTrigger}
+        setIsEdited={setIsEdited}
+        isEdited={isEdited}
       />
-      <RunningTime schedule={schedule} setSchedule={setSchedule} />
-      <Contact value={contact} onChange={e => setContact(e.target.value)} />
-      <Status isOpened={isOpened} setIsOpened={setIsOpened} />
+      <RunningTime
+        schedule={schedule}
+        setSchedule={setSchedule}
+        saveTrigger={saveTrigger}
+        setIsEdited={setIsEdited}
+        isEdited={isEdited}
+      />
+      <Contact
+        value={contact}
+        onChange={e => setContact(e.target.value)}
+        saveTrigger={saveTrigger}
+        setIsEdited={setIsEdited}
+        isEdited={isEdited}
+      />
+      <Status
+        isOpened={isOpened}
+        setIsOpened={setIsOpened}
+        setIsEdited={setIsEdited}
+        isEdited={isEdited}
+      />
       <EditList noticeCount={noticeCount} menuCount={menuCount} />
+      {isModalOpen && (
+        <Modal
+          onClose={closeModal}
+          onDelete={() => {
+            setIsModalOpen(false);
+            navigate(-1);
+          }}
+          title='변경사항 폐기'
+          modalText={
+            <>
+              변경사항을 폐기하시겠습니까?
+              <br />
+              변경사항은 복구되지 않습니다.
+            </>
+          }
+        />
+      )}
     </EditWrapper>
   );
 };
@@ -166,6 +231,7 @@ const EditWrapper = styled.div`
   overflow-y: auto;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  padding-bottom: 2rem;
 
   &::-webkit-scrollbar {
     display: none;
