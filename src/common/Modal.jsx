@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import WarningIcon from '@/assets/icons/Warning';
+import { Warning } from '@/assets/icons';
 
 const Modal = ({ title, onClose, onDelete, modalText }) => {
   const isNoticeDisabled = title === '공지 등록 불가';
@@ -10,7 +10,7 @@ const Modal = ({ title, onClose, onDelete, modalText }) => {
       <DeleteModal>
         <ModalContent>
           <ModalHeader>
-            <WarningIcon /> {title}
+            <Warning /> {title}
           </ModalHeader>
           <ModalText>{modalText}</ModalText>
           <ModalButtons>
