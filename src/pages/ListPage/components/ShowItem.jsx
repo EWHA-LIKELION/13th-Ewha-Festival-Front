@@ -14,8 +14,6 @@ const ShowItem = memo(({ show }) => {
     day_of_week = [],
     formatted_location,
     description,
-    scrap_count,
-    is_scrap,
     images = []
   } = show;
 
@@ -29,6 +27,7 @@ const ShowItem = memo(({ show }) => {
   // 상세페이지로 이동
   const navigate = useNavigate();
   const handleItemClick = () => {
+    sessionStorage.setItem('scrollPosition', window.scrollY);
     navigate(`/showdetail/${id}`);
   };
 

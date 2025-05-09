@@ -14,8 +14,6 @@ const BoothItem = memo(({ booth }) => {
     day_of_week = [],
     formatted_location,
     description,
-    scrap_count,
-    is_scrap,
     images = []
   } = booth;
 
@@ -29,6 +27,7 @@ const BoothItem = memo(({ booth }) => {
   // 상세페이지로 이동
   const navigate = useNavigate();
   const handleItemClick = () => {
+    sessionStorage.setItem('scrollPosition', window.scrollY);
     navigate(`/boothdetail/${id}`);
   };
 
