@@ -42,7 +42,7 @@ const List = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.88rem;
-  margin-bottom: 3.68rem;
+  margin-bottom: 1.5rem;
 `;
 
 const Item = styled.div`

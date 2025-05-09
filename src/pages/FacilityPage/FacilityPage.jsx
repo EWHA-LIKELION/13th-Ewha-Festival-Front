@@ -7,6 +7,7 @@ import BarrierFreeList from '@/pages/FacilityPage/components/BarrierFreeList';
 import FacilityMap from '@/assets/images/Facility/FacilityMap.png';
 import BarrierFreeMap from '@/assets/images/Facility/BarrierFreeMap.png';
 import { Wastebasket, Plate, Butane } from '@/assets/icons';
+import Footer from '@/common/Footer';
 
 const FacilityPage = () => {
   const [selectedTab, setSelectedTab] = useState('facility');
@@ -57,6 +58,7 @@ const FacilityPage = () => {
 
         {selectedTab === 'facility' ? <FacilityList /> : <BarrierFreeList />}
       </Container>
+      <Footer />
     </>
   );
 };
