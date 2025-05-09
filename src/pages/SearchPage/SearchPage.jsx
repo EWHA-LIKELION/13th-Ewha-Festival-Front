@@ -9,6 +9,8 @@ import { searchResults } from '@/api/search';
 import { ArrowLeft, Search, Warning } from '@/assets/icons';
 import Tab from '@/common/Tap';
 import truncateText from '@/utils/turncateText';
+import Footer from '@/common/Footer';
+import useSaveScroll from '@/hooks/useSaveScroll';
 
 // tanstack query 설정
 const queryClient = new QueryClient({
@@ -66,6 +68,8 @@ const SearchContent = () => {
     enabled: !!searchQuery.trim()
   });
 
+  useSaveScroll();
+
   // 탭 필터링
   const results = data?.pages.flatMap(page => page.data.results || []) || [];
   const filtered = results.filter(
@@ -105,6 +109,7 @@ const SearchContent = () => {
             tabs={['부스', '공연']}
             activeTab={activeTab}
             setActiveTab={setActiveTab}
+            storageKey='searchActiveTab'
           />
         )}
       </TopContainer>
@@ -150,6 +155,7 @@ const SearchContent = () => {
                   ))}
                 </ItemList>
               </ListContainer>
+              <Footer />
             </>
           )}
         </ResultsContainer>
@@ -209,6 +215,7 @@ const ResultsContainer = styled.div`
 const ListContainer = styled.div`
   padding: 1.25rem;
   background-color: white;
+  min-height: calc(100dvh - 7rem);
 `;
 
 const ResultCount = styled.p`
