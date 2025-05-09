@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import SearchHistory from './SearchHistory';
 import BoothItem from '@/pages/ListPage/components/BoothItem';
+import ShowItem from '../ListPage/components/ShowItem';
 import useInfiniteScroll from '@/hooks/useInfiniteScroll';
 import { searchResults } from '@/api/search';
 import { ArrowLeft, Search, Warning } from '@/assets/icons';
@@ -150,7 +151,11 @@ const SearchContent = () => {
                       key={item.id}
                       ref={idx === filtered.length - 1 ? lastItemRef : null}
                     >
-                      <BoothItem booth={item} />
+                      {activeTab === '부스' ? (
+                        <BoothItem booth={item} />
+                      ) : (
+                        <ShowItem show={item} />
+                      )}
                     </div>
                   ))}
                 </ItemList>
