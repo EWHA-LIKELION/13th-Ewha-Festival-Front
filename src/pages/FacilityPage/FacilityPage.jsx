@@ -78,10 +78,12 @@ export default FacilityPage;
 const Container = styled.div`
   padding: 1.25rem;
   background-color: white;
+  padding-top: 4.5rem;
 `;
 const Title = styled.div`
   color: var(--black, #000);
   text-align: center;
+  margin-top: 0.88rem;
   ${({ theme }) => theme.fontStyles.semibold_24pt};
 `;
 
