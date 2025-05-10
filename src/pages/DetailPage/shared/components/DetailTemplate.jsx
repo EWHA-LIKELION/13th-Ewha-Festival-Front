@@ -16,6 +16,7 @@ const BoothThumbnail = styled.img`
   width: 100%;
   height: 15rem;
   object-fit: cover;
+  object-position: center 40%;
   background: linear-gradient(
     180deg,
     rgba(0, 0, 0, 0.8) 35.78%,
