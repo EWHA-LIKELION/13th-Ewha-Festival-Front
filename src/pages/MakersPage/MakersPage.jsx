@@ -16,7 +16,7 @@ const MakersPage = () => {
     <>
       <MakersWrapper>
         <Header />
-        <Title>{`2024\n이화여대 대동제\n만든이들`}</Title>
+        <Title>{`2025\n이화여대 대동제\n만든이들`}</Title>
 
         {/* 멋사, 축준위 운영진 */}
         {MAIN_SECTIONS.map(teamName => (

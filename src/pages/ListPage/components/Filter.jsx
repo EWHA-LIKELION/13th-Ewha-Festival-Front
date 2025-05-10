@@ -44,7 +44,7 @@ const Filter = ({ onFilterChange, filterOptions, type }) => {
           onClick={() => setIsOpen(true)}
           $isActive={activeFilters.category.length > 0}
         >
-          {formatCategoryFilter(activeFilters.category)}
+          {formatCategoryFilter(activeFilters.category, type)}
         </FilterItem>
 
         {/* 요일 */}

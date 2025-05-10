@@ -1,7 +1,13 @@
 // 카테고리 필터
-export const formatCategoryFilter = categories => {
+export const formatCategoryFilter = (categories, type) => {
   if (categories.length === 0) return '카테고리';
-  if (categories.length === 3) return '전체';
+
+  // 부스
+  if (type === 'booth') {
+    if (categories.length === 3) return '전체';
+    return categories.join(', ');
+  }
+  // 공연
   return categories.join(', ');
 };
 
