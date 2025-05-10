@@ -2,7 +2,8 @@
 export const BOOTH_FILTER_OPTIONS = {
   category: [
     { id: 1, name: '음식' },
-    { id: 2, name: '굿즈' }
+    { id: 2, name: '굿즈' },
+    { id: 3, name: '체험' }
   ],
   location: [
     { id: 1, name: '정문' },
@@ -28,12 +29,11 @@ export const BOOTH_FILTER_OPTIONS = {
 export const SHOW_FILTER_OPTIONS = {
   category: [
     { id: 1, name: '밴드' },
-    { id: 2, name: '댄스' }
+    { id: 2, name: '댄스' },
+    { id: 3, name: '연극' },
+    { id: 4, name: '보컬' }
   ],
-  location: [
-    { id: 1, name: '학문관광장' },
-    { id: 2, name: '스포츠트랙' }
-  ],
+  location: [{ id: 1, name: '학문관광장' }],
   day_of_week: [
     { id: 1, name: '수' },
     { id: 2, name: '목' },

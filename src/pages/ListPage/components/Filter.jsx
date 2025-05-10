@@ -2,6 +2,11 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { Filter as FilterSvg } from '@/assets/icons';
 import FilterBottomSheet from './FilterBottomSheet';
+import {
+  formatCategoryFilter,
+  formatLocationFilter,
+  formatDayFilter
+} from '@/utils/filterFormat';
 
 const Filter = ({ onFilterChange, filterOptions, type }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,13 +20,6 @@ const Filter = ({ onFilterChange, filterOptions, type }) => {
     setActiveFilters(filters);
     onFilterChange(filters);
     setIsOpen(false);
-  };
-
-  // 위치 표시 로직
-  const formatLocationFilter = locations => {
-    if (locations.length === 0) return '위치';
-    if (locations.length === 1) return locations[0];
-    return `${locations[0]} 외 ${locations.length - 1}곳`;
   };
 
   // 활성화된 필터 수
@@ -46,9 +44,7 @@ const Filter = ({ onFilterChange, filterOptions, type }) => {
           onClick={() => setIsOpen(true)}
           $isActive={activeFilters.category.length > 0}
         >
-          {activeFilters.category.length > 0
-            ? activeFilters.category.join(', ')
-            : '카테고리'}
+          {formatCategoryFilter(activeFilters.category)}
         </FilterItem>
 
         {/* 요일 */}
@@ -56,18 +52,18 @@ const Filter = ({ onFilterChange, filterOptions, type }) => {
           onClick={() => setIsOpen(true)}
           $isActive={activeFilters.day_of_week.length > 0}
         >
-          {activeFilters.day_of_week.length > 0
-            ? activeFilters.day_of_week.join(', ')
-            : '요일'}
+          {formatDayFilter(activeFilters.day_of_week)}
         </FilterItem>
 
         {/* 위치 */}
-        <FilterItem
-          onClick={() => setIsOpen(true)}
-          $isActive={activeFilters.location.length > 0}
-        >
-          {formatLocationFilter(activeFilters.location)}
-        </FilterItem>
+        {type !== 'show' && (
+          <FilterItem
+            onClick={() => setIsOpen(true)}
+            $isActive={activeFilters.location.length > 0}
+          >
+            {formatLocationFilter(activeFilters.location)}
+          </FilterItem>
+        )}
       </FilterWrapper>
 
       <FilterBottomSheet

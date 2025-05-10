@@ -23,7 +23,9 @@ const queryClient = new QueryClient({
   }
 });
 
-const OPEN_CATEGORIES = {};
+const OPEN_CATEGORIES = {
+  기획팀: true
+};
 
 const CommitteeContent = () => {
   const [openCategories, setOpenCategories] = useState(OPEN_CATEGORIES);
