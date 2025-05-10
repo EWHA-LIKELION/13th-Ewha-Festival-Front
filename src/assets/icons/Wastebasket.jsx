@@ -7,7 +7,7 @@ const SvgWastebasket = props => (
     width='26'
     height='27'
     fill='none'
-    viewBox='0 0 26 27'
+    viewBox='0 0 24 26.5'
   >
     <g filter='url(#filter0_d_2126_44656)'>
       <rect

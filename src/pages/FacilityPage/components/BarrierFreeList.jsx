@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import barrierFreeData from '@/pages/FacilityPage/components/BarrierFreeData';
 import { ArrowDown, ArrowUp } from '@/assets/icons';
-import barrierFreeImage from '@/assets/images/Facility/BarrierFree.png';
+import barrierFreeImage from '@/assets/images/facility/BarrierFree.png';
 
 const BarrierFreeList = () => {
-  const [openIndex, setOpenIndex] = useState(null);
+  const [openIndexes, setOpenIndexes] = useState([]);
 
   const toggle = index => {
-    setOpenIndex(prev => (prev === index ? null : index));
+    setOpenIndexes(prev =>
+      prev.includes(index) ? prev.filter(i => i !== index) : [...prev, index]
+    );
   };
 
   return (
@@ -18,9 +20,9 @@ const BarrierFreeList = () => {
         <Item key={index}>
           <Header onClick={() => toggle(index)}>
             <Title>{item.title}</Title>
-            {openIndex === index ? <ArrowUp /> : <ArrowDown />}
+            {openIndexes.includes(index) ? <ArrowUp /> : <ArrowDown />}
           </Header>
-          {openIndex === index && (
+          {openIndexes.includes(index) && (
             <Content>
               {item.content.split('\n').map((line, i) => (
                 <BulletLine key={i}>
