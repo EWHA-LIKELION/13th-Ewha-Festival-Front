@@ -5,7 +5,6 @@ import {
   QueryClientProvider,
   useQuery
 } from '@tanstack/react-query';
-import committeeBanner from '@/assets/images/committeeBanner.png';
 import Header from '@/common/Header';
 import Footer from '@/common/Footer';
 import ShowItem from '@/pages/ListPage/components/ShowItem';
@@ -48,13 +47,6 @@ const CommitteeContent = () => {
       </HeaderWrapper>
 
       <CommitteeSection>
-        {/* 배너 */}
-        <Banner
-          onClick={() =>
-            window.open(process.env.REACT_APP_COMMITTEE_URL, '_blank')
-          }
-        />
-
         {committeeData &&
           Object.entries(committeeData).map(([categoryName, booths]) => (
             <CategoryContainer key={categoryName}>
@@ -105,15 +97,6 @@ const CommitteeSection = styled.div`
   gap: 0.75rem;
   min-height: calc(100vh - 5rem);
   background-color: white;
-`;
-
-const Banner = styled.div`
-  width: 100%;
-  height: 4.5rem;
-  border-radius: 0.5rem;
-  background-image: url(${committeeBanner});
-  background-size: cover;
-  margin-bottom: 1.5rem;
 `;
 
 const CategoryContainer = styled.div``;
