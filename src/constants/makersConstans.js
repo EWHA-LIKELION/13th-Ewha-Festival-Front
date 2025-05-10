@@ -15,7 +15,7 @@ export const MAKERS_DATA = {
     {
       name: '컴공23 김예원',
       role: '프론트엔드',
-      task: '부스 수정 페이지\n공연 수정 페이지\n관리자 코드 페이지\n공지 및 메뉴 추가 페이지',
+      task: '부스 수정 페이지\n공연 수정 페이지\n관리자 코드 페이지\n부스 공지 및 메뉴 추가 페이지',
       image: require('@/assets/images/makers/김예원.jpg')
     },
     {
