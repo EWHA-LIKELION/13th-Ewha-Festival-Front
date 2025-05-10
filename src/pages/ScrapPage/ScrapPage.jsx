@@ -90,7 +90,9 @@ const ScrapContent = () => {
       </TopContainer>
 
       {/* 스크랩 목록 */}
-      {!isLoggedIn() ? null : (
+      {!isLoggedIn() ? (
+        <div style={{ minHeight: 'calc(100dvh - 7rem' }} />
+      ) : (
         <ListContainer>
           {!isLoading && currentItems.length === 0 ? (
             <NoScrapContainer>
