@@ -4,7 +4,7 @@ import BoothHeader from './BoothHeader.jsx';
 import BoothButton from './BoothButton.jsx';
 import BoothMeta from './BoothMeta.jsx';
 import BoothInfo from './BoothInfo.jsx';
-import basicThumbnail from '@/assets/images/BasicThumbnail.png';
+import basicThumbnail from '@/assets/images/basicThumbnail.png';
 
 const ThumbnailWrapper = styled.div`
   position: relative;

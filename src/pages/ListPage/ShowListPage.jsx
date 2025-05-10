@@ -30,7 +30,7 @@ const ShowListContent = () => {
     queryKey: ['shows'],
     queryFn: params => getShows(params),
     getNextPageParam: lastPage => {
-      if (lastPage.data.show?.next) {
+      if (lastPage.data.booth?.next) {
         const url = new URL(lastPage.data.booth.next);
         return url.searchParams.get('cursor');
       }

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import AdminBg from '@/assets/images/Admin.png';
+import AdminBg from '@/assets/images/admin.png';
 import { useNavigate } from 'react-router-dom';
 import ArrowLeft from '@/assets/icons/ArrowLeft';
 
