@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import barrierFreeData from '@/pages/FacilityPage/components/BarrierFreeData';
 import { ArrowDown, ArrowUp } from '@/assets/icons';
-import barrierFreeImage from '@/assets/images/Facility/BarrierFree.png';
+import barrierFreeImage from '@/assets/images/facility/BarrierFree.png';
 
 const BarrierFreeList = () => {
   const [openIndex, setOpenIndex] = useState(null);
