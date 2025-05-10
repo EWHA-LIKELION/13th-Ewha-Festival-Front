@@ -45,13 +45,17 @@ const BoothButton = ({
                   : '부스 운영진 연락처'}
             </ContactText>
           </ButtonItem>
-          <ColumnDivider />
-          <ButtonItem>
-            <ScrapButton as='div'>
-              <ScrapIcon onClick={handleScrap} $isScraped={isScrap} />
-            </ScrapButton>
-            <ContactText>{localScrapCount}명이 스크랩했어요</ContactText>
-          </ButtonItem>
+          {!isCommittee && (
+            <>
+              <ColumnDivider />
+              <ButtonItem>
+                <ScrapButton as='div'>
+                  <ScrapIcon onClick={handleScrap} $isScraped={isScrap} />
+                </ScrapButton>
+                <ContactText>{localScrapCount}명이 스크랩했어요</ContactText>
+              </ButtonItem>
+            </>
+          )}
         </ButtonContainer>
       </ButtonWrapper>
 
