@@ -16,27 +16,28 @@ const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       refetchOnWindowFocus: false,
-      retry: 1
+      retry: 1,
+      staleTime: 5 * 60 * 1000,
+      cacheTime: 10 * 60 * 1000
     }
   }
 });
 
+const OPEN_CATEGORIES = {};
+
 const CommitteeContent = () => {
-  const [openCategories, setOpenCategories] = useState({});
+  const [openCategories, setOpenCategories] = useState(OPEN_CATEGORIES);
 
   // 데이터 가져오기
   const { data: committeeData } = useQuery({
     queryKey: ['committees'],
-    queryFn: () => http.get('/committees/').then(res => res.data),
-    staleTime: 0
+    queryFn: () => http.get('/committees/').then(res => res.data)
   });
 
   // 카테고리 토글
   const toggleCategory = categoryName => {
-    setOpenCategories(prev => ({
-      ...prev,
-      [categoryName]: !prev[categoryName]
-    }));
+    OPEN_CATEGORIES[categoryName] = !OPEN_CATEGORIES[categoryName];
+    setOpenCategories({ ...OPEN_CATEGORIES });
   };
 
   return (
@@ -55,7 +56,7 @@ const CommitteeContent = () => {
                 onClick={() => toggleCategory(categoryName)}
                 $isOpen={openCategories[categoryName]}
               >
-                <CategoryName>{categoryName}팀 부스</CategoryName>
+                <CategoryName>{categoryName} 부스</CategoryName>
                 {openCategories[categoryName] ? <ArrowUp /> : <ArrowDown />}
               </CategoryHeader>
 
@@ -63,7 +64,7 @@ const CommitteeContent = () => {
               {openCategories[categoryName] && booths?.length > 0 && (
                 <BoothList>
                   {booths.map(booth => (
-                    <ShowItem key={booth.id} show={booth} />
+                    <ShowItem key={booth.id} show={booth} hideScrap />
                   ))}
                 </BoothList>
               )}
