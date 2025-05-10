@@ -1,13 +1,13 @@
-import Facility1 from '@/assets/images/Facility/Facility1.png';
-import Facility2 from '@/assets/images/Facility/Facility2.png';
-import Facility3 from '@/assets/images/Facility/Facility3.png';
-import Facility4 from '@/assets/images/Facility/Facility4.png';
-import Facility5 from '@/assets/images/Facility/Facility5.png';
-import Facility6 from '@/assets/images/Facility/Facility6.png';
-import Facility7 from '@/assets/images/Facility/Facility7.png';
-import Facility8 from '@/assets/images/Facility/Facility8.png';
-import Facility9 from '@/assets/images/Facility/Facility9.png';
-import Facility10 from '@/assets/images/Facility/Facility10.png';
+import Facility1 from '@/assets/images/facility/facility1.png';
+import Facility2 from '@/assets/images/facility/facility2.png';
+import Facility3 from '@/assets/images/facility/facility3.png';
+import Facility4 from '@/assets/images/facility/facility4.png';
+import Facility5 from '@/assets/images/facility/facility5.png';
+import Facility6 from '@/assets/images/facility/facility6.png';
+import Facility7 from '@/assets/images/facility/facility7.png';
+import Facility8 from '@/assets/images/facility/facility8.png';
+import Facility9 from '@/assets/images/facility/facility9.png';
+import Facility10 from '@/assets/images/facility/facility10.png';
 
 const facilityData = [
   {

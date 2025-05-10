@@ -4,8 +4,8 @@ import Header from '@/common/Header';
 import FacilityTab from '@/pages/FacilityPage/components/FacilityTab';
 import FacilityList from '@/pages/FacilityPage/components/FacilityList';
 import BarrierFreeList from '@/pages/FacilityPage/components/BarrierFreeList';
-import FacilityMap from '@/assets/images/Facility/FacilityMap.png';
-import BarrierFreeMap from '@/assets/images/Facility/BarrierFreeMap.png';
+import FacilityMap from '@/assets/images/facility/facilityMap.png';
+import BarrierFreeMap from '@/assets/images/facility/barrierFreeMap.png';
 import { Wastebasket, Plate, Butane } from '@/assets/icons';
 
 const FacilityPage = () => {
