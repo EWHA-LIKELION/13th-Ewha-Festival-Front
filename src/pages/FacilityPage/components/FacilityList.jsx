@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import facilityData from '@/pages/FacilityPage/components/FacilityData.js';
+import facilityData from '@/constants/facilityConstants.js';
 import { ArrowDown, ArrowUp, Divider } from '@/assets/icons';
 
 const FacilityList = () => {

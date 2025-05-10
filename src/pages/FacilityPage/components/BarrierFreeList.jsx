@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import barrierFreeData from '@/pages/FacilityPage/components/BarrierFreeData';
+import barrierFreeData from '@/constants/barrierFreeConstants';
 import { ArrowDown, ArrowUp } from '@/assets/icons';
 import barrierFreeImage from '@/assets/images/facility/barrierFree.png';
 
