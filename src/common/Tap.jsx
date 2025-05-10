@@ -1,13 +1,38 @@
 import styled from 'styled-components';
+import { useEffect } from 'react';
 
-const Tab = ({ tabs, activeTab, setActiveTab, tabWidth = '4.25rem' }) => {
+const Tab = ({
+  tabs,
+  activeTab,
+  setActiveTab,
+  storageKey = null,
+  tabWidth = '4.25rem'
+}) => {
+  // 탭 정보 복원
+  useEffect(() => {
+    if (storageKey) {
+      const savedTab = sessionStorage.getItem(storageKey);
+      if (savedTab && tabs.includes(savedTab)) {
+        setActiveTab(savedTab);
+      }
+    }
+  }, []);
+
+  // 탭 변경
+  const handleTabClick = tab => {
+    setActiveTab(tab);
+    if (storageKey) {
+      sessionStorage.setItem(storageKey, tab);
+    }
+  };
+
   return (
     <TabContainer>
       <TabsWrapper>
         {tabs.map(tab => (
           <TabItem
             key={tab}
-            onClick={() => setActiveTab(tab)}
+            onClick={() => handleTabClick(tab)}
             $isActive={activeTab === tab}
             $width={tabWidth}
           >

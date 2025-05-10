@@ -89,6 +89,7 @@ const PopupContent = styled.div`
   width: 100%;
   aspect-ratio: 320/502;
   background-image: url(${popupBg});
+  background-color: white;
   background-size: cover;
   border-radius: 0.625rem;
   overflow: hidden;

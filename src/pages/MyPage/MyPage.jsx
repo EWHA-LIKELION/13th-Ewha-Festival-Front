@@ -8,6 +8,7 @@ import AdminSection from '@/pages/MyPage/components/AdminSection';
 import MyBoothInfo from '@/pages/MyPage/components/MyBoothInfo';
 import { isLoggedIn } from '@/api/auth';
 import LoginBottomSheet from '@/common/LoginBottomSheet';
+import Footer from '@/common/Footer';
 
 const MyPage = () => {
   const [boothInfo, setBoothInfo] = useState(null);
@@ -56,6 +57,7 @@ const MyPage = () => {
           />
         )}
       </PageWrapper>
+      <Footer />
     </>
   );
 };
@@ -78,4 +80,5 @@ const PageWrapper = styled.div`
   align-items: center;
   padding: 4.5rem 1.25rem 3rem;
   background-color: white;
+  min-height: calc(100vh - 10rem);
 `;

@@ -7,6 +7,7 @@ import ShowItem from './components/ShowItem';
 import { getShows } from '@/api/show';
 import useFilter from '@/hooks/useFilter';
 import { getFilterOptions } from '@/constants/filterConstants';
+import useSaveScroll from '@/hooks/useSaveScroll';
 
 // tanstack query 설정
 const queryClient = new QueryClient({
@@ -29,7 +30,7 @@ const ShowListContent = () => {
     queryKey: ['shows'],
     queryFn: params => getShows(params),
     getNextPageParam: lastPage => {
-      if (lastPage.data.show?.next) {
+      if (lastPage.data.booth?.next) {
         const url = new URL(lastPage.data.booth.next);
         return url.searchParams.get('cursor');
       }
@@ -38,6 +39,8 @@ const ShowListContent = () => {
     getTotalCount: page => page.data.booth_count || 0,
     getItems: page => page.data.booth.results || []
   });
+
+  useSaveScroll();
 
   return (
     <>

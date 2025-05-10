@@ -7,10 +7,13 @@ import { ArrowDown, ArrowUp } from '@/assets/icons';
 import { FLEA_MARKET_INFO } from '@/constants/fleamarketConstants';
 
 const FleamarketPage = () => {
-  const [openBooth, setOpenBooth] = useState(null);
-
+  // 상세 정보 토글
+  const [openBooths, setOpenBooths] = useState({});
   const toggleBooth = index => {
-    setOpenBooth(openBooth === index ? null : index);
+    setOpenBooths(prev => ({
+      ...prev,
+      [index]: !prev[index]
+    }));
   };
 
   return (
@@ -24,24 +27,22 @@ const FleamarketPage = () => {
         {/* 지도 */}
         <MainContent>
           <Title>화령's Flea Market</Title>
-          <Subtitle>스포츠트랙</Subtitle>
+          <Subtitle>스포츠트랙 · 부스 위치는 당일 뽑기로 배정됩니다.</Subtitle>
 
           <Divider />
           <MapImage src={trackImg} alt='플리마켓 지도' />
         </MainContent>
 
         {/* 부스 리스트 */}
-
         {FLEA_MARKET_INFO.map((booth, index) => (
           <BoothItem key={index}>
             {/* 부스 정보 */}
             <BoothHeader onClick={() => toggleBooth(index)}>
               <BoothInfo>
-                <BoothName>{booth.id}</BoothName>
                 <BoothName>{booth.name}</BoothName>
                 <DayTag>{booth.days.join(' · ')}</DayTag>
               </BoothInfo>
-              {openBooth === index ? (
+              {openBooths[index] ? (
                 <ArrowUp style={{ width: '1.25rem' }} />
               ) : (
                 <ArrowDown style={{ width: '1.25rem' }} />
@@ -49,7 +50,7 @@ const FleamarketPage = () => {
             </BoothHeader>
 
             {/* 부스 설명 */}
-            {openBooth === index && (
+            {openBooths[index] && (
               <BoothDescription>{booth.description}</BoothDescription>
             )}
 

@@ -5,7 +5,7 @@ import LoginBottomSheet from '@/common/LoginBottomSheet';
 import { useNavigate } from 'react-router-dom';
 import { useScrap } from '@/hooks/useScrap';
 
-const ShowItem = memo(({ show }) => {
+const ShowItem = memo(({ show, hideScrap = false }) => {
   const {
     id,
     name,
@@ -14,8 +14,6 @@ const ShowItem = memo(({ show }) => {
     day_of_week = [],
     formatted_location,
     description,
-    scrap_count,
-    is_scrap,
     images = []
   } = show;
 
@@ -29,6 +27,7 @@ const ShowItem = memo(({ show }) => {
   // 상세페이지로 이동
   const navigate = useNavigate();
   const handleItemClick = () => {
+    sessionStorage.setItem('scrollPosition', window.scrollY);
     navigate(`/showdetail/${id}`);
   };
 
@@ -66,10 +65,12 @@ const ShowItem = memo(({ show }) => {
         </TextBox>
 
         {/* 스크랩 */}
-        <ScrapBox>
-          <ScrapIcon onClick={handleScrap} $isScraped={isScrap} />
-          <ScrapCount>{scrapCount}</ScrapCount>
-        </ScrapBox>
+        {!hideScrap && (
+          <ScrapBox>
+            <ScrapIcon onClick={handleScrap} $isScraped={isScrap} />
+            <ScrapCount>{scrapCount}</ScrapCount>
+          </ScrapBox>
+        )}
       </ShowWrapper>
 
       {/* 로그인 바텀시트 */}

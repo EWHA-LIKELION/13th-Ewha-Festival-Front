@@ -6,7 +6,7 @@ import http from '@/api/http';
 
 const BoothNotices = ({ boothId }) => {
   const [notices, setNotices] = useState([]);
-  const [expandedIndex, setExpandedIndex] = useState(null);
+  const [openIndexes, setOpenIndexes] = useState([]);
 
   useEffect(() => {
     const fetchNotices = async () => {
@@ -20,7 +20,9 @@ const BoothNotices = ({ boothId }) => {
   }, [boothId]);
 
   const toggleNotice = index => {
-    setExpandedIndex(expandedIndex === index ? null : index);
+    setOpenIndexes(prev =>
+      prev.includes(index) ? prev.filter(i => i !== index) : [...prev, index]
+    );
   };
 
   return (
@@ -29,12 +31,12 @@ const BoothNotices = ({ boothId }) => {
         notices.map((notice, index) => (
           <NoticeCard key={index}>
             <NoticeHeader onClick={() => toggleNotice(index)}>
-              <NoticeTitle $expanded={expandedIndex === index}>
+              <NoticeTitle $expanded={openIndexes.includes(index)}>
                 {notice.title}
               </NoticeTitle>
-              {expandedIndex === index ? <ArrowUp /> : <ArrowDown />}
+              {openIndexes.includes(index) ? <ArrowUp /> : <ArrowDown />}
             </NoticeHeader>
-            {expandedIndex === index && (
+            {openIndexes.includes(index) && (
               <NoticeContent>{notice.content}</NoticeContent>
             )}
             <NoticeTime>{notice.formatted_created_at}</NoticeTime>

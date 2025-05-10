@@ -68,6 +68,7 @@ const DetailTemplate = ({
           setScrapState={setScrapState}
           boothId={boothId}
           isCommittee={boothData.is_committee}
+          isShow={boothData.is_show}
         />
         <BoothMeta
           location={boothData.formatted_location}

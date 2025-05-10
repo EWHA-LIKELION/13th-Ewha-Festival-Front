@@ -4,25 +4,29 @@ import facilityData from '@/pages/FacilityPage/components/FacilityData.js';
 import { ArrowDown, ArrowUp, Divider } from '@/assets/icons';
 
 const FacilityList = () => {
-  const [openIndex, setOpenIndex] = useState(null);
+  const [openIndexes, setOpenIndexes] = useState([]);
 
   const toggle = index => {
-    setOpenIndex(prev => (prev === index ? null : index));
+    setOpenIndexes(prev =>
+      prev.includes(index) ? prev.filter(i => i !== index) : [...prev, index]
+    );
   };
 
   return (
     <List>
       {facilityData.map((item, index) => (
         <Item key={index}>
-          <Header onClick={() => toggle(index)} isOpen={openIndex === index}>
+          <Header
+            onClick={() => toggle(index)}
+            isOpen={openIndexes.includes(index)}
+          >
             <div>
               <Title>{item.title}</Title>
               <Description>{item.description}</Description>
             </div>
-            {openIndex === index ? <ArrowUp /> : <ArrowDown />}
+            {openIndexes.includes(index) ? <ArrowUp /> : <ArrowDown />}
           </Header>
-
-          {openIndex === index && (
+          {openIndexes.includes(index) && (
             <>
               <DividerWrapper>
                 <Divider />
@@ -42,7 +46,7 @@ const List = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.88rem;
-  margin-bottom: 3.68rem;
+  margin-bottom: 1.5rem;
 `;
 
 const Item = styled.div`

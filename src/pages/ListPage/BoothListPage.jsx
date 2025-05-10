@@ -7,13 +7,16 @@ import BoothItem from './components/BoothItem';
 import { getBooths } from '@/api/booth';
 import useFilter from '@/hooks/useFilter';
 import { getFilterOptions } from '@/constants/filterConstants';
+import useSaveScroll from '@/hooks/useSaveScroll';
 
 // tanstack query 설정
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       refetchOnWindowFocus: false,
-      retry: 1
+      retry: 1,
+      staleTime: 5 * 60 * 1000,
+      cacheTime: 10 * 60 * 1000
     }
   }
 });
@@ -39,6 +42,8 @@ const BoothListContent = () => {
     getItems: page => page.data.booth.results || [],
     type: 'booth'
   });
+
+  useSaveScroll();
 
   return (
     <>

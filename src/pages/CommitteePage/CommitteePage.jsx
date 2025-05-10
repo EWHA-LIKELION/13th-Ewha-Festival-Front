@@ -5,7 +5,6 @@ import {
   QueryClientProvider,
   useQuery
 } from '@tanstack/react-query';
-import committeeBanner from '@/assets/images/committeeBanner.png';
 import Header from '@/common/Header';
 import Footer from '@/common/Footer';
 import ShowItem from '@/pages/ListPage/components/ShowItem';
@@ -17,27 +16,30 @@ const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       refetchOnWindowFocus: false,
-      retry: 1
+      retry: 1,
+      staleTime: 5 * 60 * 1000,
+      cacheTime: 10 * 60 * 1000
     }
   }
 });
 
+const OPEN_CATEGORIES = {
+  기획팀: true
+};
+
 const CommitteeContent = () => {
-  const [openCategories, setOpenCategories] = useState({});
+  const [openCategories, setOpenCategories] = useState(OPEN_CATEGORIES);
 
   // 데이터 가져오기
   const { data: committeeData } = useQuery({
     queryKey: ['committees'],
-    queryFn: () => http.get('/committees/').then(res => res.data),
-    staleTime: 0
+    queryFn: () => http.get('/committees/').then(res => res.data)
   });
 
   // 카테고리 토글
   const toggleCategory = categoryName => {
-    setOpenCategories(prev => ({
-      ...prev,
-      [categoryName]: !prev[categoryName]
-    }));
+    OPEN_CATEGORIES[categoryName] = !OPEN_CATEGORIES[categoryName];
+    setOpenCategories({ ...OPEN_CATEGORIES });
   };
 
   return (
@@ -48,13 +50,6 @@ const CommitteeContent = () => {
       </HeaderWrapper>
 
       <CommitteeSection>
-        {/* 배너 */}
-        <Banner
-          onClick={() =>
-            window.open(process.env.REACT_APP_COMMITTEE_URL, '_blank')
-          }
-        />
-
         {committeeData &&
           Object.entries(committeeData).map(([categoryName, booths]) => (
             <CategoryContainer key={categoryName}>
@@ -63,7 +58,7 @@ const CommitteeContent = () => {
                 onClick={() => toggleCategory(categoryName)}
                 $isOpen={openCategories[categoryName]}
               >
-                <CategoryName>{categoryName}팀 부스</CategoryName>
+                <CategoryName>{categoryName} 부스</CategoryName>
                 {openCategories[categoryName] ? <ArrowUp /> : <ArrowDown />}
               </CategoryHeader>
 
@@ -71,7 +66,7 @@ const CommitteeContent = () => {
               {openCategories[categoryName] && booths?.length > 0 && (
                 <BoothList>
                   {booths.map(booth => (
-                    <ShowItem key={booth.id} show={booth} />
+                    <ShowItem key={booth.id} show={booth} hideScrap />
                   ))}
                 </BoothList>
               )}
@@ -105,15 +100,6 @@ const CommitteeSection = styled.div`
   gap: 0.75rem;
   min-height: calc(100vh - 5rem);
   background-color: white;
-`;
-
-const Banner = styled.div`
-  width: 100%;
-  height: 4.5rem;
-  border-radius: 0.5rem;
-  background-image: url(${committeeBanner});
-  background-size: cover;
-  margin-bottom: 1.5rem;
 `;
 
 const CategoryContainer = styled.div``;

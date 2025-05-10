@@ -29,6 +29,12 @@ const FilterBottomSheet = ({
     }
   }, [isOpen, initialFilters]);
 
+  // 필터 종류
+  const filterTypes =
+    type === 'show'
+      ? ['category', 'day_of_week']
+      : ['category', 'location', 'day_of_week'];
+
   // 필터 부스 개수 가져오기
   useEffect(() => {
     const fetchCount = async () => {
@@ -103,7 +109,7 @@ const FilterBottomSheet = ({
         </CloseButton>
 
         {/* 필터 섹션 */}
-        {['category', 'location', 'day_of_week'].map(type => (
+        {filterTypes.map(type => (
           <FilterSection key={type}>
             <SectionTitle>
               {type === 'category'
