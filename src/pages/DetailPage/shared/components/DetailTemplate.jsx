@@ -61,15 +61,17 @@ const DetailTemplate = ({
           category={boothData.category}
           description={boothData.description}
         />
-        <BoothButton
-          contact={boothData.contact}
-          scrapCount={boothData.scrap_count}
-          scrapState={scrapState}
-          setScrapState={setScrapState}
-          boothId={boothId}
-          isCommittee={boothData.is_committee}
-          isShow={boothData.is_show}
-        />
+        {!boothData.is_committee && (
+          <BoothButton
+            contact={boothData.contact}
+            scrapCount={boothData.scrap_count}
+            scrapState={scrapState}
+            setScrapState={setScrapState}
+            boothId={boothId}
+            isCommittee={boothData.is_committee}
+            isShow={boothData.is_show}
+          />
+        )}
         <BoothMeta
           location={boothData.formatted_location}
           operatingHours={operatingHours}
