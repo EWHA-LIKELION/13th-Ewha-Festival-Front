@@ -23,7 +23,7 @@ const BoothHeader = ({ role, isShow, id }) => {
       <BackButton
         onClick={() => {
           if (window.history.length > 1) {
-            navigate(-1);
+            window.history.back();
           } else {
             navigate(isShow ? '/showlist' : '/boothlist');
           }

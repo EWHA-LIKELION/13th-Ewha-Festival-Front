@@ -3,6 +3,7 @@ import { isLoggedIn } from '@/api/auth';
 import { scrapBooth, unscrapBooth } from '@/api/scrap';
 import { useQueryClient } from '@tanstack/react-query';
 
+// 스크랩 기능 커스텀 훅
 export const useScrap = (item, setShowLoginSheet = null) => {
   const [isScrap, setIsScrap] = useState(item.is_scrap);
   const [scrapCount, setScrapCount] = useState(item.scrap_count);

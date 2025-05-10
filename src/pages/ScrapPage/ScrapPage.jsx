@@ -9,6 +9,7 @@ import { isLoggedIn } from '@/api/auth';
 import { useNavigate } from 'react-router-dom';
 import { getScrapList } from '@/api/scrap';
 import LoginBottomSheet from '@/common/LoginBottomSheet';
+import Footer from '@/common/Footer';
 
 // tanstack query 설정
 const queryClient = new QueryClient({
@@ -130,7 +131,7 @@ const ScrapContent = () => {
           )}
         </ListContainer>
       )}
-
+      <Footer />
       {/* 로그인 바텀시트 */}
       <LoginBottomSheet
         isOpen={showLoginSheet}
@@ -204,6 +205,7 @@ const Indicator = styled.div`
 const ListContainer = styled.div`
   padding: 1.25rem;
   background-color: white;
+  min-height: calc(100dvh - 7rem);
 `;
 
 const ItemList = styled.div`
