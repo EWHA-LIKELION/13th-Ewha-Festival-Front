@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -131,10 +131,6 @@ const ShowEdit = () => {
       formData.append('thumbnail_image', thumbnailImage);
     }
 
-    for (let pair of formData.entries()) {
-      console.log(`${pair[0]}:`, pair[1]);
-    }
-
     setSaveTrigger(prev => prev + 1);
 
     try {
@@ -143,7 +139,6 @@ const ShowEdit = () => {
           'Content-Type': 'multipart/form-data'
         }
       });
-      alert(response.data.message);
     } catch (error) {
       console.error('PATCH 오류:', error);
       alert('수정 실패');
