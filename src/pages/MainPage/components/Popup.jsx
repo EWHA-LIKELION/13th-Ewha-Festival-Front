@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
-import { CheckedCircle,Circle } from '@/assets/icons';
+import { CheckedCircle, Circle } from '@/assets/icons';
 import popupBg from '@/assets/images/popupBg.png';
 
 const Popup = ({ onClose }) => {
@@ -73,11 +73,12 @@ const PopupOverlay = styled.div`
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 10;
 `;
 
 const PopupWrapper = styled.div`
