@@ -1,5 +1,6 @@
-import { createGlobalStyle } from 'styled-components';
 import 'normalize.css';
+
+import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
 
@@ -26,11 +27,6 @@ div, span, h1, h2, h3, h4, h5, h6, p, a, dl, dt, dd, ol, ul, li, form, label, ta
   --green3: #00462A;
   --red-20: #FFE0DF;
   --red-100: #FF635E;
-}
-
-// 최종 개발 이후 bg 설정 삭제 예정
-html {
-  background-color: var(--gray1);
 }
 
 body {

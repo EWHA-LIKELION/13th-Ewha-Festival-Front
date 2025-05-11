@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import React, { useEffect,useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+
 import { Back, BackBlack, Edit, EditBlack } from '@/assets/icons';
 
 const BoothHeader = ({ role, isShow, id }) => {

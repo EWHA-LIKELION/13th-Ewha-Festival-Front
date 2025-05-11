@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import Header from '@/common/Header';
-import Footer from '@/common/Footer';
-import trackImg from '@/assets/images/trackImg.png';
+
 import { ArrowDown, ArrowUp } from '@/assets/icons';
+import trackImg from '@/assets/images/trackImg.png';
+import Footer from '@/common/Footer';
+import Header from '@/common/Header';
 import { FLEA_MARKET_INFO } from '@/constants/fleamarketConstants';
 
 const FleamarketPage = () => {

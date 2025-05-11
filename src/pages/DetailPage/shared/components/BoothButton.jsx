@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Scrap, Kakao } from '@/assets/icons';
-import { useScrap } from '@/hooks/useScrap';
+
+import { Kakao,Scrap } from '@/assets/icons';
 import LoginBottomSheet from '@/common/LoginBottomSheet';
+import { useScrap } from '@/hooks/useScrap';
 
 const BoothButton = ({
   contact,

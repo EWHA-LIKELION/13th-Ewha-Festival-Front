@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import facilityData from '@/constants/facilityConstants.js';
+
 import { ArrowDown, ArrowUp, Divider } from '@/assets/icons';
+import facilityData from '@/constants/facilityConstants.js';
 
 const FacilityList = () => {
   const [openIndexes, setOpenIndexes] = useState([]);

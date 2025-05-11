@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import styled from 'styled-components';
+
+import http from '@/api/http';
 import { ArrowDown, ArrowUp } from '@/assets/icons';
 import noNoticesImg from '@/assets/images/cloudBg.png';
-import http from '@/api/http';
 
 const BoothNotices = ({ boothId }) => {
   const [notices, setNotices] = useState([]);

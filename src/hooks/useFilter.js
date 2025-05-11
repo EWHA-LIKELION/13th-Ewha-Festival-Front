@@ -1,6 +1,8 @@
-import { useState, useCallback } from 'react';
-import useInfiniteScroll from './useInfiniteScroll';
+import { useCallback,useEffect, useState } from 'react';
+
 import { getFilterOptions } from '@/constants/filterConstants';
+
+import useInfiniteScroll from './useInfiniteScroll';
 
 // 목록 필터링 커스텀 훅 (무한 스크롤 적용)
 const useFilter = ({
@@ -11,11 +13,24 @@ const useFilter = ({
   getItems,
   type
 }) => {
-  const [filters, setFilters] = useState({
-    category: [],
-    location: [],
-    day_of_week: []
-  });
+  const storageKey = `filters_${type}`;
+
+  const getInitialFilters = () => {
+    const savedFilters = sessionStorage.getItem(storageKey);
+    return savedFilters
+      ? JSON.parse(savedFilters)
+      : {
+          category: [],
+          location: [],
+          day_of_week: []
+        };
+  };
+
+  const [filters, setFilters] = useState(getInitialFilters());
+
+  useEffect(() => {
+    sessionStorage.setItem(storageKey, JSON.stringify(filters));
+  }, [filters, storageKey]);
 
   const filteredQueryFn = useCallback(
     ({ pageParam }) => {

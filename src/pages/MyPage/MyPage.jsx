@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+
+import { isLoggedIn } from '@/api/auth';
 import http from '@/api/http';
+import Footer from '@/common/Footer';
 import Header from '@/common/Header';
-import UserInfo from '@/pages/MyPage/components/UserInfo';
-import ScrapBook from '@/pages/MyPage/components/ScrapBook';
+import LoginBottomSheet from '@/common/LoginBottomSheet';
 import AdminSection from '@/pages/MyPage/components/AdminSection';
 import MyBoothInfo from '@/pages/MyPage/components/MyBoothInfo';
-import { isLoggedIn } from '@/api/auth';
-import LoginBottomSheet from '@/common/LoginBottomSheet';
-import Footer from '@/common/Footer';
+import ScrapBook from '@/pages/MyPage/components/ScrapBook';
+import UserInfo from '@/pages/MyPage/components/UserInfo';
 
 const MyPage = () => {
   const [boothInfo, setBoothInfo] = useState(null);

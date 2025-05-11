@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import { LogoDark, Search, Menu } from '@/assets/icons';
+
+import { LogoDark, Menu,Search } from '@/assets/icons';
+
 import SideBar from './SideBar';
 
 const Header = ({ isMain = false }) => {

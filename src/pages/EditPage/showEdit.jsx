@@ -1,18 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import http from '@/api/http';
-import styled from 'styled-components';
-import getBoothId from '@/api/getBoothId';
+import React, { useEffect,useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
 
-import ImageEdit from './components/ImageEdit';
-import BoothName from './components/BoothName';
-import RunningTime from './components/RunningTime';
-import Introduce from './components/BoothIntroduce';
-import Contact from './components/Contact';
-import Status from './components/OperationStatus';
-import EditList from './components/NoticeMenuEditButton';
-import Header1 from './components/Header1';
+import getBoothId from '@/api/getBoothId';
+import http from '@/api/http';
 import Modal from '@/common/Modal';
+
+import Introduce from './components/BoothIntroduce';
+import BoothName from './components/BoothName';
+import Contact from './components/Contact';
+import Header1 from './components/Header1';
+import ImageEdit from './components/ImageEdit';
+import EditList from './components/NoticeMenuEditButton';
+import Status from './components/OperationStatus';
+import RunningTime from './components/RunningTime';
 
 const ShowEdit = () => {
   const navigate = useNavigate();

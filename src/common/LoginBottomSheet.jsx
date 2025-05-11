@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useEffect,useState } from 'react';
 import styled, { css } from 'styled-components';
-import { KakaoChat, ArrowDown } from '@/assets/icons';
+
 import { getKakaoAuthUrl } from '@/api/auth';
-import { slideUp, slideDown, fadeIn, fadeOut } from '@/styles/animations';
+import { ArrowDown,KakaoChat } from '@/assets/icons';
+import { fadeIn, fadeOut,slideDown, slideUp } from '@/styles/animations';
 
 const LoginBottomSheet = ({ isOpen, onClose }) => {
   const [isVisible, setIsVisible] = useState(false);

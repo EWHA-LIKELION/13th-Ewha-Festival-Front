@@ -1,17 +1,19 @@
-import { useState, useEffect } from 'react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { useEffect,useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import SearchHistory from './SearchHistory';
-import BoothItem from '@/pages/ListPage/components/BoothItem';
-import ShowItem from '../ListPage/components/ShowItem';
-import useInfiniteScroll from '@/hooks/useInfiniteScroll';
+
 import { searchResults } from '@/api/search';
 import { ArrowLeft, Search, Warning } from '@/assets/icons';
-import Tab from '@/common/Tap';
-import truncateText from '@/utils/turncateText';
 import Footer from '@/common/Footer';
+import Tab from '@/common/Tap';
+import useInfiniteScroll from '@/hooks/useInfiniteScroll';
 import useSaveScroll from '@/hooks/useSaveScroll';
+import BoothItem from '@/pages/ListPage/components/BoothItem';
+import truncateText from '@/utils/turncateText';
+
+import ShowItem from '../ListPage/components/ShowItem';
+import SearchHistory from './SearchHistory';
 
 // tanstack query 설정
 const queryClient = new QueryClient({

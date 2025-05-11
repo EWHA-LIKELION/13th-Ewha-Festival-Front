@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+
+import { CheckedCircle,Circle } from '@/assets/icons';
 import popupBg from '@/assets/images/popupBg.png';
-import { Circle, CheckedCircle } from '@/assets/icons';
 
 const Popup = ({ onClose }) => {
   // 체크박스 로직
