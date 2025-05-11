@@ -62,6 +62,7 @@ const Content = styled.p`
   ${({ theme }) => theme.fontStyles.regular_14pt};
   color: black;
   margin-bottom: 0.5rem;
+  white-space: pre-line;
 `;
 
 const FooterRow = styled.div`
