@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import http from '@/api/http';
@@ -8,14 +8,14 @@ import Header from '@/common/Header';
 import NoticeCard from '@/pages/NoticePage/components/NoticeCard';
 
 const NoticesPage = () => {
-  const [expandedId, setExpandedId] = useState(null);
+  const [openIds, setOpenIds] = useState([]);
   const [notices, setNotices] = useState([]);
 
   useEffect(() => {
     const fetchNotices = async () => {
       try {
         const res = await http.get('/notices/tf');
-        setNotices(res.data.data);
+        setNotices(res.data);
       } catch (err) {}
     };
 
@@ -23,7 +23,9 @@ const NoticesPage = () => {
   }, []);
 
   const toggleExpand = id => {
-    setExpandedId(prev => (prev === id ? null : id));
+    setOpenIds(prev =>
+      prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]
+    );
   };
 
   return (
@@ -57,7 +59,7 @@ const NoticesPage = () => {
               <NoticeCard
                 key={notice.id}
                 notice={notice}
-                expanded={expandedId === notice.id}
+                expanded={openIds.includes(notice.id)}
                 onToggle={() => toggleExpand(notice.id)}
               />
             ))}
@@ -76,7 +78,7 @@ const Container = styled.div`
   ${({ $hasNotices }) =>
     $hasNotices &&
     `
-      padding: 1.5rem 1.25rem;
+      padding: 4.5rem 1.25rem 1.5rem 1.25rem;
     `}
 `;
 
