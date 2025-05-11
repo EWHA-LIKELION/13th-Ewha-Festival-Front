@@ -1,11 +1,12 @@
-import { useEffect,useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import { Filter as FilterSvg } from '@/assets/icons';
 import {
   formatCategoryFilter,
   formatDayFilter,
-  formatLocationFilter} from '@/utils/filterFormat';
+  formatLocationFilter
+} from '@/utils/filterFormat';
 
 import FilterBottomSheet from './FilterBottomSheet';
 
@@ -54,14 +55,6 @@ const Filter = ({ onFilterChange, filterOptions, type, filters }) => {
           {formatCategoryFilter(activeFilters.category, type)}
         </FilterItem>
 
-        {/* 요일 */}
-        <FilterItem
-          onClick={() => setIsOpen(true)}
-          $isActive={activeFilters.day_of_week.length > 0}
-        >
-          {formatDayFilter(activeFilters.day_of_week)}
-        </FilterItem>
-
         {/* 위치 */}
         {type !== 'show' && (
           <FilterItem
@@ -71,6 +64,14 @@ const Filter = ({ onFilterChange, filterOptions, type, filters }) => {
             {formatLocationFilter(activeFilters.location)}
           </FilterItem>
         )}
+
+        {/* 요일 */}
+        <FilterItem
+          onClick={() => setIsOpen(true)}
+          $isActive={activeFilters.day_of_week.length > 0}
+        >
+          {formatDayFilter(activeFilters.day_of_week)}
+        </FilterItem>
       </FilterWrapper>
 
       <FilterBottomSheet
