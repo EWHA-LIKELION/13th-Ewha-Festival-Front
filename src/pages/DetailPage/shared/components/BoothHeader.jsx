@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -19,17 +19,17 @@ const BoothHeader = ({ role, isShow, id }) => {
     };
   }, []);
 
+  const handleBackClick = () => {
+    const prevPath =
+      sessionStorage.getItem('prevPath') ||
+      (isShow ? '/showlist' : '/boothlist');
+
+    navigate(prevPath);
+  };
+
   return (
     <Header $isScrolled={$isScrolled}>
-      <BackButton
-        onClick={() => {
-          if (window.history.length > 1) {
-            window.history.back();
-          } else {
-            navigate(isShow ? '/showlist' : '/boothlist');
-          }
-        }}
-      >
+      <BackButton onClick={handleBackClick}>
         {$isScrolled ? <BackBlack /> : <Back />}
       </BackButton>
 
