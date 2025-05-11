@@ -1,7 +1,8 @@
-import styled from 'styled-components';
 import Lottie from 'lottie-react';
-import loadingAnimation from '@/assets/lotties/loading.json';
+import styled from 'styled-components';
+
 import cloudBg from '@/assets/images/cloudBg.png';
+import loadingAnimation from '@/assets/lotties/loading.json';
 
 const LoadingScreen = () => (
   <LoadingContainer>

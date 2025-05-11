@@ -1,5 +1,5 @@
-import { useRef, useCallback } from 'react';
 import { useInfiniteQuery } from '@tanstack/react-query';
+import { useCallback,useRef } from 'react';
 
 // 무한 스크롤 커스텀 훅
 const useInfiniteScroll = ({

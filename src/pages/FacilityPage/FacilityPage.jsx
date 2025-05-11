@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import styled from 'styled-components';
-import Header from '@/common/Header';
-import FacilityTab from '@/pages/FacilityPage/components/FacilityTab';
-import FacilityList from '@/pages/FacilityPage/components/FacilityList';
-import BarrierFreeList from '@/pages/FacilityPage/components/BarrierFreeList';
-import FacilityMap from '@/assets/images/facility/facilityMap.png';
+
+import { Butane,Plate, Wastebasket } from '@/assets/icons';
 import BarrierFreeMap from '@/assets/images/facility/barrierFreeMap.png';
-import { Wastebasket, Plate, Butane } from '@/assets/icons';
+import FacilityMap from '@/assets/images/facility/facilityMap.png';
 import Footer from '@/common/Footer';
+import Header from '@/common/Header';
+import BarrierFreeList from '@/pages/FacilityPage/components/BarrierFreeList';
+import FacilityList from '@/pages/FacilityPage/components/FacilityList';
+import FacilityTab from '@/pages/FacilityPage/components/FacilityTab';
 
 const FacilityPage = () => {
   const [selectedTab, setSelectedTab] = useState('facility');

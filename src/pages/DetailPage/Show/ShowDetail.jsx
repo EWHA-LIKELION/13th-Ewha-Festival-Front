@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import React, { useEffect,useState } from 'react';
+import { useParams } from 'react-router-dom';
+
 import http from '@/api/http';
 import DetailTemplate from '@/pages/DetailPage/shared/components/DetailTemplate.jsx';
 import BoothTabs from '@/pages/DetailPage/Show/components/BoothTabs.jsx';
-import { useParams } from 'react-router-dom';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const queryClient = new QueryClient();
 

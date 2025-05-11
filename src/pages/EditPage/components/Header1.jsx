@@ -1,6 +1,7 @@
-import { ArrowLeft } from '@/assets/icons';
 import React from 'react';
 import styled from 'styled-components';
+
+import { ArrowLeft } from '@/assets/icons';
 
 const Header1 = ({ buttonText = '저장', onClick, onArrowClick }) => {
   return (

@@ -1,9 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useEffect,useState } from 'react';
 import styled, { css } from 'styled-components';
+
 import { getBoothsCount } from '@/api/booth';
 import { getShowsCount } from '@/api/show';
 import { ArrowDown } from '@/assets/icons';
-import { slideUp, slideDown, fadeIn, fadeOut } from '@/styles/animations';
+import { fadeIn, fadeOut,slideDown, slideUp } from '@/styles/animations';
 
 const FilterBottomSheet = ({
   isOpen,

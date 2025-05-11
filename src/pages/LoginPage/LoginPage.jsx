@@ -1,8 +1,9 @@
 import styled from 'styled-components';
+
+import { getKakaoAuthUrl } from '@/api/auth';
 import { ArrowLeft } from '@/assets/icons';
 import { KakaoChat } from '@/assets/icons';
 import cloudBg from '@/assets/images/cloudBg.png';
-import { getKakaoAuthUrl } from '@/api/auth';
 
 const handleKakaoLogin = () => {
   window.location.href = getKakaoAuthUrl();

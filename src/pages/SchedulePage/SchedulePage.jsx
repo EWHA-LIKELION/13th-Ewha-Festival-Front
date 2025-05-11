@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import lightBg from '@/assets/images/lightBg.png';
-import Header from '@/common/Header';
-import Footer from '@/common/Footer';
+
 import { ArrowLeft, ArrowRight, Day1, Day2, Day3 } from '@/assets/icons';
+import lightBg from '@/assets/images/lightBg.png';
+import Footer from '@/common/Footer';
+import Header from '@/common/Header';
 import { SCHEDULE_DATA } from '@/constants/scheduleConstants';
 
 const DAY_ICONS = {

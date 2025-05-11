@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import styled from 'styled-components';
-import useGuestbookStore, { fetchGuestbooks } from '@/store/guestbookStore';
-import GuestbookItem from '@/pages/DetailPage/Booth/components/Guestbook/GuestbookItem';
-import GuestbookInputBox from '@/pages/DetailPage/Booth/components/Guestbook/GuestbookInputBox';
-import GuestbookDeleteModal from '@/pages/DetailPage/shared/GuestbookDeleteModal';
-import noGuestBookImg from '@/assets/images/cloudBg.png';
+
 import http from '@/api/http';
+import noGuestBookImg from '@/assets/images/cloudBg.png';
 import LoginBottomSheet from '@/common/LoginBottomSheet';
+import GuestbookInputBox from '@/pages/DetailPage/Booth/components/Guestbook/GuestbookInputBox';
+import GuestbookItem from '@/pages/DetailPage/Booth/components/Guestbook/GuestbookItem';
+import GuestbookDeleteModal from '@/pages/DetailPage/shared/GuestbookDeleteModal';
+import useGuestbookStore, { fetchGuestbooks } from '@/store/guestbookStore';
 
 const BoothGuestbook = ({ boothId }) => {
   const { guestbooks, addGuestbook, deleteGuestbook } = useGuestbookStore();

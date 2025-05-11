@@ -1,10 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import BoothHeader from './BoothHeader.jsx';
-import BoothButton from './BoothButton.jsx';
-import BoothMeta from './BoothMeta.jsx';
-import BoothInfo from './BoothInfo.jsx';
+
 import basicThumbnail from '@/assets/images/basicThumbnail.png';
+
+import BoothButton from './BoothButton.jsx';
+import BoothHeader from './BoothHeader.jsx';
+import BoothInfo from './BoothInfo.jsx';
+import BoothMeta from './BoothMeta.jsx';
 
 const ThumbnailWrapper = styled.div`
   position: relative;
@@ -16,6 +18,7 @@ const BoothThumbnail = styled.img`
   width: 100%;
   height: 15rem;
   object-fit: cover;
+  object-position: center 40%;
   background: linear-gradient(
     180deg,
     rgba(0, 0, 0, 0.8) 35.78%,

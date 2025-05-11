@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { LionsLogo, InstaLogo, GitLogo } from '@/assets/icons';
+
+import { GitLogo,InstaLogo, LionsLogo } from '@/assets/icons';
 
 const Footer = () => {
   const handleLinkClick = url => {

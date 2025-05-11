@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
-import styled from 'styled-components';
-import useScrapStore from '@/store/useScrapStore';
-import ScrapItem from './ScrapItem';
-import noScrapBg from '@/assets/images/noScrap.png';
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+
+import noScrapBg from '@/assets/images/noScrap.png';
+import useScrapStore from '@/store/useScrapStore';
+
+import ScrapItem from './ScrapItem';
 
 const ScrapBook = () => {
   const { scraps, fetchScraps } = useScrapStore();

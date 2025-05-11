@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useEffect,useState } from 'react';
+
 import { getBoothsCount } from '@/api/booth';
 
 // 목록 필터링 시의 부스 개수 구하는 커스텀 훅

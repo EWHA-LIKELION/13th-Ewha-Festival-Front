@@ -1,10 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { MAKERS_DATA } from '@/constants/makersConstans';
-import Profile from './components/Profile';
-import Header from '@/common/Header';
-import Footer from '@/common/Footer';
+
 import lightBg from '@/assets/images/lightBg.png';
+import Footer from '@/common/Footer';
+import Header from '@/common/Header';
+import { MAKERS_DATA } from '@/constants/makersConstans';
+
+import Profile from './components/Profile';
 
 // 데이터 정의
 const MAIN_SECTIONS = ['멋쟁이사자처럼 13기 운영진', '축제준비위원회 운영진'];

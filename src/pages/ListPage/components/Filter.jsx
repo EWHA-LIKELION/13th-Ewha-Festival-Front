@@ -1,20 +1,27 @@
-import { useState } from 'react';
+import { useEffect,useState } from 'react';
 import styled from 'styled-components';
+
 import { Filter as FilterSvg } from '@/assets/icons';
-import FilterBottomSheet from './FilterBottomSheet';
 import {
   formatCategoryFilter,
-  formatLocationFilter,
-  formatDayFilter
-} from '@/utils/filterFormat';
+  formatDayFilter,
+  formatLocationFilter} from '@/utils/filterFormat';
 
-const Filter = ({ onFilterChange, filterOptions, type }) => {
+import FilterBottomSheet from './FilterBottomSheet';
+
+const Filter = ({ onFilterChange, filterOptions, type, filters }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeFilters, setActiveFilters] = useState({
     category: [],
     location: [],
     day_of_week: []
   });
+
+  useEffect(() => {
+    if (filters) {
+      setActiveFilters(filters);
+    }
+  }, [filters]);
 
   const handleFilterApply = filters => {
     setActiveFilters(filters);

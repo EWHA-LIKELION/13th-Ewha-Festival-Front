@@ -1,6 +1,7 @@
-import styled from 'styled-components';
-import { SignBoard } from '@/assets/icons';
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+
+import { SignBoard } from '@/assets/icons';
 
 const Sign = ({ korean, english, left = false, to }) => {
   const navigate = useNavigate();
