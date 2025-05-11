@@ -43,7 +43,7 @@ const ShowDetail = () => {
         if (document.body.contains(overlay)) {
           document.body.removeChild(overlay);
         }
-      }, 150);
+      }, 110);
     };
 
     window.addEventListener('popstate', handlePopState);
