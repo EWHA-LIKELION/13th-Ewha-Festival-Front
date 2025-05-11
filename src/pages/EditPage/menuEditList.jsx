@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -24,7 +24,6 @@ const MenuEditList = () => {
       const res = await http.get(`/menus/${id}/`);
       setMenus(res.data);
       setBoothId(id);
-      console.log(res.data);
     } catch (err) {
       console.error('메뉴 불러오기 실패:', err);
     }

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef,useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
 import getBoothId from '@/api/getBoothId';
@@ -36,11 +36,6 @@ const NoticeEdit = () => {
       const id = await getBoothId();
       setBoothId(id);
       const res = await http.get(`/notices/${id}/`);
-      console.log('📦 서버 응답 데이터:', res.data);
-
-      res.data.forEach((notice, idx) => {
-        console.log(`🧾 notice[${idx}] id =`, notice.id);
-      });
 
       setNotices(res.data);
     } catch (err) {

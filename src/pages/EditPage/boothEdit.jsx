@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -136,10 +136,6 @@ const BoothEdit = () => {
       formData.append('thumbnail_image', thumbnailImage);
     }
 
-    // 확인용 로그
-    for (let pair of formData.entries()) {
-      console.log(`${pair[0]}:`, pair[1]);
-    }
     setSaveTrigger(prev => prev + 1);
     try {
       const response = await http.patch(`/booths/${boothId}/`, formData, {
@@ -147,9 +143,7 @@ const BoothEdit = () => {
           'Content-Type': 'multipart/form-data'
         }
       });
-      alert(response.data.message);
     } catch (error) {
-      console.error('PATCH 오류:', error);
       alert('수정 실패');
     }
   };

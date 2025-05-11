@@ -43,7 +43,7 @@ const MyPageCodeInner = () => {
       setError('');
     } catch (err) {
       const msg = err.response?.data?.message || '코드를 확인해주세요.';
-      console.log(err.response?.data);
+
       setError(msg);
       setBoothState(null);
     }
@@ -89,7 +89,9 @@ const MyPageCodeInner = () => {
       {booth && (
         <Search>
           <Text>이 부스/공연이 맞나요?</Text>
-          <BoothItem key={booth.id} booth={booth} />
+          <BoothItemWrapper>
+            <BoothItem key={booth.id} booth={booth} />
+          </BoothItemWrapper>
         </Search>
       )}
 
@@ -141,14 +143,21 @@ const PageWrapper = styled.div`
     padding: 0.75rem 1rem;
     color: var(--gray3);
     ${({ theme }) => theme.fontStyles.regular_14pt}
+    margin-top: 3rem;
   }
 `;
 
 const Header = styled.div`
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 440px;
+  padding: 0.8rem;
+  top: 0;
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding-bottom: 1rem;
 `;
 
 const Title = styled.h1`
@@ -192,4 +201,7 @@ const SuccessText = styled.p`
   ${({ theme }) => theme.fontStyles.regular_12pt}
   margin-block: 0.5rem;
   width: 100%;
+`;
+const BoothItemWrapper = styled.div`
+  pointer-events: none;
 `;
