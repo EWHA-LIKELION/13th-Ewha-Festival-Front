@@ -37,7 +37,7 @@ const ScrapBook = () => {
               name={item.booth?.name}
               thumbnail={item.booth?.images?.[0] || ''}
               booth_id={item.booth?.id}
-              is_show={item.is_show}
+              is_show={item.booth?.is_show}
             />
           ))}
         </Grid>
