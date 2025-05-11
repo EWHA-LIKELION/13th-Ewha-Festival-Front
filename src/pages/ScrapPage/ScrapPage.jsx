@@ -51,7 +51,8 @@ const ScrapContent = () => {
       }
       return undefined;
     },
-    enabled: isLoggedIn()
+    enabled: isLoggedIn(),
+    staleTime: 0
   });
 
   // 탭 필터링
