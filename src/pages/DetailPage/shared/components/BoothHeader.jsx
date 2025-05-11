@@ -19,24 +19,17 @@ const BoothHeader = ({ role, isShow, id }) => {
     };
   }, []);
 
-  const handleBack = () => {
-    const overlay = document.createElement('div');
-    overlay.style =
-      'position:fixed; top:0; left:0; width:100%; height:100%; background:white; z-index:9999;';
-    document.body.appendChild(overlay);
-
-    window.history.back();
-
-    setTimeout(
-      () =>
-        document.body.contains(overlay) && document.body.removeChild(overlay),
-      100
-    );
-  };
-
   return (
     <Header $isScrolled={$isScrolled}>
-      <BackButton onClick={handleBack}>
+      <BackButton
+        onClick={() => {
+          if (window.history.length > 1) {
+            navigate(-1);
+          } else {
+            navigate(isShow ? '/showlist' : '/boothlist');
+          }
+        }}
+      >
         {$isScrolled ? <BackBlack /> : <Back />}
       </BackButton>
 
