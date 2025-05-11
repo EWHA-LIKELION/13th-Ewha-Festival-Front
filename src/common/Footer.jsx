@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { GitLogo,InstaLogo, LionsLogo } from '@/assets/icons';
+import { GitLogo, InstaLogo, LionsLogo } from '@/assets/icons';
 
 const Footer = () => {
   const handleLinkClick = url => {
@@ -34,7 +34,7 @@ const Footer = () => {
         ))}
       </Logos>
       <Copyright>
-        Copyright ⓒ Likelion Ewha 12th. All Rights Reserved.
+        Copyright ⓒ Likelion Ewha 13th. All Rights Reserved.
       </Copyright>
     </FooterWrapper>
   );
