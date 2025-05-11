@@ -25,6 +25,7 @@ const ShowListContent = () => {
     items: shows,
     totalCount,
     lastItemRef,
+    filters,
     setFilters
   } = useFilter({
     queryKey: ['shows'],
@@ -51,6 +52,7 @@ const ShowListContent = () => {
           onFilterChange={setFilters}
           filterOptions={getFilterOptions('show')}
           type='show'
+          filters={filters}
         />
       </HeaderWrapper>
 

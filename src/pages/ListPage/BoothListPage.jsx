@@ -27,6 +27,7 @@ const BoothListContent = () => {
     items: booths,
     totalCount,
     lastItemRef,
+    filters,
     setFilters
   } = useFilter({
     queryKey: ['booths'],
@@ -54,6 +55,7 @@ const BoothListContent = () => {
           onFilterChange={setFilters}
           filterOptions={getFilterOptions('booth')}
           type='booth'
+          filters={filters}
         />
       </HeaderWrapper>
 
