@@ -10,6 +10,16 @@ import NoticeCard from '@/pages/NoticePage/components/NoticeCard';
 const NoticesPage = () => {
   const [openIds, setOpenIds] = useState([]);
   const [notices, setNotices] = useState([]);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     const fetchNotices = async () => {
@@ -30,7 +40,7 @@ const NoticesPage = () => {
 
   return (
     <>
-      <FixedHeader>
+      <FixedHeader $isScrolled={isScrolled}>
         <Header />
       </FixedHeader>
       <Container $hasNotices={notices.length > 0}>
@@ -90,6 +100,8 @@ const FixedHeader = styled.div`
   z-index: 1000;
   margin: 0 auto;
   background-color: white;
+  ${({ $isScrolled }) =>
+    $isScrolled && `box-shadow: 0px 2px 13.1px 0px rgba(0, 0, 0, 0.08);`}
 `;
 
 const Title = styled.h1`

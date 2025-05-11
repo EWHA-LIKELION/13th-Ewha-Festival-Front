@@ -1,7 +1,7 @@
-import React, { useEffect,useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import { Butane,Plate, Wastebasket } from '@/assets/icons';
+import { Butane, Plate, Wastebasket } from '@/assets/icons';
 import BarrierFreeMap from '@/assets/images/facility/barrierFreeMap.png';
 import FacilityMap from '@/assets/images/facility/facilityMap.png';
 import Footer from '@/common/Footer';
@@ -12,6 +12,15 @@ import FacilityTab from '@/pages/FacilityPage/components/FacilityTab';
 
 const FacilityPage = () => {
   const [selectedTab, setSelectedTab] = useState('facility');
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleTabChange = tab => {
     setSelectedTab(tab);
@@ -33,7 +42,7 @@ const FacilityPage = () => {
 
   return (
     <>
-      <FixedHeader>
+      <FixedHeader $isScrolled={isScrolled}>
         <Header />
       </FixedHeader>
       <Container>
@@ -98,6 +107,8 @@ const FixedHeader = styled.div`
   z-index: 1000;
   margin: 0 auto;
   background-color: white;
+  ${({ $isScrolled }) =>
+    $isScrolled && `box-shadow: 0px 2px 13.1px 0px rgba(0, 0, 0, 0.08);`}
 `;
 
 const Map = styled.img`
