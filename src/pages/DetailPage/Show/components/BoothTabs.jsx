@@ -24,10 +24,10 @@ const BoothTabs = ({ boothId }) => {
         </TabButton>
         <TabIndicator $activeTab={$activeTab} />
       </TabsContainer>
-
-      {$activeTab === '공지' && <BoothNotices boothId={boothId} />}
-
-      {$activeTab === '방명록' && <BoothGuestbook boothId={boothId} />}
+      <TabContentWrapper>
+        {$activeTab === '공지' && <BoothNotices boothId={boothId} />}
+        {$activeTab === '방명록' && <BoothGuestbook boothId={boothId} />}
+      </TabContentWrapper>
     </>
   );
 };
@@ -72,4 +72,9 @@ const TabIndicator = styled.div`
   height: 3px;
   background-color: #18bb7a;
   transition: left 0.3s ease-in-out;
+`;
+
+const TabContentWrapper = styled.div`
+  min-height: 60vh;
+  overflow-y: auto;
 `;
