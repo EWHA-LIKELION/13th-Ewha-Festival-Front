@@ -1,6 +1,8 @@
-import { useState, useEffect, useCallback } from 'react';
-import useInfiniteScroll from './useInfiniteScroll';
+import { useCallback,useEffect, useState } from 'react';
+
 import { getFilterOptions } from '@/constants/filterConstants';
+
+import useInfiniteScroll from './useInfiniteScroll';
 
 // 목록 필터링 커스텀 훅 (무한 스크롤 적용)
 const useFilter = ({

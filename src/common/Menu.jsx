@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+
 import { Trash } from '@/assets/icons';
 
 const MenuCard = ({

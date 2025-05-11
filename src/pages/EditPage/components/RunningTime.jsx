@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+
 import { CheckBox } from '@/assets/icons';
 
 const RunningTime = ({ schedule, setSchedule, saveTrigger, setIsEdited }) => {

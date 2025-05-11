@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { useEffect,useState } from 'react';
+import styled from 'styled-components';
+
+import { Balloon,Delete } from '@/assets/icons';
 import cloudBg from '@/assets/images/cloudBg.png';
-import { Delete, Balloon } from '@/assets/icons';
 import truncateText from '@/utils/turncateText';
 
 const SearchHistory = ({ onSearchClick }) => {

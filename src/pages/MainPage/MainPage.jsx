@@ -1,12 +1,14 @@
-import styled from 'styled-components';
-import { useState, useEffect } from 'react';
+import { useEffect,useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+
+import { getUserInfo,isLoggedIn } from '@/api/auth';
 import mainBg from '@/assets/images/mainBg.png';
 import Header from '@/common/Header';
-import Signpost from './components/Signpost';
-import { isLoggedIn, getUserInfo } from '@/api/auth';
+
 import Popup from './components/Popup';
+import Signpost from './components/Signpost';
 
 const MainPage = () => {
   const location = useLocation();

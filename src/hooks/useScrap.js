@@ -1,7 +1,8 @@
+import { useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
+
 import { isLoggedIn } from '@/api/auth';
 import { scrapBooth, unscrapBooth } from '@/api/scrap';
-import { useQueryClient } from '@tanstack/react-query';
 
 // 스크랩 기능 커스텀 훅
 const scrapCache = {};

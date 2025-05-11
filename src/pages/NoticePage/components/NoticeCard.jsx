@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+
 import { ArrowDown, ArrowUp } from '@/assets/icons';
 
 const NoticeCard = ({ notice, expanded, onToggle }) => {

@@ -1,8 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
-import AdminBg from '@/assets/images/admin.png';
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+
 import ArrowLeft from '@/assets/icons/ArrowLeft';
+import AdminBg from '@/assets/images/admin.png';
 
 const AdminSection = () => {
   const navigate = useNavigate();

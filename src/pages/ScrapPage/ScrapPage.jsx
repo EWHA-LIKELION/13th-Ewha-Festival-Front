@@ -1,16 +1,17 @@
-import { useState, useEffect } from 'react';
-import styled from 'styled-components';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { useEffect,useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+
+import { isLoggedIn } from '@/api/auth';
+import { getScrapList } from '@/api/scrap';
+import { ArrowLeft, Warning } from '@/assets/icons';
+import Footer from '@/common/Footer';
+import LoginBottomSheet from '@/common/LoginBottomSheet';
+import useInfiniteScroll from '@/hooks/useInfiniteScroll';
+import useSaveScroll from '@/hooks/useSaveScroll';
 import BoothItem from '@/pages/ListPage/components/BoothItem';
 import ShowItem from '@/pages/ListPage/components/ShowItem';
-import { ArrowLeft, Warning } from '@/assets/icons';
-import useInfiniteScroll from '@/hooks/useInfiniteScroll';
-import { isLoggedIn } from '@/api/auth';
-import { useNavigate } from 'react-router-dom';
-import { getScrapList } from '@/api/scrap';
-import LoginBottomSheet from '@/common/LoginBottomSheet';
-import Footer from '@/common/Footer';
-import useSaveScroll from '@/hooks/useSaveScroll';
 
 // tanstack query 설정
 const queryClient = new QueryClient({

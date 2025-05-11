@@ -1,12 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useEffect,useState } from 'react';
 import styled from 'styled-components';
+
 import { Filter as FilterSvg } from '@/assets/icons';
-import FilterBottomSheet from './FilterBottomSheet';
 import {
   formatCategoryFilter,
-  formatLocationFilter,
-  formatDayFilter
-} from '@/utils/filterFormat';
+  formatDayFilter,
+  formatLocationFilter} from '@/utils/filterFormat';
+
+import FilterBottomSheet from './FilterBottomSheet';
 
 const Filter = ({ onFilterChange, filterOptions, type, filters }) => {
   const [isOpen, setIsOpen] = useState(false);

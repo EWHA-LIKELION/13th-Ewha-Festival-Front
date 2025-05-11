@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+
 import { Send } from '@/assets/icons';
 
 const GuestbookInputBox = ({ input, setInput, onSend }) => {

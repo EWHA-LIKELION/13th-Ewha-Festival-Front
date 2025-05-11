@@ -1,13 +1,15 @@
-import styled from 'styled-components';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import Header from '@/common/Header';
+import styled from 'styled-components';
+
+import { getShows } from '@/api/show';
 import Footer from '@/common/Footer';
+import Header from '@/common/Header';
+import { getFilterOptions } from '@/constants/filterConstants';
+import useFilter from '@/hooks/useFilter';
+import useSaveScroll from '@/hooks/useSaveScroll';
+
 import Filter from './components/Filter';
 import ShowItem from './components/ShowItem';
-import { getShows } from '@/api/show';
-import useFilter from '@/hooks/useFilter';
-import { getFilterOptions } from '@/constants/filterConstants';
-import useSaveScroll from '@/hooks/useSaveScroll';
 
 // tanstack query 설정
 const queryClient = new QueryClient({

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+
 import DefaultBoothImage from '@/assets/images/basicThumbnail.png';
 
 const ImageEdit = ({ imageSrc, onImageChange, setIsEdited, isEdited }) => {

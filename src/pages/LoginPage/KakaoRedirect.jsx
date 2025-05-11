@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import { handleLogin } from '@/api/auth';
 import http from '@/api/http';
 import LoadingScreen from '@/common/LoadingScreen';

@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import styled from 'styled-components';
+
 import http from '@/api/http';
-import Header from '@/common/Header';
 import { Balloon } from '@/assets/icons';
 import cloudBg from '@/assets/images/cloudBg.png';
+import Header from '@/common/Header';
 import NoticeCard from '@/pages/NoticePage/components/NoticeCard';
 
 const NoticesPage = () => {

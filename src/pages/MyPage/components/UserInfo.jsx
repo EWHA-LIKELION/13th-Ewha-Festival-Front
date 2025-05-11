@@ -1,9 +1,10 @@
 import React from 'react';
-import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+
+import { handleLogout } from '@/api/auth';
 import userInfoBg from '@/assets/images/userInfo.png';
 import useUserStore from '@/store/useScrapStore';
-import { handleLogout } from '@/api/auth';
 
 const UserInfo = () => {
   const { user, updateUser } = useUserStore();

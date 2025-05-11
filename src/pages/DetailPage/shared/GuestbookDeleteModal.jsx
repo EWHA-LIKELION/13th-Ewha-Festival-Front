@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+
 import { Warning } from '@/assets/icons';
 
 const GuestbookDeleteModal = ({ onClose, onDelete }) => {

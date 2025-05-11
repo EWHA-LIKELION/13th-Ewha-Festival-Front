@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import barrierFreeData from '@/constants/barrierFreeConstants';
+
 import { ArrowDown, ArrowUp } from '@/assets/icons';
 import barrierFreeImage from '@/assets/images/facility/barrierFree.png';
+import barrierFreeData from '@/constants/barrierFreeConstants';
 
 const BarrierFreeList = () => {
   const [openIndexes, setOpenIndexes] = useState([]);
