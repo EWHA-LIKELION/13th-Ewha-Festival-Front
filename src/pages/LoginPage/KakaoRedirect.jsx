@@ -31,7 +31,7 @@ const KakaoRedirect = () => {
           is_booth: data.is_booth
         });
 
-        window.location.href = '/';
+        window.location.replace('/');
       } catch (err) {
         console.error('로그인 처리 중 오류:', err);
         navigate('/');
