@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import { getScrapList } from '@/api/scrap';
 import LoginBottomSheet from '@/common/LoginBottomSheet';
 import Footer from '@/common/Footer';
+import useSaveScroll from '@/hooks/useSaveScroll';
 
 // tanstack query 설정
 const queryClient = new QueryClient({
@@ -25,6 +26,7 @@ const ScrapContent = () => {
   const [showLoginSheet, setShowLoginSheet] = useState(false);
   const [activeTab, setActiveTab] = useState('부스');
   const navigate = useNavigate();
+  useSaveScroll();
 
   // 로그인 여부 확인
   useEffect(() => {

@@ -10,6 +10,7 @@ import Footer from '@/common/Footer';
 import ShowItem from '@/pages/ListPage/components/ShowItem';
 import http from '@/api/http';
 import { ArrowDown, ArrowUp } from '@/assets/icons';
+import useSaveScroll from '@/hooks/useSaveScroll';
 
 // tanstack query 설정
 const queryClient = new QueryClient({
@@ -29,6 +30,7 @@ const OPEN_CATEGORIES = {
 
 const CommitteeContent = () => {
   const [openCategories, setOpenCategories] = useState(OPEN_CATEGORIES);
+  useSaveScroll();
 
   // 데이터 가져오기
   const { data: committeeData } = useQuery({
