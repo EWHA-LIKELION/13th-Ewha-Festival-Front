@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { GitLogo,InstaLogo, LionsLogo } from '@/assets/icons';
+import { GitLogo, InstaLogo, LionsLogo } from '@/assets/icons';
 
 const Footer = () => {
   const handleLinkClick = url => {
@@ -17,7 +17,7 @@ const Footer = () => {
   return (
     <FooterWrapper>
       <Title>
-        멋쟁이사자처럼 12기 | Likelion Ewha - 12th
+        멋쟁이사자처럼 13기 | Likelion Ewha - 13th
         <br />
         <span
           onClick={() => handleLinkClick('http://pf.kakao.com/_htxexfd')}
@@ -34,7 +34,7 @@ const Footer = () => {
         ))}
       </Logos>
       <Copyright>
-        Copyright ⓒ Likelion Ewha 12th. All Rights Reserved.
+        Copyright ⓒ Likelion Ewha 13th. All Rights Reserved.
       </Copyright>
     </FooterWrapper>
   );
