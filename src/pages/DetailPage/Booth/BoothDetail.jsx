@@ -43,7 +43,7 @@ const BoothDetail = () => {
         if (document.body.contains(overlay)) {
           document.body.removeChild(overlay);
         }
-      }, 110);
+      }, 175);
     };
 
     window.addEventListener('popstate', handlePopState);
