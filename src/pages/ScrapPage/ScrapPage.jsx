@@ -118,9 +118,9 @@ const ScrapContent = () => {
             </NoScrapContainer>
           ) : (
             <ItemList>
-              <ScrapCount>
+              {/* <ScrapCount>
                 총 {currentItems.length}개의 {activeTab}
-              </ScrapCount>
+              </ScrapCount> */}
               {currentItems.map((item, index) => (
                 <div
                   key={item.id}
