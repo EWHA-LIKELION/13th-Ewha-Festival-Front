@@ -1,5 +1,5 @@
-import React, { useEffect,useState } from 'react';
-import { useNavigate,useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 import getBoothId from '@/api/getBoothId';
@@ -98,6 +98,7 @@ const MenuEdit = () => {
         <Title>메뉴명</Title>
         <Input
           placeholder='메뉴명을 입력해주세요. (최대 18자)'
+          maxLength={18}
           value={name}
           onChange={e => setName(e.target.value)}
         />
