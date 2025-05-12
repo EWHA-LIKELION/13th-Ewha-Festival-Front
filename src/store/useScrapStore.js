@@ -16,14 +16,17 @@ const useScrapStore = create(set => ({
   fetchScraps: async () => {
     try {
       const response = await http.get('/mypages/scrapbook/');
-      const { booths = [], shows = [] } = response.data.results || {};
-      const total_scrap_count = booths.length + shows.length;
+      const {
+        booths = [],
+        shows = [],
+        count = 0
+      } = response.data.results || {};
 
       set({
         scraps: {
           booths,
           shows,
-          total_scrap_count
+          total_scrap_count: count
         }
       });
     } catch (error) {}
