@@ -14,7 +14,7 @@ const KakaoRedirect = () => {
 
       if (!code) {
         console.error('인증 코드 찾을 수 없음');
-        navigate('/login');
+        navigate('/', { replace: true });
         return;
       }
 
@@ -31,10 +31,10 @@ const KakaoRedirect = () => {
           is_booth: data.is_booth
         });
 
-        window.location.href = '/';
+        window.location.replace('/');
       } catch (err) {
         console.error('로그인 처리 중 오류:', err);
-        navigate('/login');
+        navigate('/');
       }
     };
 

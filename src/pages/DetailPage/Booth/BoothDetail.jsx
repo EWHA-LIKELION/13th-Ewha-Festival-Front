@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import React, { useEffect,useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import http from '@/api/http';
@@ -31,6 +31,27 @@ const BoothDetail = () => {
 
     fetchBoothData();
   }, [booth_id]);
+
+  useEffect(() => {
+    const handlePopState = () => {
+      const overlay = document.createElement('div');
+      overlay.style =
+        'position:fixed; top:0; left:0; width:100%; height:100%; background:white; z-index:9999;';
+      document.body.appendChild(overlay);
+
+      setTimeout(() => {
+        if (document.body.contains(overlay)) {
+          document.body.removeChild(overlay);
+        }
+      }, 175);
+    };
+
+    window.addEventListener('popstate', handlePopState);
+
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+    };
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>

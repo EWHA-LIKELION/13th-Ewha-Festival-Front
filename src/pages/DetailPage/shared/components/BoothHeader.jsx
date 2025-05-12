@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -24,7 +24,7 @@ const BoothHeader = ({ role, isShow, id }) => {
       <BackButton
         onClick={() => {
           if (window.history.length > 1) {
-            window.history.back();
+            navigate(-1);
           } else {
             navigate(isShow ? '/showlist' : '/boothlist');
           }

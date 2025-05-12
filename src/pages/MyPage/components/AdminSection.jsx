@@ -15,7 +15,7 @@ const AdminSection = () => {
         <AdminText>부스/공연 관리자 인가요?</AdminText>
         <CodeInput>코드 입력하기</CodeInput>
       </Text>
-      <StyledArrow />
+      <StyledArrow onClick={() => navigate('/mypage/code')} />
     </Container>
   );
 };
