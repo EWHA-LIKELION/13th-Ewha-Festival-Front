@@ -26,8 +26,7 @@ const ScrapBook = () => {
       {!hasScraps && <BackgroundImage src={noScrapBg} alt='배경' />}
 
       <Header>
-        {/* <Title>스크랩북({totalScraps})</Title> */}
-        <Title>스크랩북</Title>
+        <Title>스크랩북({totalScraps})</Title>
         <More onClick={() => navigate('/scrap')}>더보기</More>
       </Header>
       {hasScraps ? (
