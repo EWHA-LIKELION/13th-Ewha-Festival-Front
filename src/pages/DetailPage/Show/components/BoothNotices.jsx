@@ -113,6 +113,8 @@ const NoticeTitle = styled.h3`
 const NoticeContent = styled.p`
   color: var(--black, #000);
   white-space: pre-line;
+  word-break: break-word;
+  overflow-wrap: break-word;
   ${({ theme }) => theme.fontStyles.regular_14pt}
 `;
 
