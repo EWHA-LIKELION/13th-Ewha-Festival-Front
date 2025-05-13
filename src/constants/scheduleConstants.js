@@ -37,11 +37,11 @@ export const SCHEDULE_DATA = {
     },
     {
       title: '이화의 마블',
-      time: '15:00~17:00'
+      time: '16:00~17:00'
     },
     {
       title: '영화제',
-      time: '19:00~'
+      time: '19:30~'
     }
   ],
   3: [
@@ -59,7 +59,7 @@ export const SCHEDULE_DATA = {
     },
     {
       title: '아티스트 공연 및 폐막식',
-      time: '19:00~'
+      time: '18:00~'
     }
   ]
 };
